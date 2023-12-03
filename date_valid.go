@@ -8,6 +8,7 @@ import (
 func (d Date) Valid() error {
 	// There is a limit to the # of month days (e.g. Feb can't have 30 days).
 	maxPerMonth := []int{
+		0, // Filler as month.January is 1
 		31, 29, 31, 30, 31, 30,
 		31, 31, 30, 31, 30, 31,
 	}
