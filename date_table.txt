@@ -1,0 +1,79 @@
+// Taken from https://en.wikipedia.org/wiki/Conversion_between_Julian_and_Gregorian_calendars
+//
+// Original source: 
+// "This table is taken from the book by the Nautical almanac offices of the United Kingdom and United
+// States originally published in 1961"
+//
+// Year Julian_month Julian_day Gregorian_month Gregorian_day Difference
+// When the difference is not given, then it's just a lookup entry.
+-500	March 5	February 28	
+-500	March 6	March 1	-5
+-300	March 3	February 27	-5
+-300	March 4	February 28	
+-300	March 5	March 1	-4
+-200	March 2	February 27	-4
+-200	March 3	February 28	
+-200	March 4	March 1	-3
+-100	March 1	February 27	-3
+-100	March 2	February 28	
+-100	March 3	March 1	-2
+100	February 29	February 27	-2
+100	March 1	February 28	
+100	March 2	March 1	-1
+200	February 28	February 27	-1
+200	February 29	February 28	
+200	March 1	March 1	0
+300	February 28	February 28	0
+300	February 29	March 1	
+300	March 1	March 2	1
+500	February 28	March 1	1
+500	February 29	March 2	
+500	March 1	March 3	2
+600	February 28	March 2	2
+600	February 29	March 3	
+600	March 1	March 4	3
+700	February 28	March 3	3
+700	February 29	March 4	
+700	March 1	March 5	4
+900	February 28	March 4	4
+900	February 29	March 5	
+900	March 1	March 6	5
+1000	February 28	March 5	5
+1000	February 29	March 6	
+1000	March 1	March 7	6
+1100	February 28	March 6	6
+1100	February 29	March 7	
+1100	March 1	March 8	7
+1300	February 28	March 7	7
+1300	February 29	March 8	
+1300	March 1	March 9	8
+1400	February 28	March 8	8
+1400	February 29	March 9	
+1400	March 1	March 10	9
+1500	February 28	March 9	9
+1500	February 29	March 10	
+1500	March 1	March 11	10
+1582	October 4	October 14	10
+1582	October 5	October 15	10
+1582	October 6	October 16	10
+1700	February 18	February 28	10
+1700	February 19	March 1	11
+1700	February 28	March 10	11
+1700	February 29	March 11	11
+1700	March 1	March 12	11
+1800	February 17	February 28	11
+1800	February 18	March 1	12
+1800	February 28	March 11	12
+1800	February 29	March 12	12
+1800	March 1	March 13	12
+1900	February 16	February 28	12
+1900	February 17	March 1	13
+1900	February 28	March 12	13
+1900	February 29	March 13	13
+1900	March 1	March 14	13
+2100	February 15	February 28	13
+2100	February 16	March 1	14
+2100	February 28	March 13	14
+2100	February 29	March 14	14
+// KK: This could be padded for moar dates, beyond 2100.
+// I don't think that anyone want to convert calendars beyond 2100 tho.
