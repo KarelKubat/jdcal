@@ -32,6 +32,18 @@ func TestValid(t *testing.T) {
 			wantErr: "1900 has no February 29th",
 		},
 		{
+			d:       Date{Year: 1712, Month: time.February, Day: 28, Type: Julian},
+			wantErr: "",
+		},
+		{
+			d:       Date{Year: 1712, Month: time.February, Day: 29, Type: Julian},
+			wantErr: "",
+		},
+		{
+			d:       Date{Year: 1712, Month: time.February, Day: 30, Type: Julian},
+			wantErr: "February can't have 30 days",
+		},
+		{
 			d:       Date{Year: 2000, Month: time.February, Day: 29},
 			wantErr: "",
 		},
