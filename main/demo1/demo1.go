@@ -30,7 +30,7 @@ func main() {
 	fmt.Println("And back again:", gd, "is", jd1)
 
 	// Output:
-	// 	From Julian to Gregorian: Julian 1582/10/05 is Gregorian 1582/10/15
+	// From Julian to Gregorian: Julian 1582/10/05 is Gregorian 1582/10/15
 	// And back again: Gregorian 1582/10/15 is Julian 1582/10/05
 }
 
