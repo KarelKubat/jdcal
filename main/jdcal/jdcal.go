@@ -60,6 +60,7 @@ func main() {
 			Day:   atoi(arg, parts[2]),
 			Type:  tp,
 		})
+		check(err)
 		ot, err := dt.Convert()
 		check(err)
 		fmt.Println(dt, "is", ot)
