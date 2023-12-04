@@ -35,6 +35,9 @@ func main() {
 		flag.PrintDefaults()
 		os.Exit(1)
 	}
+	if len(os.Args) < 2 {
+		flag.Usage()
+	}
 	if *flagJulian == *flagGregorian {
 		check(errors.New("one of -j or -g must be given, but not both"))
 	}
