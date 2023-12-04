@@ -54,12 +54,8 @@ func main() {
 		if len(parts) != 3 {
 			check(fmt.Errorf("malformed argument %q, want YYYY/MM/DD", arg))
 		}
-		dt, err := jdcal.New(jdcal.Date{
-			Year:  atoi(arg, parts[0]),
-			Month: time.Month(atoi(arg, parts[1])),
-			Day:   atoi(arg, parts[2]),
-			Type:  tp,
-		})
+		dt, err := jdcal.New(atoi(arg, parts[0]), time.Month(atoi(arg, parts[1])),
+			atoi(arg, parts[2]), tp)
 		check(err)
 		ot, err := dt.Convert()
 		check(err)

@@ -22,12 +22,7 @@ import (
 func main() {
 	// October 5th (Julian) was the Papal announcement to skip 10 days.
 	// The new date would be October 15 (Gregorian).
-	jd0, err := jdcal.New(jdcal.Date{
-		Year:  1582,
-		Month: time.October,
-		Day:   5,
-		Type:  jdcal.Julian,
-	})
+	jd0, err := jdcal.New(1582, time.October, 5, jdcal.Julian)
 	check(err)
 
 	// to Gregorian

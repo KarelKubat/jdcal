@@ -37,21 +37,18 @@ func TestEqual(t *testing.T) {
 			wantEqual: false,
 		},
 	} {
-		d, err := New(test.dt)
-		if err != nil {
-			t.Fatalf("New(%v) = _,%q, need nil error", test.dt, err.Error())
+		for _, d := range []Date{test.dt, test.ot} {
+			if err := d.Valid(); err != nil {
+				t.Fatalf("%+v .Valid() = %q, need nil error", test.dt, err.Error())
+			}
 		}
-		o, err := New(test.ot)
-		if err != nil {
-			t.Fatalf("New(%v) = _,%q, need nil error", test.dt, err.Error())
-		}
-		gotEqual, err := d.Equal(o)
+		gotEqual, err := test.dt.Equal(test.ot)
 		gotError := err != nil
 		switch {
 		case gotError != test.wantError:
-			t.Fatalf("%+v Equal(%+v) = _,%v, want error: %v", d, o, err, test.wantError)
+			t.Fatalf("%+v Equal(%+v) = _,%v, want error: %v", test.dt, test.ot, err, test.wantError)
 		case gotEqual != test.wantEqual:
-			t.Errorf("%+v Equal(%+v) = %v,_, want %v", d, o, gotEqual, test.wantEqual)
+			t.Errorf("%+v Equal(%+v) = %v,_, want %v", test.dt, test.ot, gotEqual, test.wantEqual)
 		}
 	}
 }
