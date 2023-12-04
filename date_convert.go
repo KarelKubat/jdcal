@@ -4,6 +4,16 @@ import (
 	"errors"
 )
 
+/*
+Convert converts a jdcal.Date to the "other" format: from Julian to Gregorian, or vv.
+Example:
+
+	jd, err := jdcal.New(1712, time.February, 19)
+	if err != nil {...}
+	gd, err := jd.Convert()
+	if err != nil {...}
+	fmt.Println(gd) // Gregorian 1712/03/01
+*/
 func (d Date) Convert() (Date, error) {
 	for i, e := range ConversionTable {
 		var our, their, ourNext Date
@@ -60,7 +70,7 @@ func (d Date) extrapolate(our, their Date) (Date, error) {
 		if eq {
 			return their, nil
 		}
-		our.Advance()
-		their.Advance()
+		our = our.Advance()
+		their = their.Advance()
 	}
 }

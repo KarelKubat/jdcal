@@ -5,7 +5,7 @@
 // States originally published in 1961"
 //
 // Year Julian_month Julian_day Gregorian_month Gregorian_day Difference
-// When the difference is not given, then it's just a lookup entry.
+// KK: When the difference is not given, then it's just a lookup entry.
 -500	March 5	February 28	
 -500	March 6	March 1	-5
 -300	March 3	February 27	-5
@@ -53,9 +53,12 @@
 1500	February 28	March 9	9
 1500	February 29	March 10	
 1500	March 1	March 11	10
-1582	October 4	October 14	10
-1582	October 5	October 15	10
-1582	October 6	October 16	10
+// KK: The below 3 entries appear in  Nautical almanac of the United Kingdom and United States (1961)
+// but they don't add anything, they were probably inserted to honor the date of the Papal
+// announcement.
+// 1582	October 4	October 14	10
+// 1582	October 5	October 15	10
+// 1582	October 6	October 16	10
 1700	February 18	February 28	10
 1700	February 19	March 1	11
 1700	February 28	March 10	11
@@ -76,4 +79,4 @@
 2100	February 28	March 13	14
 2100	February 29	March 14	14
 // KK: This could be padded for moar dates, beyond 2100.
-// I don't think that anyone want to convert calendars beyond 2100 tho.
+// I don't think that anyone would want to convert calendars beyond 2100 tho.

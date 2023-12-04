@@ -2,6 +2,10 @@ package jdcal
 
 import "errors"
 
+/*
+Before is true when the date in question occurs earlier than the other date. Note that
+different date types raise an error, see After().
+*/
 func (d Date) Before(other Date) (bool, error) {
 	if d.Type != other.Type {
 		return false, errors.New("can't compare different types")

@@ -106,7 +106,7 @@ func TestAdvance(t *testing.T) {
 		},
 	} {
 		for i, nxt := range test.next {
-			test.d.Advance()
+			test.d = test.d.Advance()
 			eq, err := test.d.Equal(nxt)
 			if err != nil {
 				t.Fatalf("%+v .Equal(%+v) = _,%q, need nil error", test.d, nxt, err.Error())

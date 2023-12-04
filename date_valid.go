@@ -5,6 +5,9 @@ import (
 	"time"
 )
 
+/*
+Valid returns an error when a date cannot be processed. The date must not exceed the maximum number of month days (e.g., April 31st is wrong, February 29th may only occur in leap years) and Convert() must be able to process it (it can't be outside of the ConversionTable).
+*/
 func (d Date) Valid() error {
 	// There is a limit to the # of month days (e.g. Feb can't have 30 days).
 	maxPerMonth := []int{

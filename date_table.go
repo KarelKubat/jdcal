@@ -6,9 +6,16 @@ import (
 	"time"
 )
 
-// [...] is syntactic sugar to let the compiler figure out the array size. That way
-// we get a fixed size array and not a slice.
+/*
+ConversionTable defines matching Julian and Gregorian dates. It is consulted by, e.g., Convert(). The contained ConversionEntry's won't normally be of use outside of this module, but they are exported (as uppercase symbols) so they can be inspected.
+
+This table reflects https://en.wikipedia.org/wiki/Conversion_between_Julian_and_Gregorian_calendars, original source: the Nautical almanac of the United Kingdom and United States (1961).
+
+This table
+*/
 var ConversionTable = [...]ConversionEntry{
+	// [...] is syntactic sugar to let the compiler figure out the array size. That way
+	// we get a fixed size array and not a slice.
 	{
 		JDate: Date{Year: -500, Month: time.March, Day: 5, Type: Julian},
 		GDate: Date{Year: -500, Month: time.February, Day: 28, Type: Gregorian},
@@ -226,21 +233,6 @@ var ConversionTable = [...]ConversionEntry{
 	{
 		JDate: Date{Year: 1500, Month: time.March, Day: 1, Type: Julian},
 		GDate: Date{Year: 1500, Month: time.March, Day: 11, Type: Gregorian},
-		// Diff: 10 days
-	},
-	{
-		JDate: Date{Year: 1582, Month: time.October, Day: 4, Type: Julian},
-		GDate: Date{Year: 1582, Month: time.October, Day: 14, Type: Gregorian},
-		// Diff: 10 days
-	},
-	{
-		JDate: Date{Year: 1582, Month: time.October, Day: 5, Type: Julian},
-		GDate: Date{Year: 1582, Month: time.October, Day: 15, Type: Gregorian},
-		// Diff: 10 days
-	},
-	{
-		JDate: Date{Year: 1582, Month: time.October, Day: 6, Type: Julian},
-		GDate: Date{Year: 1582, Month: time.October, Day: 16, Type: Gregorian},
 		// Diff: 10 days
 	},
 	{
