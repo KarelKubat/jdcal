@@ -21,13 +21,9 @@ import (
 	"time"
 )
 
-type Entry struct {
-	JDate, GDate Date
-}
-
 // [...] is syntactic sugar to let the compiler figure out the array size. That way
 // we get a fixed size array and not a slice.
-var Table = [...]Entry{
+var ConversionTable = [...]ConversionEntry{
 `
 
 	ftr = `

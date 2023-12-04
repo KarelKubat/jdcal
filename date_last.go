@@ -2,7 +2,7 @@ package jdcal
 
 func Last(dt Type) Date {
 	if dt == Julian {
-		return Table[len(Table)-1].JDate
+		return ConversionTable[len(ConversionTable)-1].JDate
 	}
-	return Table[len(Table)-1].GDate
+	return ConversionTable[len(ConversionTable)-1].GDate
 }

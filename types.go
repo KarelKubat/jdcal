@@ -15,3 +15,7 @@ type Date struct {
 	Day   int
 	Type  Type
 }
+
+type ConversionEntry struct {
+	JDate, GDate Date
+}

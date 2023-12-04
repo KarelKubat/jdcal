@@ -5,7 +5,7 @@ import (
 )
 
 func (d Date) Convert() (Date, error) {
-	for i, e := range Table {
+	for i, e := range ConversionTable {
 		var our, their, ourNext Date
 		if d.Type == Gregorian {
 			our = e.GDate
@@ -25,7 +25,7 @@ func (d Date) Convert() (Date, error) {
 		}
 
 		// Can't arrive at the last entry, that's a lookup.
-		if i == len(Table)-1 {
+		if i == len(ConversionTable)-1 {
 			return d, errors.New("conversion table exhausted")
 		}
 
@@ -34,9 +34,9 @@ func (d Date) Convert() (Date, error) {
 		// - The next-up entry is later than our target
 		// Otherwise, just loop on.
 		if d.Type == Gregorian {
-			ourNext = Table[i+1].GDate
+			ourNext = ConversionTable[i+1].GDate
 		} else {
-			ourNext = Table[i+1].JDate
+			ourNext = ConversionTable[i+1].JDate
 		}
 
 		af, err := d.Before(ourNext)
