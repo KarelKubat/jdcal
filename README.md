@@ -3,7 +3,11 @@
 Go library and CLI utility to convert to-and-fro between Julian and Gregorian calendars.
 
 <!-- toc -->
-- [Shortest synopsis](#shortest-synopsis)
+- [Short CLI synopsis](#short-cli-synopsis)
+- [Short library synopsis](#short-library-synopsis)
+  - [Conversions](#conversions)
+  - [Honoring leap years](#honoring-leap-years)
+  - [More documentation](#more-documentation)
 <!-- /toc -->
 
 ## Short CLI synopsis
