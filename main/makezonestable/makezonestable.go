@@ -29,6 +29,11 @@ Gregorian calendar. Some zones temporarily reverted to the Julian calendar, thes
 have multiple cutover dates.
 
 This table reflects https://en.wikipedia.org/wiki/List_of_adoption_dates_of_the_Gregorian_calendar_by_country.
+
+
+Note: The Cutovers entries are the dates where that period STOPPED. So: "{Year: 1918, Month: time.April, Day: 17, Type: Julian}" is the Julian date 1918/04/16, when the Julian calendar was abandoned in favor of "the other one", being the Gregorian.
+
+Another note: All symbols of the table are exported (upper case). You can skip reading the table; rather, have a look at the "Zones*()" functions that can do the lifting.
 */
 var ZonesTable = [...]ZoneEntry{
 	// [...] is syntactic sugar to let the compiler figure out the array size. That way
