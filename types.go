@@ -25,3 +25,11 @@ ConversionEntry wraps one Julian and one Gregorian date. The ConversionTable is 
 type ConversionEntry struct {
 	JDate, GDate Date
 }
+
+/*
+ZoneInfo wraps a zone name with the dates where that zone switched to the Gregorian calendar, possibly later back to the Gregorian, etc. The ZoneTable is an array of such entries.
+*/
+type ZoneEntry struct {
+	Name     string // Zone name, e.g. "Denmark"
+	Cutovers []Date // List of dates when the zone switched from a given calendar
+}

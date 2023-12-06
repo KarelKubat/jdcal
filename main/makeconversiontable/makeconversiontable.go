@@ -48,9 +48,7 @@ func main() {
 
 	out(hdr)
 
-	lineno := 0
 	for _, line := range strings.Split(string(content), "\n") {
-		lineno++
 		if strings.HasPrefix(line, "//") || line == "" {
 			continue
 		}

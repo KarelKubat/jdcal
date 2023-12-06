@@ -7,11 +7,9 @@ import (
 )
 
 /*
-ConversionTable defines matching Julian and Gregorian dates. It is consulted by, e.g., Convert(). The contained ConversionEntry's won't normally be of use outside of this module, but they are exported (as uppercase symbols) so they can be inspected.
+ConversionTable defines matching Julian and Gregorian dates. It is consulted by, e.g., Convert(). The contained ConversionEntry's won't normally be of use outside of this module, but they are coded as exportable (as uppercase symbols) so they can be inspected.
 
 This table reflects https://en.wikipedia.org/wiki/Conversion_between_Julian_and_Gregorian_calendars, original source: the Nautical almanac of the United Kingdom and United States (1961).
-
-This table
 */
 var ConversionTable = [...]ConversionEntry{
 	// [...] is syntactic sugar to let the compiler figure out the array size. That way

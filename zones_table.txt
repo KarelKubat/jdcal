@@ -1,0 +1,451 @@
+// Adoption of the Gregorian calendar, overview with a nice simple graphic:
+// https://en.wikipedia.org/wiki/Adoption_of_the_Gregorian_calendar
+// 
+// Detailed list:
+// https://en.wikipedia.org/wiki/List_of_adoption_dates_of_the_Gregorian_calendar_by_country
+
+Albania (non-Catholic)
+    to-jd FIRST
+    to-gd 1912/11/14
+    
+Albania (Catholic)
+    to-jd FIRST
+    to-gd 1583/10/05
+
+Armenia
+    to-jd FIRST
+    to-gd 1918/04/17
+
+Austria (Brixen, Salzburg, Tyrol)
+    to-jd FIRST
+    to-gd 1583/10/05
+
+Austria (Carinthia)
+    to-jd FIRST
+    to-gd 1584/01/05
+
+Azerbaijan
+    to-jd FIRST
+    to-gd 1918/04/17
+
+Belarus (Lithuania Governorate)
+    to-jd FIRST
+    to-gd 1585/12/25
+    to-jd 1800/01/11
+    to-gd 1915/08/22
+
+Belarus (Soviet Russia)
+    to-jd FIRST
+    to-gd 1918/01/31
+
+Belgium (Flanders)
+    to-jd FIRST
+    to-gd 1582/12/14
+
+Belgium (Liège)
+    to-jd FIRST
+    to-gd 1583/02/10
+
+Belgium (Southern Netherlands)
+    to-jd FIRST
+    to-gd 1582/12/20
+
+Bulgaria
+    to-jd FIRST
+    to-gd 1916/03/31
+
+Cambodia
+    to-gd 1863/01/01
+
+Canada (French colonial empire)
+    to-jd FIRST
+    to-gd 1582/12/09
+
+Canada (Nova Scotia)
+    to-jd FIRST
+    to-gd 1582/12/09
+    to-jd 1710/10/03
+    to-gd 1752/09/02
+
+Canada (Britsh empire)
+    to-jd FIRST
+    to-gd 1752/09/02
+
+China
+    to-gd 1911/12/01
+
+Czech Republic (Bohemia)
+    to-jd FIRST
+    to-gd 1584/01/06
+
+Czech Republic (Moravia)
+    to-jd FIRST
+    to-gd 1584/10/03
+
+Czech Republic (Silesia)
+    to-jd FIRST
+    to-gd 1584/01/12
+
+Denmark
+    to-jd FIRST
+    to-gd 1700/02/18
+
+Egypt
+    to-gd 1875/06/11
+
+Estonia
+    to-jd FIRST
+    to-gd 1918/02/15
+
+Faroe Islands
+    to-jd FIRST
+    to-gd 1700/11/16
+
+France (largest part, note: different calendar 1793-1805)
+    to-jd FIRST
+    to-gd 1582/12/09
+
+France (Sedan)
+    to-jd FIRST
+    to-gd 1582/12/09
+
+France (Austrian Upper Alsace, Breisgau)
+    to-jd FIRST
+    to-gd 1583/10/13
+
+France (Catholic Strasbourg)
+    to-jd FIRST
+    to-gd 1583/11/16
+
+France (Alsace, Protestant parts)
+    to-jd FIRST
+    to-gd 1682/02/05
+
+France (Lorraine)
+    to-jd FIRST
+    to-gd 1582/12/09
+    to-jd 1735/01/01
+    to-gd 1760/02/16
+
+France (Mulhouse)
+    to-jd FIRST
+    to-gd 1700/12/31
+
+Germany (Aachen)
+    to-jd FIRST
+    to-gd 1582/12/31
+
+Germany (Augsburg)
+    to-jd FIRST
+    to-gd 1583/02/13
+
+Germany (Baden-Baden)
+    to-jd FIRST
+    to-gd 1583/11/16
+
+Germany (Bavaria, Regensburg, Freising)
+    to-jd FIRST
+    to-gd 1583/10/05
+
+Germany (Breisgau-Hochschwarzwald)
+    to-jd FIRST
+    to-gd 1583/10/05
+
+Germany (Cologne)
+    to-jd FIRST
+    to-gd 1583/11/03
+
+Germany (Jülich-Berg)
+    to-jd FIRST
+    to-gd 1583/11/02
+
+Germany (Mainz)
+    to-jd FIRST
+    to-gd 1583/11/11
+
+Germany (Münster, Duchy of Cleves)
+    to-jd FIRST
+    to-gd 1583/11/17
+
+Germany (Osnabrück)
+    to-jd FIRST
+    to-gd 1624/01/01
+
+Germany (Paderborn)
+    to-jd FIRST
+    to-gd 1585/06/16
+
+Germany (Pfalz-Neuburg)
+    to-jd FIRST
+    to-gd 1585/12/13
+
+Germany (Silesia)
+    to-jd FIRST
+    to-gd 1584/01/12
+
+Germany (Trier)
+    to-jd FIRST
+    to-gd 1583/10/04
+
+Germany (Westfalia)
+    to-jd FIRST
+    to-gd 1584/06/01
+
+Germany (Würzburg)
+    to-jd FIRST
+    to-gd 1583/11/04
+
+Germany (Prince-Bishopric of Hildesheim)
+    to-jd FIRST
+    to-gd 1631/03/15
+
+Germany (Bishopric of Minden)
+    to-jd FIRST
+    to-gd 1668/02/01
+
+Germany (Protestant parts)
+    to-jd FIRST
+    to-gd 1700/02/18
+
+Georgia
+    to-jd FIRST
+    to-gd 1918/04/17
+
+Greece (excl. Mt. Athos)
+    to-jd FIRST
+    to-gd 1923/02/15
+
+Hungary
+    to-jd FIRST
+    to-gd 1587/10/21
+
+Iceland
+    to-jd FIRST
+    to-gd 1700/11/16
+
+Ireland (O'Neill and O'Donnell Gaelic Lordships in Ulster)
+    to-jd FIRST
+    to-gd 1584/01/01
+    to-jd 1630/01/01
+    to-gd 1641/01/01
+
+Ireland
+    to-jd FIRST
+    to-gd 1752/09/02
+
+Italy
+    to-jd FIRST
+    to-gd 1582/10/04
+
+Italy (Tirol)
+    to-jd FIRST
+    to-gd 1583/10/05
+
+Japan
+    to-gd 1872/12/02
+
+Laos 
+    to-gd 1889/01/01
+
+Latvia (Courland)
+    to-jd FIRST
+    to-gd 1617/01/01
+    to-jd 1796/01/28
+    to-gd 1915/05/11
+
+Lithuania (Grand Dutchy of Litnuania)
+    to-jd FIRST
+    to-gd 1585/12/21
+
+Latvia (Livland)
+    to-jd FIRST
+    to-gd 1915/08/22
+
+Lithuania (Lithuania Governorate)
+    to-jd FIRST
+    to-gd 1585/12/25
+    to-jd 1800/01/11
+    to-gd 1915/08/22
+
+Lithuania (Kovno and Vilna Governorates)
+    to-jd FIRST
+    to-gd 1915/05/11
+
+Lithuania (Dutchy of Prussia)
+    to-jd FIRST
+    to-gd 1612/05/11
+
+Luxembourg
+    to-jd FIRST
+    to-gd 1582/12/20
+
+Montenegro
+    to-jd FIRST
+    to-gd 1919/01/14
+
+Myanmar (Burma, British Empire)
+    to-gd 1885/01/01
+
+Netherlands (Brabant)
+    to-jd FIRST
+    to-gd 1582/12/14
+
+Netherlands (Drenthe)
+    to-jd FIRST
+    to-gd 1701/04/30
+
+Netherlands (Frisia)
+    to-jd FIRST
+    to-gd 1701/12/31
+
+Netherlands (Gelderland)
+    to-jd FIRST
+    to-gd 1700/06/12
+
+Netherlands (Groningen City)
+    to-jd FIRST
+    to-gd 1583/01/01
+    to-jd 1594/11/10
+    to-gd 1700/12/31
+
+Groningen (Province)
+    to-jd FIRST
+    to-gd 1700/12/31
+
+Netherlands (Holland)
+    to-jd FIRST
+    to-gd 1583/01/01
+
+Netherlands (Utrecht, Overijssel)
+    to-jd FIRST
+    to-gd 1700/11/30
+
+Netherlands (Zeeland, States General)
+    to-jd FIRST
+    to-gd 1582/12/14
+
+North Korea
+    to-gd 1896/01/01
+
+North Macedonia
+    to-jd FIRST
+    to-gd 1919/01/14
+
+Norway
+    to-jd FIRST
+    to-gd 1700/02/18
+
+Poland (excl. Dutchy of Prussia, Silesia)
+    to-jd FIRST
+    to-gd 1582/10/04
+
+Poland (Dutchy of Prussia)
+    to-jd FIRST
+    to-gd 1612/08/22
+
+Poland (Silesia)
+    to-jd FIRST
+    to-gd 1584/01/12
+
+Portugal
+    to-jd FIRST
+    to-gd 1582/10/04
+
+Romania (Transylvania)
+    to-jd FIRST
+    to-gd 1590/12/14
+
+Romania (excl. Transylvania)
+    to-jd FIRST
+    to-gd 1919/03/29
+
+Russia (Dutchy of Prussia)
+    to-jd FIRST
+    to-gd 1612/08/22
+
+Russia (excl. Dutchy of Prussia)
+    to-jd FIRST
+    to-gd 1918/01/31
+
+Saudi Arabia 
+    to-gd 2016/10/01
+
+Serbia
+    to-jd FIRST
+    to-gd 1919/01/14
+
+Slovenia
+    to-jd FIRST
+    to-gd 1583/12/14
+
+Spain
+    to-jd FIRST
+    to-gd 1582/10/04
+
+South Korea
+    to-gd 1896/01/01
+
+Sweden
+    to-jd 1712/02/29
+    to-gd 1753/02/17
+
+Switzerland (Basel)
+    to-jd FIRST
+    to-gd 1583/10/20
+
+Switzerland (Luzern, Uri, Schwyz, Zug, Freiburg, Solothurn, Le Landeron)
+    to-jd FIRST
+    to-gd 1584/01/11
+
+Switzerland (Obwalden, Nidwalden)
+    to-jd FIRST
+    to-gd 1584/02/11
+
+Switzerland (Thurgau, Appenzell Innerrhoden)
+    to-jd FIRST
+    to-gd 1584/01/01
+
+Switzerland (Appenzell Ausserrhoden)
+    to-jd FIRST
+    to-gd 1584/01/01
+    to-jd 1597/01/01
+    to-gd 1798/12/25
+
+Switzerland (Lower Valais)
+    to-jd FIRST
+    to-gd 1623/01/01
+
+Switzerland (Graubünden, Oberengadin and Bergel)
+    to-jd FIRST
+    to-gd 1783/01/01
+
+Switzerland (Graubünden, Schiers and Grüsh)
+    to-jd FIRST
+    to-gd 1811/12/25
+
+Thailand (Siam)
+    to-gd 1889/01/01
+
+Turkey
+    to-jd FIRST
+    to-gd 1917/02/15
+
+Uganda (British Empire)
+    to-jd FIRST
+    to-gd 1893/12/31
+
+Ukraine
+    to-jd FIRST
+    to-gd 1918/02/15
+
+United Kingdom (Kingdom of Great Britain, Kingdom of Ireland)
+    to-jd FIRST
+    to-gd 1752/09/02
+
+United States of America (British Empire)
+    to-jd FIRST
+    to-gd 1752/09/02
+
+United States of America (Russion Empire: Alaska)
+    to-jd FIRST
+    to-gd 1867/10/06
