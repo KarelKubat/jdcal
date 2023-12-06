@@ -31,6 +31,8 @@ have multiple cutover dates.
 This table reflects https://en.wikipedia.org/wiki/List_of_adoption_dates_of_the_Gregorian_calendar_by_country.
 */
 var ZonesTable = [...]ZoneEntry{
+	// [...] is syntactic sugar to let the compiler figure out the array size. That way
+	// we get a fixed size array and not a slice.	
 `
 	ftr = `
 }
