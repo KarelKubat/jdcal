@@ -1,7 +1,6 @@
 package main
 
 import (
-	"errors"
 	"flag"
 	"fmt"
 	"log"
@@ -23,7 +22,8 @@ const (
 	usageInfo = `
 Usage: jdcal [-j] [-g] YYYY/MM/DD [YYYY-MM-DD...]
 Converts the given date(s) either from Julian to Gregorian (when -j is given),
-or from Gregorian to Julian (when -g is given).
+or from Gregorian to Julian (when -g is given). Either -j, or -g, or both must
+be given.
 `
 )
 
@@ -38,18 +38,13 @@ func main() {
 	if len(os.Args) < 2 {
 		flag.Usage()
 	}
-	if *flagJulian == *flagGregorian {
-		check(errors.New("one of -j or -g must be given, but not both"))
-	}
-	if flag.NArg() == 0 {
+	if flag.NArg() == 0 || (!*flagJulian && !*flagGregorian) {
 		flag.Usage()
 	}
 
-	var tp jdcal.Type
-	if *flagJulian {
-		tp = jdcal.Julian
-	} else {
-		tp = jdcal.Gregorian
+	types := map[jdcal.Type]bool{
+		jdcal.Gregorian: *flagGregorian,
+		jdcal.Julian:    *flagJulian,
 	}
 
 	for _, arg := range flag.Args() {
@@ -57,12 +52,17 @@ func main() {
 		if len(parts) != 3 {
 			check(fmt.Errorf("malformed argument %q, want YYYY/MM/DD", arg))
 		}
-		dt, err := jdcal.New(atoi(arg, parts[0]), time.Month(atoi(arg, parts[1])),
-			atoi(arg, parts[2]), tp)
-		check(err)
-		ot, err := dt.Convert()
-		check(err)
-		fmt.Println(dt, "is", ot)
+		for tp, act := range types {
+			if !act {
+				continue
+			}
+			dt, err := jdcal.New(atoi(arg, parts[0]), time.Month(atoi(arg, parts[1])),
+				atoi(arg, parts[2]), tp)
+			check(err)
+			ot, err := dt.Convert()
+			check(err)
+			fmt.Println(dt, "is", ot)
+		}
 	}
 }
 

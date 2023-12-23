@@ -5,6 +5,11 @@ import (
 )
 
 func TestZonesTable(t *testing.T) {
+
+	// TODO:
+	// Ensure that cutover entries are chronoligically increasing,
+	// ZonesForDate e.a. depend on it.
+	//
 	if len(ZonesTable) == 0 {
 		t.Fatalf("ZonesTable is empty")
 	}

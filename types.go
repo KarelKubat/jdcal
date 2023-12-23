@@ -32,6 +32,10 @@ ZoneEntry wraps a zone name with the dates where that zone switched to the Grego
 The CutOvers list is an array of Dates where this zone switched FROM a calendar TO another one. E.g., when CutOvers is:
 
 	Cutovers: []Date{
+		// -500 to 1584: Julian calendar was in use
+		// 1584 to 1597: Switched to Gregorian
+		// 1597 to 1798: Switched back to Julian
+		// 1798 to now:  Ended up with Gregorian
 		{Year: -500, Month: time.February, Day: 28, Type: Gregorian},
 		{Year: 1584, Month: time.January, Day: 1, Type: Julian},
 		{Year: 1597, Month: time.January, Day: 1, Type: Gregorian},
@@ -40,7 +44,7 @@ The CutOvers list is an array of Dates where this zone switched FROM a calendar 
 
 Then that means:
 
-- The calendar for this zone starts at -500/02/28 Gregorian (or: -500 March 1st Julian, convert yourself if you think that is handy). On that day the zone started using the Julian calendar. This seems counter-intuitive, but "started using" is just by definition the "other calendar than this entry".
+- The calendar for this zone starts at -500/02/28 Gregorian (or: -500 March 1st Julian, convert yourself if you think that is handy). On that day the zone stopped using the Gregorian, and started using the Julian calendar.
 
 - On 1584/01/01 Julian, the zone switched to Gregorian ("the other one").
 
