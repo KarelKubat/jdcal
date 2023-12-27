@@ -7,6 +7,7 @@ Go library and CLI utility to convert to-and-fro between Julian and Gregorian ca
 - [Short library synopsis](#short-library-synopsis)
   - [Conversions](#conversions)
   - [Honoring leap years](#honoring-leap-years)
+  - [Zones](#zones)
   - [More documentation](#more-documentation)
 <!-- /toc -->
 
@@ -16,15 +17,15 @@ To install `jdcal` as a CLI tool, run `go install main/jdcal/jdcal.go`. After th
 
 ```sh
 # Take October 5th 1582 as a Julian date and convert
-jdcal -j 1582/10/5
+jdcal convert --julian 1582/10/5
 Julian 1582/10/05 is Gregorian 1582/10/15
 
 # Take October 10th 1582 as a Gregorian and convert back
-jdcal -g 1582/10/15
+jdcal convert --gregorian 1582/10/15
 Gregorian 1582/10/15 is Julian 1582/10/05
 ```
 
-Start `jdcal` without any arguments to see the usage information.
+Start `jdcal` without any arguments to see the usage information. The CLI tool performs more than just conversions.
 
 ## Short library synopsis
 
@@ -110,6 +111,59 @@ func check(err error) {
 	if err != nil {
 		log.Fatal(err)
 	}
+}
+```
+
+### Zones
+
+The package knows about zones, and on which dates these zones switched. Some zones even first switched from Julian to Gregorian, but then back again to Julian, and then forward.
+
+The below code would display zone information in a human readable way, tough a `jdcal.ZoneEntry` holds this as a `struct` that can be programmatically examined.
+
+```go
+package main
+
+import (
+	"fmt"
+
+	"github.com/KarelKubat/jdcal"
+)
+
+func main() {
+	for _, e := range jdcal.ZonesByName("netherlands") {
+		fmt.Println(e)
+	}
+
+	// Output (actual string representations may differ):
+	//   Belgium (Southern Netherlands)
+	// 		Started using the Julian    calendar   on   Gregorian -0500/02/28
+	// 		Switched to   the Gregorian calendar   on   Julian 1582/12/20
+	//   Netherlands (Brabant)
+	// 		Started using the Julian    calendar   on   Gregorian -0500/02/28
+	// 		Switched to   the Gregorian calendar   on   Julian 1582/12/14
+	//   Netherlands (Drenthe)
+	// 		Started using the Julian    calendar   on   Gregorian -0500/02/28
+	// 		Switched to   the Gregorian calendar   on   Julian 1701/04/30
+	//   Netherlands (Frisia)
+	// 		Started using the Julian    calendar   on   Gregorian -0500/02/28
+	// 		Switched to   the Gregorian calendar   on   Julian 1701/12/31
+	//   Netherlands (Gelderland)
+	// 		Started using the Julian    calendar   on   Gregorian -0500/02/28
+	// 		Switched to   the Gregorian calendar   on   Julian 1700/06/12
+	//   Netherlands (Groningen City)
+	// 		Started using the Julian    calendar   on   Gregorian -0500/02/28
+	// 		Switched to   the Gregorian calendar   on   Julian 1583/01/01
+	// 		Switched to   the Julian    calendar   on   Gregorian 1594/11/10
+	// 		Switched to   the Gregorian calendar   on   Julian 1700/12/31
+	//   Netherlands (Holland)
+	// 		Started using the Julian    calendar   on   Gregorian -0500/02/28
+	// 		Switched to   the Gregorian calendar   on   Julian 1583/01/01
+	//   Netherlands (Utrecht, Overijssel)
+	// 		Started using the Julian    calendar   on   Gregorian -0500/02/28
+	// 		Switched to   the Gregorian calendar   on   Julian 1700/11/30
+	//   Netherlands (Zeeland, States General)
+	// 		Started using the Julian    calendar   on   Gregorian -0500/02/28
+	// 		Switched to   the Gregorian calendar   on   Julian 1582/12/14
 }
 ```
 
