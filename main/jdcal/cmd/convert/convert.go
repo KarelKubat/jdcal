@@ -26,7 +26,6 @@ var Cmd = &cobra.Command{
 func init() {
 	Cmd.Flags().Bool(julianFlag, false, "convert Julian to Gregorian")
 	Cmd.Flags().Bool(gregorianFlag, false, "convert Gregorian to Julian")
-
 }
 
 func runConvert(cmd *cobra.Command, args []string) {
