@@ -1,9 +1,50 @@
 /*
-Package jdcal provides conversions from dates on the Julian calendar to the Gregorian calendar and vice versa. Furthermore helper functions are provided for small tasks, such as: date validation, is a year a leap year (which depends on the calendar type), comparisons between dates (before/after/equal), advancing a date while honoring leap years.
+Package jdcal provides conversions from dates on the Julian calendar to the Gregorian calendar and vice versa, and knows about zones (geographical locations) where such switches occurred, and at which dates.
 
-The distribution also contains a CLI main/jdcal/jdcal.go which converts command-line given dates.
+Furthermore helper functions are provided for small tasks, such as: date validation, is a year a leap year (which depends on the calendar type), comparisons between dates (before/after/equal), advancing a date while honoring leap years.
 
-Example 1: Conversions
+The distribution also contains a CLI main/jdcal/jdcal.go which provides a command line interface.
+
+CLI Example 1: Conversions
+
+	# after `go install main/jdcal.go`:
+	jdcal convert 1600/01/01 --julian  # assume the input date is Julian
+	Julian 1600/01/01 is Gregorian 1600/01/11
+
+CLI Example 2: Known zones
+
+	jdcal zones --match netherlands  # --match restricts the output
+	Belgium (Southern Netherlands)
+	  Started using the Julian    calendar   on   Gregorian -0500/02/28
+	  Switched to   the Gregorian calendar   on   Julian 1582/12/20
+	Netherlands (Brabant)
+	  Started using the Julian    calendar   on   Gregorian -0500/02/28
+	  Switched to   the Gregorian calendar   on   Julian 1582/12/14
+	Netherlands (Drenthe)
+	  Started using the Julian    calendar   on   Gregorian -0500/02/28
+	  Switched to   the Gregorian calendar   on   Julian 1701/04/30
+	Netherlands (Frisia)
+	  Started using the Julian    calendar   on   Gregorian -0500/02/28
+	  Switched to   the Gregorian calendar   on   Julian 1701/12/31
+	Netherlands (Gelderland)
+	  Started using the Julian    calendar   on   Gregorian -0500/02/28
+	  Switched to   the Gregorian calendar   on   Julian 1700/06/12
+	Netherlands (Groningen City)
+	  Started using the Julian    calendar   on   Gregorian -0500/02/28
+	  Switched to   the Gregorian calendar   on   Julian 1583/01/01
+	  Switched to   the Julian    calendar   on   Gregorian 1594/11/10
+	  Switched to   the Gregorian calendar   on   Julian 1700/12/31
+	Netherlands (Holland)
+	  Started using the Julian    calendar   on   Gregorian -0500/02/28
+	  Switched to   the Gregorian calendar   on   Julian 1583/01/01
+	Netherlands (Utrecht, Overijssel)
+	  Started using the Julian    calendar   on   Gregorian -0500/02/28
+	  Switched to   the Gregorian calendar   on   Julian 1700/11/30
+	Netherlands (Zeeland, States General)
+	  Started using the Julian    calendar   on   Gregorian -0500/02/28
+	  Switched to   the Gregorian calendar   on   Julian 1582/12/14
+
+API Example 1: Conversions
 
 	package main
 
@@ -42,7 +83,7 @@ Example 1: Conversions
 		}
 	}
 
-Example 2: Leap years on Julian calendars are different
+API Example 2: Leap years on Julian calendars are different
 
 	package main
 
@@ -87,6 +128,28 @@ Example 2: Leap years on Julian calendars are different
 		if err != nil {
 			log.Fatal(err)
 		}
+	}
+
+API Example 3: Zones
+
+	package main
+
+	import (
+		"fmt"
+
+		"github.com/KarelKubat/jdcal"
+	)
+
+	func main() {
+		for _, e := range jdcal.ZonesByName("netherlands") {
+			fmt.Println(e)
+		}
+
+		// Output:
+		//   Belgium (Southern Netherlands)
+		// 		Started using the Julian    calendar   on   Gregorian -0500/02/28
+		// 		Switched to   the Gregorian calendar   on   Julian 1582/12/20
+		// ... and so on
 	}
 */
 package jdcal
