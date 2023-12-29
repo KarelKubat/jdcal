@@ -10,11 +10,18 @@ import (
 
 const (
 	matchFlag = "match"
+	longUsage = `
+Shows zones and the dates where calendars were switched. Examples:
+
+  jdcal zones                      # show all zones
+  jdcal zones --match switzerland  # show zones that match, case-insensitive
+`
 )
 
 var Cmd = &cobra.Command{
 	Use:   "zones",
 	Short: "List zones and conversion dates",
+	Long:  longUsage,
 	Args:  cobra.MaximumNArgs(0),
 	Run:   runZones,
 }

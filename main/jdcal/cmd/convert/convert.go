@@ -14,11 +14,17 @@ import (
 const (
 	gregorianFlag = "gregorian"
 	julianFlag    = "julian"
+	longUsage     = `
+Converts from Julian to Gregorian, or vv. Examples:
+
+  jdcal convert 1582/03/15 --julian     # what is March 15th, 1582 as a Gregorian date
+  jdcal convert 1582/03/25 --gregorian  # what is March 25th, 1582 as a Julian date`
 )
 
 var Cmd = &cobra.Command{
 	Use:   "convert",
 	Short: "Convert the given date(s) from Julian to Gregorian or vv.",
+	Long:  longUsage,
 	Args:  cobra.MinimumNArgs(1),
 	Run:   runConvert,
 }
