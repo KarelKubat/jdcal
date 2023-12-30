@@ -35,17 +35,17 @@ func init() {
 }
 
 func runConvert(cmd *cobra.Command, args []string) {
+	gotG, err := cmd.Flags().GetBool(gregorianFlag)
+	check(err)
+	gotJ, err := cmd.Flags().GetBool(julianFlag)
+	check(err)
 	for _, a := range args {
-		gotG, err := cmd.Flags().GetBool(gregorianFlag)
-		check(err)
 		if gotG {
 			dt := argToDate(a, jdcal.Gregorian)
 			ot, err := dt.Convert()
 			check(err)
 			fmt.Println(dt, "is", ot)
 		}
-		gotJ, err := cmd.Flags().GetBool(julianFlag)
-		check(err)
 		if gotJ {
 			dt := argToDate(a, jdcal.Julian)
 			ot, err := dt.Convert()
