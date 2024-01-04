@@ -15,7 +15,7 @@ This table reflects https://en.wikipedia.org/wiki/List_of_adoption_dates_of_the_
 
 Note: The Cutovers entries are the dates where that period STOPPED. So: "{Year: 1918, Month: time.April, Day: 17, Type: Julian}" is the Julian date 1918/04/16, when the Julian calendar was abandoned in favor of "the other one", being the Gregorian.
 
-Another note: All symbols of the table are exported (upper case). You can skip reading the table; rather, have a look at the "Zone*()" functions that can do the lifting.
+Another note: All symbols of the table are exported (upper case). You can skip reading the table; rather, have a look at the "Zones*()" functions that can do the lifting.
 */
 var ZonesTable = [...]ZoneEntry{
 	// [...] is syntactic sugar to let the compiler figure out the array size. That way
@@ -780,6 +780,13 @@ var ZonesTable = [...]ZoneEntry{
 		Cutovers: []Date{
 			First(Gregorian),
 			{Year: 1752, Month: time.September, Day: 2, Type: Julian},
+		},
+	},
+	{
+		Name: "United States of America (French & Spanish colonial empires)",
+		Cutovers: []Date{
+			First(Gregorian),
+			{Year: 1582, Month: time.December, Day: 9, Type: Julian},
 		},
 	},
 	{

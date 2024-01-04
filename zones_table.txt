@@ -442,6 +442,10 @@ United Kingdom (Kingdom of Great Britain, Kingdom of Ireland)
     to-jd FIRST
     to-gd 1752/09/02
 
+United States of America (French & Spanish colonial empires)
+    to-jd FIRST
+    to-gd 1582/12/09
+
 United States of America (British Empire)
     to-jd FIRST
     to-gd 1752/09/02
