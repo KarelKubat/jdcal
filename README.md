@@ -4,6 +4,9 @@ Go library and CLI utility to convert to-and-fro between Julian and Gregorian ca
 
 <!-- toc -->
 - [Short CLI synopsis](#short-cli-synopsis)
+  - [Conversions between calendars](#conversions-between-calendars)
+  - [When did the world switch between calendars](#when-did-the-world-switch-between-calendars)
+  - [Visualization of a timeline](#visualization-of-a-timeline)
 - [Short library synopsis](#short-library-synopsis)
   - [Conversions](#conversions)
   - [Honoring leap years](#honoring-leap-years)
@@ -13,7 +16,9 @@ Go library and CLI utility to convert to-and-fro between Julian and Gregorian ca
 
 ## Short CLI synopsis
 
-To install `jdcal` as a CLI tool, run `go install main/jdcal/jdcal.go`. After this you can use the utility to convert dates:
+To install `jdcal` as a CLI tool, run `go install main/jdcal/jdcal.go`. After this you can use the utility. Start `jdcal` without any arguments to see the usage information.
+
+### Conversions between calendars
 
 ```sh
 # Take October 5th 1582 as a Julian date and convert
@@ -25,7 +30,44 @@ jdcal convert --gregorian 1582/10/15
 Gregorian 1582/10/15 is Julian 1582/10/05
 ```
 
-Start `jdcal` without any arguments to see the usage information. The CLI tool performs more than just conversions.
+### When did the world switch between calendars
+
+```sh
+# Switch over dates for zones matching "america"
+jdcal zones --match america
+United States of America (British Empire)
+  Started using the Julian    calendar   on   Gregorian -0500/02/28
+  Switched to   the Gregorian calendar   on   Julian 1752/09/02
+United States of America (Russion Empire: Alaska)
+  Started using the Julian    calendar   on   Gregorian -0500/02/28
+  Switched to   the Gregorian calendar   on   Julian 1867/10/06
+
+# All known zones
+jdcal --zones
+```
+
+### Visualization of a timeline
+
+Spain switched over to the Gregorian calendar on October 4th 1582 (try it with `jdcal zones --match spain`). A visualization:
+
+```sh
+# Show the timeline around 1582/10/04
+jdcal timeline 1582/10/01 --days 10
+    Julian |  Gregorian
+---------- | ----------
+1582/10/01 | 1582/10/11
+        02 |         12
+        03 |         13
+        04 |         14
+        05 |         15
+        06 |         16
+        07 |         17
+        08 |         18
+        09 |         19
+        10 |         20
+```
+
+So the Spanish people went to sleep on October 4th and woke up on the 15th. That year, valid October dates were 1, 2, 3, 4, 15, 16, 17, etc.. Dates like October 10th doesn't exist in that zone.
 
 ## Short library synopsis
 
