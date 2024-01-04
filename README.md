@@ -55,18 +55,18 @@ Spain switched over to the Gregorian calendar on October 4th 1582 (try it with `
 ```sh
 # Show the timeline around 1582/10/04
 jdcal timeline 1582/10/01 --days 10
-    Julian |  Gregorian
----------- | ----------
-1582/10/01 | 1582/10/11
-        02 |         12
-        03 |         13
-        04 |         14
-        05 |         15
-        06 |         16
-        07 |         17
-        08 |         18
-        09 |         19
-        10 |         20
+    Julian   |    Gregorian
+-----------+---+-----------
+1582/10/01 | M | 1582/10/11
+        02 | T |         12
+        03 | W |         13
+        04 | T |         14
+        05 | F |         15
+        06 | S |         16
+        07 | S |         17
+        08 | M |         18
+        09 | T |         19
+        10 | W |         20
 ```
 
 So the Spanish people went to sleep on October 4th and woke up on the 15th. That year, valid October dates were 1, 2, 3, 4, 15, 16, 17, etc.. Dates like October 10th don't exist in that zone.
@@ -79,18 +79,18 @@ The output can be further trimmed by using the flag `--zone`:
 # Show the timeline around 1582/10/04 for zone Spain, which switched over to
 # the Gregorian calendar on 1582/10/04.
 jdcal timeline 1582/10/01 --days 10 --zone spain
-    Julian |  Gregorian
----------- | ----------
-1582/10/01 |
-        02 |
-        03 |
-        04 | 1582/10/14
-           |         15
-           |         16
-           |         17
-           |         18
-           |         19
-           |         20
+    Julian   |    Gregorian
+-----------+---+-----------
+1582/10/01 | M |
+        02 | T |
+        03 | W |
+        04 | T | 1582/10/14
+           | F |         15
+           | S |         16
+           | S |         17
+           | M |         18
+           | T |         19
+           | W |         20
 ```
 
 Zones that switch back from Gregorian to Julian offer interesting timelines. E.g., "Groningen City" temporarily switched back to Julian after being re-conquered by Protestants. This happened on (the Gregorian date) 1594/11/10, which became (Julian) 1594/10/31. (Again, one may argue whether the switch-over date Julian 1594/10/31 is valid. `jdcal` assumes it is.) A visualization:
@@ -104,28 +104,28 @@ Netherlands (Groningen City)
   Switched to   the Gregorian calendar   on   Julian 1700/12/31
 
 jdcal timeline 1594/10/20 -d 20 -z 'groningen city'
-    Julian |  Gregorian
----------- | ----------
-           | 1594/10/30
-           |         31
-           |      11/01
-           |         02
-           |         03
-           |         04
-           |         05
-           |         06
-           |         07
-           |         08
-           |         09
-1594/10/31 |         10
-     11/01 |
-        02 |
-        03 |
-        04 |
-        05 |
-        06 |
-        07 |
-        08 |
+    Julian   |    Gregorian
+-----------+---+-----------
+           | S | 1594/10/30
+           | M |         31
+           | T |      11/01
+           | W |         02
+           | T |         03
+           | F |         04
+           | S |         05
+           | S |         06
+           | M |         07
+           | T |         08
+           | W |         09
+1594/10/31 | T |         10
+     11/01 | F |
+        02 | S |
+        03 | S |
+        04 | M |
+        05 | T |
+        06 | W |
+        07 | T |
+        08 | F |
 ```
 
 In this case a date like 1594/11/08 exists twice.
