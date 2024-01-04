@@ -103,32 +103,32 @@ Netherlands (Groningen City)
   Switched to   the Julian    calendar   on   Gregorian 1594/11/10
   Switched to   the Gregorian calendar   on   Julian 1700/12/31
 
-jdcal timeline 1594/10/20 -d 20 -z 'groningen city'
-    Julian   |    Gregorian
+jdcal timeline 1594/11/01 --days  20 --zone 'groningen city' --gregorian
+ Gregorian |   |     Julian
 -----------+---+-----------
-           | S | 1594/10/30
-           | M |         31
-           | T |      11/01
-           | W |         02
-           | T |         03
-           | F |         04
-           | S |         05
-           | S |         06
-           | M |         07
-           | T |         08
-           | W |         09
-1594/10/31 | T |         10
-     11/01 | F |
-        02 | S |
-        03 | S |
-        04 | M |
-        05 | T |
-        06 | W |
-        07 | T |
-        08 | F |
+1594/11/01 | T |
+        02 | W |
+        03 | T |
+        04 | F |
+        05 | S |
+        06 | S |
+        07 | M |
+        08 | T |
+        09 | W |
+        10 | T | 1594/10/31
+           | F |      11/01
+           | S |         02
+           | S |         03
+           | M |         04
+           | T |         05
+           | W |         06
+           | T |         07
+           | F |         08
+           | S |         09
+           | S |         10
 ```
 
-In this case a date like 1594/11/08 exists twice.
+In this case a date like 1594/11/08 exists twice. Also;
 
 - The date 1594/10/30 must be Gregorian;
 - Dates 1594/10/31 until 1594/11/10 exist on both calendars;
