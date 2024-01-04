@@ -1,6 +1,13 @@
 # jdcal
 
-Go library and CLI utility to convert to-and-fro between Julian and Gregorian calendars.
+**Go library and CLI utility to convert to-and-fro between Julian and Gregorian calendars, offering:**
+
+- Conversions between Julian and Gregorian calendars for any date later than 500BC
+- Zones: When did which regions switch calendars
+- Visualization: How did a calendar look in a given zone around the switch-over date
+- And more.
+
+**Table of Contents**
 
 <!-- toc -->
 - [Short CLI synopsis](#short-cli-synopsis)
