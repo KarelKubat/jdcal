@@ -32,11 +32,11 @@
 
 ### 46 BC
 
-In 46 BC the Roman consul Julius Caesar proposed a reform to the previously used lunisolar calendar (which, unsuccessfully, tried to combine both the solar and lunar cycles). The calendar would be solely based on Solar timing, Lunar cycles would be computed separately. The new Julian calendar would have 365.25 days per year: every February would have 28 days, except for years evenly divisible by four. Then the year would be a leap year and Februrary would have 29 days. This calendar took effect on January 1st 45 BC by edict. JC was after all *Pontifex Maximus*, or Supreme High Priest. That year needed 445 days (!) to synchronize the previous (and hopelessly out of sync) calendar with the Solar cycle. Julius Caesar of course had no notion of *45 BC*. The zero coordinate on the time axis was added much later, but for the purpose of conversions this is not relevant.
+In 46 BC the Roman consul Julius Caesar proposed a reform to the previously used lunisolar calendar (which, unsuccessfully, tried to combine both the solar and lunar cycles). The new calendar would be solely based on Solar timing, Lunar cycles would be computed separately. This Julian calendar would have 365.25 days per year: every February would have 28 days, except for years evenly divisible by four. Then the year would be a leap year and Februrary would have 29 days. This calendar took effect on January 1st 45 BC by edict. JC was after all *Pontifex Maximus*, or Supreme High Priest. That year needed 445 days (!) to synchronize the previous (and hopelessly out of sync) calendar with the Solar cycle. Julius Caesar of course had no notion of *45 BC*. The zero coordinate on the time axis was added much later, but for the purpose of conversions this is not relevant.
 
-Dates back to 500 BC were backdated to this Julian calendar (probably because dates before 500 BC were unknown anyway). So we can say that the Julian calendar *started* 500 BC in the sense that one may find documents of Roman origin referring to such dates -- though such documents will be more recent than 45 BC.
+Dates back to 500 BC were backdated to the Julian calendar (probably because dates before 500 BC were unknown anyway). So we can say that the Julian calendar *started* 500 BC in the sense that one may find documents of Roman origin referring to such dates -- though such documents will be more recent than 45 BC.
 
-The Julian calendar was unfortunately not entirely precise. It would postpone a Solar day too often by too frequently scheduling February 29th. By the year 1500, the longest day (Midsummer night) was on June 11th, instead of the 21st. And the spring Equinox was equally far from March 21st, which gravely hampered the calculations of the Easter festivities.
+The Julian calendar was unfortunately not entirely precise. It would postpone a Solar day too often, by too frequently scheduling February 29th. By the year 1500, the longest day (Midsummer night) was on June 11th, instead of the 21st. And the spring Equinox was equally far from March 21st, which gravely hampered the calculations of the Easter festivities.
 
 ### Around 1582 AD
 
@@ -44,19 +44,19 @@ In 1582, Pope Gregory XIII ordered a modification so that a year would have 365.
 
 A further change was that 10 days were skipped in order to align the calendar with the solar cycle: the day following October 4th 1582 would be October 15th, and not the 5th.
 
-The Papal edict was put in place and recognized by anyone under the authority of the Catholic Church. G13 was after all *Vicarius Christi, Principis Apostolorum, Pontiff,* etc.. Since it was ordered by the Catholics some wouldn't accept the change; notably these were the followers of the Protestant Churches, the Eastern Orthodox Churches and the Oriental Orthodox churches.
+The Papal edict was put in place and recognized by anyone under the authority of the Catholic Church. G13 was after all *Vicarius Christi, Principis Apostolorum, Pontiff,* etc.. Since it was ordered by the Catholics,  others wouldn't accept the change; notably these were the followers of the Protestant Churches, the Eastern Orthodox Churches and the Oriental Orthodox churches.
 
-*January 1st, 1600* may be a Gregorian date if it's in a historically Catholic zone, and it may be a Julian date if not. Or it may not exist at all if this area switched to the Gregorian calendar around that time. Or it may be both if this area switched back to the Julian calendar.
+So *January 1st, 1600* may be a Gregorian date if it's in a historically Catholic zone, and it may be a Julian date if not. Or it may not exist at all if this area switched to the Gregorian calendar around that time. Or it may be both if this area switched back to the Julian calendar.
 
-So near the border of such zones, one could arrange to meet your inlaws on August 1st, and they'd show up on August 11th because that was August 1st on their calendar.
+Near the border of such zones, one could arrange to meet your inlaws on August 1st, and they'd show up on August 11th because that was August 1st on their calendar.
 
 ### Up to 1923 AD (!)
 
 Eventually even the initial nay-sayers adopted the Gregorian calendar, probably simply because it's more precise and to avoid confusion. But, even disregarding different switch dates for different areas, this didn't always go smoothly. Some areas fell under Catholic rule (read: were conquered) and were forced to switch to the Gregorian calendar, only to be re-conquered by Protestants and to switch back to the Julian calendar, and finally to switch to the Gregorian calendar again.
 
-A nice example is Switzerland's Appenzell Ausserrhoden. They adopted the Gregorian calendar in 1584 (due to Catholic rule), dumped that in favor of the Julian calendar in 1597, kept that for more than 200 years, and finally switched to the more precise Gregorian calendar in 1798. So before 1585 they were "in sync" with other areas, and until 1798 you don't know -- it depends on their neighbours.
+A nice example is Switzerland's Appenzell Ausserrhoden. They adopted the Gregorian calendar in 1584 (due to Catholic rule), dumped that in favor of the Julian calendar in 1597, kept that for more than 200 years, and finally switched to the (obviously better) Gregorian calendar in 1798. So before 1585 they were "in sync" with other areas, and until 1798 you don't know -- it depends on their switching dates and on their neighbours.
 
-Another weird example is USA. The Catholic parts (former French and Spanish colonies) switched to the Gregorian calendar in 1582 AD, as ordered by the Pope. The Protestant parts (formerly British, so Protestant) switched in 1752. Alaska switched in 1867, since it was formerly part of the Russian empire and hence Orthodox -- and they postponed switching for a loooong time. Though not as long as Greece, which only switched in 1923 AD.
+Another weird example is USA. The Catholic parts (former French and Spanish colonies) switched to the Gregorian calendar in 1582 AD, as ordered by the Pope. The Protestant parts (formerly British, so Anglican/Protestant) switched in 1752. Alaska switched in 1867, since it was formerly part of the Russian empire and hence Orthodox -- and they postponed switching for a loooong time. Though not as long as Greece, which only switched in 1923 AD.
 
 ### 2023 AD
 
