@@ -18,7 +18,7 @@ const (
 	longUsage     = `
 Prints a timeline of two calendars. Examples:
 
-  jdcal timeline 1582/10/01              # timeline starts onOctober 1st 1582 on the Julian calendar
+  jdcal timeline 1582/10/01              # timeline starts on October 1st 1582 on the Julian calendar
   jdcal timeline 1582/10/11 --gregorian  # reference date is taken as a Gregorian date
   jdcal timeline 1582/10/01 --days 60    # Julian calendar, over 60 days
   jdcal timeline 1582/10/01 --zone spain # Show how Spain's calendar progressed
