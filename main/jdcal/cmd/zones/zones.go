@@ -3,6 +3,7 @@ package zones
 import (
 	"fmt"
 	"log"
+	"strings"
 
 	"github.com/KarelKubat/jdcal"
 	"github.com/spf13/cobra"
@@ -27,7 +28,7 @@ var Cmd = &cobra.Command{
 }
 
 func init() {
-	Cmd.Flags().String(matchFlag, "", "restrict to zones matching this substring")
+	Cmd.Flags().StringP(matchFlag, strings.Split(matchFlag, "")[0], "", "restrict to zones matching this substring")
 }
 
 func runZones(cmd *cobra.Command, args []string) {

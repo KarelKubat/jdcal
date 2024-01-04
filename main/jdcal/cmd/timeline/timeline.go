@@ -3,6 +3,7 @@ package timeline
 import (
 	"fmt"
 	"log"
+	"strings"
 	"time"
 
 	"github.com/KarelKubat/jdcal"
@@ -31,9 +32,11 @@ var Cmd = &cobra.Command{
 }
 
 func init() {
-	Cmd.Flags().Bool(gregorianFlag, false, "reference date is Gregorian")
-	Cmd.Flags().Int(daysFlag, 30, "days to display")
-	Cmd.Flags().Bool(repeatFlag, false, "repeat years and months in next lines")
+	Cmd.Flags().BoolP(gregorianFlag, strings.Split(gregorianFlag, "")[0], false,
+		"reference date is Gregorian")
+	Cmd.Flags().IntP(daysFlag, strings.Split(daysFlag, "")[0], 30, "days to display")
+	Cmd.Flags().BoolP(repeatFlag, strings.Split(repeatFlag, "")[0], false,
+		"repeat years and months in next lines")
 }
 
 func runTimeline(cmd *cobra.Command, args []string) {

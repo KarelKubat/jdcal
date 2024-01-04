@@ -3,6 +3,7 @@ package convert
 import (
 	"fmt"
 	"log"
+	"strings"
 
 	"github.com/KarelKubat/jdcal"
 	"github.com/spf13/cobra"
@@ -27,8 +28,10 @@ var Cmd = &cobra.Command{
 }
 
 func init() {
-	Cmd.Flags().Bool(julianFlag, false, "convert Julian to Gregorian")
-	Cmd.Flags().Bool(gregorianFlag, false, "convert Gregorian to Julian")
+	Cmd.Flags().BoolP(julianFlag, strings.Split(julianFlag, "")[0], false,
+		"convert Julian to Gregorian")
+	Cmd.Flags().BoolP(gregorianFlag, strings.Split(gregorianFlag, "")[0], false,
+		"convert Gregorian to Julian")
 }
 
 func runConvert(cmd *cobra.Command, args []string) {
