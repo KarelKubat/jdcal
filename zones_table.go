@@ -691,7 +691,7 @@ var ZonesTable = [...]ZoneEntry{
 		},
 	},
 	{
-		Name: "Switzerland (Basel)",
+		Name: "Switzerland (Basel, Roman Catholic Diocese)",
 		Cutovers: []Date{
 			First(Gregorian),
 			{Year: 1583, Month: time.October, Day: 20, Type: Julian},
@@ -729,6 +729,27 @@ var ZonesTable = [...]ZoneEntry{
 	},
 	{
 		Name: "Switzerland (Lower Valais)",
+		Cutovers: []Date{
+			First(Gregorian),
+			{Year: 1623, Month: time.January, Day: 1, Type: Julian},
+		},
+	},
+	{
+		Name: "Switzerland (Valais)",
+		Cutovers: []Date{
+			First(Gregorian),
+			{Year: 1655, Month: time.February, Day: 28, Type: Julian},
+		},
+	},
+	{
+		Name: "Switzerland (Protestant parts of Basel, Bern, Neuchâtel, Sargans, Schaffhausen, Geneva, Zürich, Glarus)",
+		Cutovers: []Date{
+			First(Gregorian),
+			{Year: 1700, Month: time.December, Day: 31, Type: Julian},
+		},
+	},
+	{
+		Name: "Switzerland (Graubünden, Catholic parts)",
 		Cutovers: []Date{
 			First(Gregorian),
 			{Year: 1623, Month: time.January, Day: 1, Type: Julian},

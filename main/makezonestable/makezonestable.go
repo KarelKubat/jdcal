@@ -95,8 +95,8 @@ func main() {
 		} else {
 			nrs := strings.Split(parts[1], "/")
 			if len(nrs) != 3 {
-				check(fmt.Errorf("line %d: %q of %q has a malformed date, not 3 parts but %d", lineno,
-					parts[2], line, len(nrs)))
+				check(fmt.Errorf("line %d: %q has a malformed date, not 3 parts but %d",
+					lineno, line, len(nrs)))
 			}
 			dt, err := jdcal.New(
 				atoi(nrs[0]),

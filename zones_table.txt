@@ -389,7 +389,7 @@ Sweden
     to-jd 1712/02/29
     to-gd 1753/02/17
 
-Switzerland (Basel)
+Switzerland (Basel, Roman Catholic Diocese)
     to-jd FIRST
     to-gd 1583/10/20
 
@@ -412,6 +412,18 @@ Switzerland (Appenzell Ausserrhoden)
     to-gd 1798/12/25
 
 Switzerland (Lower Valais)
+    to-jd FIRST
+    to-gd 1623/01/01
+
+Switzerland (Valais)
+    to-jd FIRST
+    to-gd 1655/02/28
+
+Switzerland (Protestant parts of Basel, Bern, Neuchâtel, Sargans, Schaffhausen, Geneva, Zürich, Glarus)
+    to-jd FIRST
+    to-gd 1700/12/31
+
+Switzerland (Graubünden, Catholic parts)
     to-jd FIRST
     to-gd 1623/01/01
 
