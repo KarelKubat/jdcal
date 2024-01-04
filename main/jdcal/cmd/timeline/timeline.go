@@ -14,13 +14,15 @@ const (
 	gregorianFlag = "gregorian"
 	daysFlag      = "days"
 	repeatFlag    = "repeat"
+	zoneFlag      = "zone"
 	longUsage     = `
 Prints a timeline of two calendars. Examples:
 
-  jdcal timeline 1582/03/15              # timeline starts on March 15th 1582 on the Julian calendar
-  jdcal timeline 1582/03/25 --gregorian  # reference date is taken as a Gregorian date
-  jdcal timeline 1582/03/25 --days 60    # Julian calendar, over 60 days
-  jdcal timeline 1582/03/15 --repeat     # repeat YYYY/MM in subsequent dates`
+  jdcal timeline 1582/10/01              # timeline starts onOctober 1st 1582 on the Julian calendar
+  jdcal timeline 1582/10/11 --gregorian  # reference date is taken as a Gregorian date
+  jdcal timeline 1582/10/01 --days 60    # Julian calendar, over 60 days
+  jdcal timeline 1582/10/01 --zone spain # Show how Spain's calendar progressed
+  jdcal timeline 1582/10/01 --repeat     # repeat YYYY/MM in subsequent dates`
 )
 
 var Cmd = &cobra.Command{
@@ -37,6 +39,7 @@ func init() {
 	Cmd.Flags().IntP(daysFlag, strings.Split(daysFlag, "")[0], 30, "days to display")
 	Cmd.Flags().BoolP(repeatFlag, strings.Split(repeatFlag, "")[0], false,
 		"repeat years and months in next lines")
+	Cmd.Flags().StringP(zoneFlag, strings.Split(zoneFlag, "")[0], "", "show zone progress")
 }
 
 func runTimeline(cmd *cobra.Command, args []string) {
@@ -55,6 +58,20 @@ func runTimeline(cmd *cobra.Command, args []string) {
 	repeat, err := cmd.Flags().GetBool(repeatFlag)
 	check(err)
 
+	var zones []jdcal.ZoneEntry
+	zoneName, err := cmd.Flags().GetString(zoneFlag)
+	check(err)
+	if zoneName != "" {
+		zones = jdcal.ZonesByName(zoneName)
+		if len(zones) == 0 {
+			check(fmt.Errorf("zone %q does not match anything, try `jdcal zones`", zoneName))
+		}
+		if len(zones) > 1 {
+			check(fmt.Errorf("zone %q matches multiple zones, restrict the --zone name", zoneName))
+		}
+		fmt.Println(zones[0])
+	}
+
 	if dt.Type == jdcal.Julian {
 		fmt.Printf("%10s | %10s\n", "Julian", "Gregorian")
 	} else {
@@ -67,22 +84,33 @@ func runTimeline(cmd *cobra.Command, args []string) {
 	for i := 0; i < days; i++ {
 		ot, err := dt.Convert()
 		check(err)
-		printDate(dt, lastDtYear, lastDtMonth)
+		dtPrinted := printDate(dt, lastDtYear, lastDtMonth, zones)
 		fmt.Printf(" | ")
-		printDate(ot, lastOtYear, lastOtMonth)
+		otPrinted := printDate(ot, lastOtYear, lastOtMonth, zones)
 		fmt.Println()
 		if !repeat {
-			lastDtYear = dt.Year
-			lastDtMonth = dt.Month
-			lastOtYear = ot.Year
-			lastOtMonth = ot.Month
+			if dtPrinted {
+				lastDtYear = dt.Year
+				lastDtMonth = dt.Month
+			}
+			if otPrinted {
+				lastOtYear = ot.Year
+				lastOtMonth = ot.Month
+			}
 		}
-		// fmt.Println(dt, "is", ot)
 		dt = dt.Advance()
 	}
 }
 
-func printDate(d jdcal.Date, lastYear int, lastMonth time.Month) {
+func printDate(d jdcal.Date, lastYear int, lastMonth time.Month, zones []jdcal.ZoneEntry) bool {
+	if len(zones) == 1 {
+		in, err := d.InZone(zones[0])
+		check(err)
+		if !in {
+			fmt.Printf("          ")
+			return false
+		}
+	}
 	if d.Year != lastYear {
 		fmt.Printf("%4.4d/", d.Year)
 	} else {
@@ -94,6 +122,7 @@ func printDate(d jdcal.Date, lastYear int, lastMonth time.Month) {
 		fmt.Printf("   ")
 	}
 	fmt.Printf("%2.2d", d.Day)
+	return true
 }
 
 func check(err error) {
