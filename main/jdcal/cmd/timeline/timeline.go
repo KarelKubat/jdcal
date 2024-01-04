@@ -69,15 +69,14 @@ func runTimeline(cmd *cobra.Command, args []string) {
 		if len(zones) > 1 {
 			check(fmt.Errorf("zone %q matches multiple zones, restrict the --zone name", zoneName))
 		}
-		fmt.Println(zones[0])
 	}
 
 	if dt.Type == jdcal.Julian {
-		fmt.Printf("%10s | %10s\n", "Julian", "Gregorian")
+		fmt.Printf("%10s   |   %10s\n", "Julian", "Gregorian")
 	} else {
-		fmt.Printf("%10s | %10s\n", "Gregorian", "Julian")
+		fmt.Printf("%10s |   | %10s\n", "Gregorian", "Julian")
 	}
-	fmt.Println("---------- | ----------")
+	fmt.Println("-----------+---+-----------")
 
 	var lastDtYear, lastOtYear int
 	var lastDtMonth, lastOtMonth time.Month
@@ -85,7 +84,7 @@ func runTimeline(cmd *cobra.Command, args []string) {
 		ot, err := dt.Convert()
 		check(err)
 		dtPrinted := printDate(dt, lastDtYear, lastDtMonth, zones)
-		fmt.Printf(" | ")
+		fmt.Printf(" | %s | ", weekDay(dt))
 		otPrinted := printDate(ot, lastOtYear, lastOtMonth, zones)
 		fmt.Println()
 		if !repeat {
@@ -100,6 +99,24 @@ func runTimeline(cmd *cobra.Command, args []string) {
 		}
 		dt = dt.Advance()
 	}
+}
+
+func weekDay(d jdcal.Date) string {
+	wd, err := d.Weekday()
+	check(err)
+	switch wd {
+	case time.Sunday, time.Saturday:
+		return "S"
+	case time.Monday:
+		return "M"
+	case time.Tuesday, time.Thursday:
+		return "T"
+	case time.Wednesday:
+		return "W"
+	case time.Friday:
+		return "F"
+	}
+	return "?"
 }
 
 func printDate(d jdcal.Date, lastYear int, lastMonth time.Month, zones []jdcal.ZoneEntry) bool {
