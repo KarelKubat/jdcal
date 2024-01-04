@@ -5,6 +5,7 @@ Go library and CLI utility to convert to-and-fro between Julian and Gregorian ca
 <!-- toc -->
 - [Short CLI synopsis](#short-cli-synopsis)
   - [Conversions between calendars](#conversions-between-calendars)
+  - [Weekdays](#weekdays)
   - [When did the world switch calendars](#when-did-the-world-switch-calendars)
   - [Visualization of a timeline](#visualization-of-a-timeline)
 - [Short library synopsis](#short-library-synopsis)
@@ -29,6 +30,17 @@ Julian 1582/10/05 is Gregorian 1582/10/15
 # Take October 10th 1582 as a Gregorian and convert back
 jdcal convert --gregorian 1582/10/15  # or use -g as a short flag
 Gregorian 1582/10/15 is Julian 1582/10/05
+```
+
+### Weekdays
+
+```sh
+# What day was January 1st 1600 on the Julian or Gregorian calendar?
+jdcal weekday 1600/1/1
+Julian 1600/01/01 is a Tuesday
+
+jdcal weekday 1600/1/1 --gregorian
+Gregorian 1600/01/01 is a Saturday
 ```
 
 ### When did the world switch calendars
@@ -103,7 +115,7 @@ Netherlands (Groningen City)
   Switched to   the Julian    calendar   on   Gregorian 1594/11/10
   Switched to   the Gregorian calendar   on   Julian 1700/12/31
 
-jdcal timeline 1594/11/01 --days  20 --zone 'groningen city' --gregorian
+jdcal timeline 1594/11/01 --days 20 --zone 'groningen city' --gregorian
  Gregorian |   |     Julian
 -----------+---+-----------
 1594/11/01 | T |
