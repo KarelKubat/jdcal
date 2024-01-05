@@ -136,7 +136,7 @@ So the Spanish people went to sleep on October 4th and woke up on the 15th. That
 
 One can argue whether October 14th is a valid date as it is the Gregorian version of the switch-over date October 4th. `jdcal` assumes that it is.
 
-The output can be further trimmed by using the flag `--zone` which leaves out non-used dates:
+The output can be further trimmed by using the flag `--zone` which leaves out unused dates:
 
 ```sh
 # Show the timeline around 1582/10/04 for zone Spain, which switched over to
