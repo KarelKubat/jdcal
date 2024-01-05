@@ -41,7 +41,12 @@ func (d Date) Advance() Date {
 		return ret
 	}
 	if ret.Month == time.December {
-		ret.Year++
+		// There is no year zero, we go from 1BC to 1AD.
+		if ret.Year == -1 {
+			ret.Year += 2
+		} else {
+			ret.Year++
+		}
 		ret.Day = 1
 		ret.Month = time.January
 		return ret

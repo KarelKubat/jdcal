@@ -72,11 +72,11 @@ func runTimeline(cmd *cobra.Command, args []string) {
 	}
 
 	if dt.Type == jdcal.Julian {
-		fmt.Printf("%10s   |   %10s\n", "Julian", "Gregorian")
+		fmt.Printf("%11s   |   %11s\n", "Julian", "Gregorian")
 	} else {
-		fmt.Printf("%10s |   | %10s\n", "Gregorian", "Julian")
+		fmt.Printf("%11s |   | %11s\n", "Gregorian", "Julian")
 	}
-	fmt.Println("-----------+---+-----------")
+	fmt.Println("------------+---+------------")
 
 	var lastDtYear, lastOtYear int
 	var lastDtMonth, lastOtMonth time.Month
@@ -124,14 +124,14 @@ func printDate(d jdcal.Date, lastYear int, lastMonth time.Month, zones []jdcal.Z
 		in, err := d.InZone(zones[0])
 		check(err)
 		if !in {
-			fmt.Printf("          ")
+			fmt.Printf("           ")
 			return false
 		}
 	}
 	if d.Year != lastYear {
-		fmt.Printf("%4.4d/", d.Year)
+		fmt.Printf("%5.4d/", d.Year)
 	} else {
-		fmt.Printf("     ")
+		fmt.Printf("      ")
 	}
 	if d.Month != lastMonth {
 		fmt.Printf("%2.2d/", int(d.Month))
