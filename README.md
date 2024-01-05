@@ -96,6 +96,9 @@ Gregorian 1600/01/01 is a Saturday
 ```sh
 # Switch over dates for zones matching "america"
 jdcal zones --match america
+United States of America (French & Spanish colonial empires)
+  Started using the Julian    calendar   on   Gregorian -0500/02/28
+  Switched to   the Gregorian calendar   on   Julian 1582/12/09
 United States of America (British Empire)
   Started using the Julian    calendar   on   Gregorian -0500/02/28
   Switched to   the Gregorian calendar   on   Julian 1752/09/02
