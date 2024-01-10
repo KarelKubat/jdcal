@@ -1,0 +1,14 @@
+# GnuPlot instructions, matching the layout of spring-equinox.csv
+
+set title 'Julian calendar: Error in nr. of days on Spring Equinox'
+set ylabel 'Error (days)'
+set xlabel 'Year'
+
+set datafile separator ","
+set yrange [-6:16]
+set xrange [-600:2200]
+
+set term png
+set output 'spring-eq-errors.png'
+
+plot 'main/daysdiff/spring-equinox.csv' using 1:4 with boxes notitle
