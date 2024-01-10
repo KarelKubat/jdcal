@@ -140,7 +140,7 @@ United States of America (French & Spanish colonial empires)
 United States of America (British Empire)
   Started using the Julian    calendar   on   Gregorian -0500/02/28
   Switched to   the Gregorian calendar   on   Julian 1752/09/02
-United States of America (Russion Empire: Alaska)
+United States of America (Russian Empire: Alaska)
   Started using the Julian    calendar   on   Gregorian -0500/02/28
   Switched to   the Gregorian calendar   on   Julian 1867/10/06
 

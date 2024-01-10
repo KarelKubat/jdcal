@@ -462,6 +462,6 @@ United States of America (British Empire)
     to-jd FIRST
     to-gd 1752/09/02
 
-United States of America (Russion Empire: Alaska)
+United States of America (Russian Empire: Alaska)
     to-jd FIRST
     to-gd 1867/10/06

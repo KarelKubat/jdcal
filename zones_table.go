@@ -818,7 +818,7 @@ var ZonesTable = [...]ZoneEntry{
 		},
 	},
 	{
-		Name: "United States of America (Russion Empire: Alaska)",
+		Name: "United States of America (Russian Empire: Alaska)",
 		Cutovers: []Date{
 			First(Gregorian),
 			{Year: 1867, Month: time.October, Day: 6, Type: Julian},
