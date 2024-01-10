@@ -32,25 +32,56 @@
 
 ### 46 BC
 
-In the year that we refer to as *46 BC* the Roman consul Julius Caesar proposed a reform to the previously used lunisolar calendar (which, unsuccessfully, tried to combine both the solar and lunar cycles). The new calendar would be solely based on Solar timing, Lunar cycles would be computed separately. This Julian calendar would have 365.25 days per year: every February would have 28 days, except for years evenly divisible by four. Then the year would be a leap year and Februrary would have 29 days. This calendar took effect on January 1st 45 BC by edict. JC was after all *Pontifex Maximus*, or Supreme High Priest. That year needed 445 days (!) to synchronize the previous (and hopelessly out of sync) calendar with the Solar cycle.
+<table>
+<tr>
+<td width="100" valign="top"> <img src="JuliusCaesar.jpeg" alt="Julius Caesar"/> </td>
+<td valign="top">In the year that we refer to as 46 BC the Roman consul Julius Caesar proposed a reform to the previously used lunisolar calendar (which, unsuccessfully, tried to combine both the solar and lunar cycles). The new calendar would be solely based on Solar timing, Lunar cycles would be computed separately. This Julian calendar would have 365.25 days per year: every February would have 28 days, except for years evenly divisible by four. Then the year would be a leap year and Februrary would have 29 days. This calendar took effect on January 1st 45 BC by edict. JC was after all *Dictator Perpetuo* and *Pontifex Maximus*. That year needed 445 days (!) to synchronize the previous (and hopelessly out of sync) calendar with the Solar cycle.</td>
+</tr>
+</table>
 
-Romans would generally avoid numbering years (they'd refer to a date as "in the year of consul so-and-so") or they would refer to a year *Ab Urbe Condita*, from the founding of the City, which is probably 753 BC. Julius Caesar of course had no notion of *45 BC*. A coordinate shift of the time axis and BC/AD counting were added much later, around 525 AD, when the West Roman empire collapsed. An interesting fact is that when introducing BC/AC and the new time axis, the number zero was yet not recognized. Calendars using BC/AD go from December 31st, 1 BC to January 1st, 1 AD.
+(*Image: Julius Caesar, probably the only surviving sculpture created during his life. From https://en.wikipedia.org/wiki/Julius_Caesar*)
 
-Dates going back to 500 BC were backdated to the Julian calendar (probably because dates before 500 BC were unknown anyway). So we can say that the Julian calendar *started* 500 BC in the sense that one may find documents of Roman origin referring to such dates -- though such documents will be written after the introduction of the Julian calendar, so after 45 BC.
+Romans would generally avoid numbering years (they'd refer to a date as "in the year of the consuls so-and-so") or they would refer to a year *Ab Urbe Condita*, from the founding of the City, which is probably 753 BC. Julius Caesar of course had no notion of *45 BC*. A coordinate shift of the time axis and BC/AD counting were added much later, around 525 AD, when the West Roman empire collapsed. An interesting fact is that when introducing BC/AC and the new time axis, the number zero was not widely recognized. Calendars using BC/AD go from December 31st, 1 BC to January 1st, 1 AD.
 
-The Julian calendar was unfortunately not entirely precise. It would postpone a Solar day too often, by too frequently scheduling February 29th. By the year 1500, the longest day (Midsummer night) was on June 11th, instead of the 21st. And the spring Equinox was equally far from March 21st, which gravely hampered the calculations of the Easter festivities.
+Dates going back to 500 BC were backdated to the Julian calendar (probably because dates before 500 BC were unknown anyway). So we can say that the Julian calendar *started* 500 BC in the sense that one may find documents referring to such dates -- though such documents will be written after the introduction of the Julian calendar, so after 45 BC.
+
+<table>
+<tr>
+<td width="400" valign="top"> <img src="spring-eq-errors.png" alt="Errors in days over years, Julian Calendar"/></td>
+<td valign="top">The Julian calendar was unfortunately not entirely precise. It would postpone a Solar day too often, by too frequently scheduling February 29th. By the year 1500, the longest day (Midsummer night) was on June 11th, instead of the 21st. And the spring Equinox was equally far from March 21st, which gravely hampered the calculations of the Easter festivities.
+
+Interestingly, the equinoxes or solstices did **not** match their "right" dates at the introduction of the Julian calendar. By chance the Julian calendar got the dates right in the year 299 AD.
+</td>
+</tr>
+</table>
 
 ### Around 1582 AD
 
-In 1582, Pope Gregory XIII ordered a modification so that a year would have 365.2425 days.  (Incidentally, 365.2425 days per year is also not precise. We need leap seconds now.) The change meant that a year would be a leap year if the year was divisible by four, but not if it was a century mark (divisible by 100), except if it was a millenium (divisible by 1000). Hence, 1896 would be a leap year (divisble by 4), but 1900 would not (it's a century mark). Also, 1996 would be a leap year, and 2000 as well (it's a millenium).
+<table>
+<tr>
+<td width="400" valign="top"> <img src="Gregory-XIII.jpeg" alt="Pope Gregory XIII"/></td>
+<td valign="top">In 1582, Pope Gregory XIII ordered a modification so that a year would have 365.2425 days.  (However, 365.2425 days per year is also not precise. We need leap seconds now.) The change meant that a year would be a leap year if the year was divisible by four, but not if it was a century mark (divisible by 100), except if it was a millenium (divisible by 1000). Hence, 1896 would be a leap year (divisble by 4), but 1900 would not (it's a century mark). Also, 1996 would be a leap year, and 2000 as well (it's a millenium).
 
 A further change was that 10 days were skipped in order to align the calendar with the solar cycle: the day following October 4th 1582 would be October 15th, and not the 5th.
 
+</td>
+</tr>
+</table>
+
+(*Image: Pope Gregory XIII, celebrating the introduction of his calendar. From https://en.wikipedia.org/wiki/Pope_Gregory_XIII.*)
+
 The Papal edict was put in place and recognized by anyone under the authority of the Catholic Church. G13 was after all *Vicarius Christi, Principis Apostolorum, Pontiff,* etc.. Since it was ordered by the Catholics,  others wouldn't accept the change; notably these were the followers of the Protestant Churches, the Eastern Orthodox Churches and the Oriental Orthodox churches.
 
-So *January 1st, 1600* may be a Gregorian date if it's in a historically Catholic zone, and it may be a Julian date if not. Or it may not exist at all if this area switched to the Gregorian calendar around that time. Or it may be both if this area switched back to the Julian calendar.
+<table>
+<tr>
+<td width="400" valign="top"><img src="Gregorian-calendar-large.jpg" alt="Simplified map of switch over dates"/></td>
+<td valign="top">So January 1st, 1600 may be a Gregorian date if it's in a historically Catholic zone, and it may be a Julian date if not. Or it may not exist at all if this area switched to the Gregorian calendar around that time. Or it may be both if this area switched back to the Julian calendar.
 
-Near the border of such zones, one could arrange to meet your inlaws on August 1st, and they'd show up on August 11th because that was August 1st on their calendar. One may still find remnants of how people avoided such confusion in phrases like "the third Sunday after ...".
+Near the border of such zones, one could arrange to meet your inlaws on August 1st, and they'd show up on August 11th because that was August 1st on their calendar. One may still find remnants of how people avoided such confusion in phrases like "the market will be held on the the third Sunday after Winter Equinox".</td>
+</tr>
+</table>
+
+(*Image: Simplified map of switch over dates. From https://familytreemagazine.com/history/gregorian-calendar-adoption-map/*)
 
 ### Up to 1923 AD (!)
 
@@ -58,7 +89,14 @@ Eventually even the initial nay-sayers adopted the Gregorian calendar, probably 
 
 But, even disregarding different switch dates for different areas, this didn't always go smoothly. Some areas fell under Catholic rule (read: were conquered) and were forced to switch to the Gregorian calendar, only to be re-conquered by Protestants and to switch back to the Julian calendar, and finally to switch to the Gregorian calendar again.
 
-A nice example is Switzerland's Appenzell Ausserrhoden. They adopted the Gregorian calendar in 1584 (due to Catholic rule), dumped that in favor of the Julian calendar in 1597, kept that for more than 200 years, and finally switched to the (obviously better) Gregorian calendar in 1798. So before 1585 they were "in sync" with other areas, and until 1798 you don't know -- it depends on their switching dates and on their neighbours.
+A nice example is Switzerland's Appenzell Ausserrhoden:
+
+- They adopted the Gregorian calendar in 1584 (due to Catholic rule),
+- Dumped that in favor of the Julian calendar in 1597,
+- Kept the Julian calendar for more than 200 years,
+- Finally switched to the (obviously better) Gregorian calendar in 1798. 
+
+So before 1585 they were "in sync" with other areas, and until 1798 you don't know -- it depends on their switching dates and on their neighbours.
 
 ### 2023 AD
 
