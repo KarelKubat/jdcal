@@ -5,7 +5,7 @@ Last returns the last convertible date for a given type. Dates after this cannot
 Convert() would throw an error. This is a limitation of the ConversionTable. Example:
 
 	gd := jdcal.Last(jdcal.Gregorian)  // Last convertible date
-	gd.Advance()                       // Move 1 day forward
+	gd = gd.Advance()                  // Move 1 day forward
 	jd, err := gd.Convert()            // err will be set, gd cannot be converted
 */
 func Last(dt Type) Date {

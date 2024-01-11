@@ -10,13 +10,13 @@ Example:
 
 	jd0, err := jdcal.Date(1900, time.February, 28, jdcal.Julian)
 	if err != nil {...}
-	jd1 := jd0.Advance()
-	fmt.Println(jd1) // February 29th
+	jd1 := jd0.Advance()  // Copy of jd but a day ahead
+	fmt.Println(jd1)      // February 29th
 
 	gd, err := jdcal.Date(1900, time.February, 28, jdcal.Gregorian)
 	if err != nil {...}
-	gd = gd.Advance() // advance gd itself
-	fmt.Println(gd)   // March 1st
+	gd = gd.Advance()     // advance gd itself
+	fmt.Println(gd)       // March 1st
 */
 func (d Date) Advance() Date {
 	// Nr of month days, with 28 for February (handled separately).
