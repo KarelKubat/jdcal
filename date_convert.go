@@ -8,7 +8,7 @@ import (
 Convert converts a jdcal.Date to the "other" format: from Julian to Gregorian, or vv.
 Example:
 
-	jd, err := jdcal.New(1712, time.February, 19)
+	jd, err := jdcal.New(1712, time.February, 19, jdcal.Julian)
 	if err != nil {...}
 	gd, err := jd.Convert()
 	if err != nil {...}
