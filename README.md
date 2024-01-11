@@ -50,7 +50,7 @@ Dates going back to 500 BC were backdated to the Julian calendar (probably becau
 <td width="400" valign="top"> <img src="spring-eq-errors.png" alt="Errors in days over years, Julian Calendar"/></td>
 <td valign="top">The Julian calendar was unfortunately not entirely precise. It would postpone a Solar day too often, by too frequently scheduling February 29th. By the year 1500, the longest day (Midsummer night) was on June 11th, instead of the 21st. And the spring Equinox was equally far from March 21st, which gravely hampered the calculations of the Easter festivities.
 
-Interestingly, the equinoxes or solstices did **not** match their "right" dates at the introduction of the Julian calendar. By chance the Julian calendar got the dates right in the year 299 AD.
+Interestingly, the equinoxes or solstices did **not** match their "right" dates at the introduction of the Julian calendar. By chance the Julian calendar got the dates right in the third century AD.
 </td>
 </tr>
 </table>
@@ -472,4 +472,4 @@ func check(err error) {
 
 ### More documentation
 
-For more please see the `doc.go`-generated docs.
+For more please see the generated docs at https://pkg.go.dev/github.com/KarelKubat/jdcal.
