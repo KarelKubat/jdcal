@@ -3,6 +3,7 @@
 **Go library and CLI utility to convert to-and-fro between Julian and Gregorian dates, offering:**
 
 - Conversions between Julian and Gregorian calendars for any date between 500BC and 2100AD
+- When is a year a leap year, on either of the calendars
 - Zones: When did which regions switch calendars
 - Visualization: How did a calendar look in a given zone around the switch-over date
 - And more.
