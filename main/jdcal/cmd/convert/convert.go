@@ -11,12 +11,11 @@ import (
 
 const (
 	gregorianFlag = "gregorian"
-	julianFlag    = "julian"
 	longUsage     = `
 Converts from Julian to Gregorian, or vv. Examples:
 
-  jdcal convert 1582/03/15 --julian     # what is March 15th, 1582 as a Gregorian date
-  jdcal convert 1582/03/25 --gregorian  # what is March 25th, 1582 as a Julian date`
+  jdcal convert 1582/03/15              # what is Julian March 15th, 1582 as a Gregorian date
+  jdcal convert 1582/03/25 --gregorian  # what is Gregorian March 25th, 1582 as a Julian date`
 )
 
 var Cmd = &cobra.Command{
@@ -28,8 +27,6 @@ var Cmd = &cobra.Command{
 }
 
 func init() {
-	Cmd.Flags().BoolP(julianFlag, strings.Split(julianFlag, "")[0], false,
-		"convert Julian to Gregorian")
 	Cmd.Flags().BoolP(gregorianFlag, strings.Split(gregorianFlag, "")[0], false,
 		"convert Gregorian to Julian")
 }
@@ -37,7 +34,7 @@ func init() {
 func runConvert(cmd *cobra.Command, args []string) {
 	gotG, err := cmd.Flags().GetBool(gregorianFlag)
 	check(err)
-	gotJ, err := cmd.Flags().GetBool(julianFlag)
+	gotJ := !gotG
 	check(err)
 	for _, a := range args {
 		if gotG {

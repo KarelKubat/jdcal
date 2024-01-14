@@ -16,6 +16,7 @@
   - [Around 1582 AD](#around-1582-ad)
   - [Up to 1923 AD (!)](#up-to-1923-ad-)
   - [2023 AD](#2023-ad)
+- [Installation](#installation)
 - [Short CLI synopsis](#short-cli-synopsis)
   - [Conversions between calendars](#conversions-between-calendars)
   - [Weekdays](#weekdays)
@@ -128,7 +129,7 @@ To install `jdcal` as a CLI tool, run `go install main/jdcal/jdcal.go`. After th
 
 ```sh
 # Take October 5th 1582 as a Julian date and convert
-jdcal convert --julian 1582/10/05  # or use -j as a short flag
+jdcal convert 1582/10/05              # default calendar is Julian
 Julian 1582/10/05 is Gregorian 1582/10/15
 
 # Take October 10th 1582 as a Gregorian and convert back
@@ -143,7 +144,7 @@ Gregorian 1582/10/15 is Julian 1582/10/05
 jdcal weekday 1600/1/1
 Julian 1600/01/01 is a Tuesday
 
-jdcal weekday 1600/1/1 --gregorian
+jdcal weekday 1600/1/1 --gregorian  # or -g as shorthand
 Gregorian 1600/01/01 is a Saturday
 ```
 
@@ -169,11 +170,11 @@ jdcal zones
 
 ### Visualization of a timeline
 
-Spain switched over to the Gregorian calendar on October 4th 1582 (try it with `jdcal zones --match spain`). A visualization:
+`jdcal timeline` shows a visualization of the progression of dates. Example:
 
 ```sh
 # Show the timeline around 1582/10/04
-jdcal timeline 1582/10/01 --days 10
+jdcal timeline 1582/10/01 --days 10  # note: --zone is unspecified
      Julian |   |   Gregorian
 ------------+---+------------
  1582/10/01 | M |  1582/10/11
@@ -188,7 +189,7 @@ jdcal timeline 1582/10/01 --days 10
          10 | W |          20
 ```
 
-So the Spanish people went to sleep on October 4th and woke up on the 15th. That year, valid October dates were 1, 2, 3, 4, 15, 16, 17, etc.. Dates like October 10th don't exist in that zone.
+Spain switched over to the Gregorian calendar on October 4th 1582 (try it with `jdcal zones --match spain`). So the Spanish people went to sleep on October 4th and woke up on the 15th. That year, valid October dates were 1, 2, 3, 4, 15, 16, 17, etc.. Dates like October 10th don't exist in that zone.
 
 One can argue whether October 14th is a valid date as it is the Gregorian version of the switch-over date October 4th. `jdcal` assumes that it is.
 
