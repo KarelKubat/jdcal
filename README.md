@@ -35,7 +35,7 @@
 <table>
 <tr>
 <td width="100" valign="top"> <img src="JuliusCaesar.jpeg" alt="Julius Caesar"/> </td>
-<td valign="top">In the year that we refer to as 46 BC the Roman consul Julius Caesar proposed a reform to the previously used lunisolar calendar (which, unsuccessfully, tried to combine both the solar and lunar cycles). The new calendar would be solely based on Solar timing, Lunar cycles would be computed separately. This Julian calendar would have 365.25 days per year: every February would have 28 days, except for years evenly divisible by four. Then the year would be a leap year and Februrary would have 29 days. This calendar took effect on January 1st 45 BC by edict. JC was after all *Dictator Perpetuo* and *Pontifex Maximus*. That year needed 445 days (!) to synchronize the previous (and hopelessly out of sync) calendar with the Solar cycle.</td>
+<td valign="top">In the year that we refer to as 46 BC the Roman consul Julius Caesar proposed a reform to the previously used lunisolar calendar (which, unsuccessfully, tried to combine both the solar and lunar cycles). The new calendar would be solely based on Solar timing, Lunar cycles would be computed separately. This Julian calendar would have 365.25 days per year: every February would have 28 days, except for years evenly divisible by four. Then the year would be a leap year and Februrary would have 29 days. This calendar took effect on January 1st 45 BC by edict. JC was after all "Dictator Perpetuo" and "Pontifex Maximus". That year needed 445 days (!) to synchronize the previous (and hopelessly out of sync) calendar with the Solar cycle.</td>
 </tr>
 </table>
 
@@ -156,7 +156,7 @@ Spain switched over to the Gregorian calendar on October 4th 1582 (try it with `
 ```sh
 # Show the timeline around 1582/10/04
 jdcal timeline 1582/10/01 --days 10
-     Julian   |     Gregorian
+     Julian |   |   Gregorian
 ------------+---+------------
  1582/10/01 | M |  1582/10/11
          02 | T |          12
