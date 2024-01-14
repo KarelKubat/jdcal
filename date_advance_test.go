@@ -104,6 +104,15 @@ func TestAdvance(t *testing.T) {
 				{Year: 1235, Month: time.January, Day: 2, Type: Julian},
 			},
 		},
+		{
+			desc: "advance over the non-existing year zero, Julian",
+			d:    Date{Year: -1, Month: time.December, Day: 30, Type: Julian},
+			next: []Date{
+				{Year: -1, Month: time.December, Day: 31, Type: Julian},
+				{Year: 1, Month: time.January, Day: 1, Type: Julian},
+				{Year: 1, Month: time.January, Day: 2, Type: Julian},
+			},
+		},
 	} {
 		for i, nxt := range test.next {
 			test.d = test.d.Advance()
