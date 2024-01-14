@@ -80,7 +80,8 @@ func TestIsLeapYear(t *testing.T) {
 			wantIsLeap: false,
 		},
 	} {
-		if gotIsLeap := test.year.IsLeap(test.tp); gotIsLeap != test.wantIsLeap {
+		cyr := CalendarYear{Year: test.year, Type: test.tp}
+		if gotIsLeap := cyr.IsLeap(); gotIsLeap != test.wantIsLeap {
 			t.Errorf("%v.IsLeap() = %v, want %v", test.year, gotIsLeap, test.wantIsLeap)
 		}
 	}

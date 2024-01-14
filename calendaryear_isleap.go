@@ -1,7 +1,7 @@
 package jdcal
 
 /*
-IsLeap is true when a year indicate that that year should be a leap year for a given calendar type. IsLeap implements the following definition:
+IsLeap is true when a year indicate that that year should be a leap year for the given calendar type. IsLeap implements the following definition:
 
 https://en.wikipedia.org/wiki/Leap_year:
 
@@ -11,24 +11,31 @@ The Gregorian calendar, the world's most widely used civil calendar, makes a fur
 
 Example:
 
-	var yr jdcal.Year
+	var cyr jdcal.CalendarYear
 
-	yr = 1900
-	fmt.Println(yr.IsLeap(jdcal.Julian))     // true
-	fmt.Println(yr.IsLeap(jdcal.Gregorian))  // false
+	cyr = {
+		Year: 1900,
+		Type: jdcal.Julian,
+	}
+	fmt.Println(cyr.IsLeap())  // true
+	cyr.Type = jdcal.Gregorian
+	fmt.Println(cyr.IsLeap())  // false
 */
-func (year Year) IsLeap(tp Type) bool {
+func (cYear CalendarYear) IsLeap() bool {
 	// Adjust negative years, since there is no year zero. So year -1 is a leap year, -5 too, etc.
-	if year < 0 {
-		year++
+	yr := cYear.Year
+	tp := cYear.Type
+
+	if yr < 0 {
+		yr++
 	}
 
-	if year%4 != 0 {
+	if yr%4 != 0 {
 		return false
 	}
 	if tp == Julian {
 		return true
 	}
-	return year%100 != 0 || year%400 == 0
+	return yr%100 != 0 || yr%400 == 0
 
 }

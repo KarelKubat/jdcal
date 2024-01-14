@@ -25,8 +25,11 @@ func (d Date) Valid() error {
 	}
 
 	// Even with the max per month, Feb 28'th may not be valid.
-	if d.Month == time.February && d.Day == 29 && !d.Year.IsLeap(d.Type) {
-		return fmt.Errorf("year %v has no February 29th", d.Year)
+	if d.Month == time.February && d.Day == 29 {
+		isLeap := CalendarYear{Year: d.Year, Type: d.Type}.IsLeap()
+		if !isLeap {
+			return fmt.Errorf("year %v has no February 29th", d.Year)
+		}
 	}
 
 	// Dates can't exceed the conversion table.

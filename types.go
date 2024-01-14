@@ -25,6 +25,14 @@ Year is an integer and the receiver type for some helper functions.
 type Year int
 
 /*
+CalendarYear wraps a Year with a calendar Type (Julian or Gregorian).
+*/
+type CalendarYear struct {
+	Year Year
+	Type Type
+}
+
+/*
 ConversionEntry wraps one Julian and one Gregorian date. The ConversionTable is an array of such entries.
 */
 type ConversionEntry struct {
