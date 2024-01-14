@@ -2,6 +2,11 @@ package jdcal
 
 import (
 	"errors"
+	"fmt"
+)
+
+const (
+	maxExtrapolations = 100000
 )
 
 /*
@@ -62,7 +67,17 @@ func (d Date) Convert() (Date, error) {
 }
 
 func (d Date) extrapolate(our, their Date) (Date, error) {
+	steps := 0
+	startOur := our
+	startTheir := their
 	for {
+		// Catch internal fubars.
+		steps++
+		if steps > maxExtrapolations {
+			return d, fmt.Errorf("failed to extrapolate %v (%v to %v), %d extrapolations exceeded",
+				d, startOur, startTheir, maxExtrapolations)
+		}
+
 		eq, err := d.Equal(our)
 		if err != nil {
 			return d, err
