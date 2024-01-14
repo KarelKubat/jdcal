@@ -32,7 +32,7 @@ func (d Date) Advance() Date {
 		return ret
 	}
 	if ret.Month == time.February {
-		if ret.Day == 28 && ret.IsLeap() {
+		if ret.Day == 28 && ret.Year.IsLeap(ret.Type) {
 			ret.Day++
 		} else {
 			ret.Month = time.March
