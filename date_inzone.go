@@ -39,7 +39,7 @@ Example:
 
 	jd, err := jdcal.New(1580, 1, 1, jdcal.Julian)
 	if err != nil { ... }
-	in, err := jd.InZone(zoneEntry)  // obtained using ZonesByname("Groningen City")
+	in, err := jd.InZone(zoneEntry)  // obtained using jdcal.ZonesByname("Groningen City")
 	if err != nil { ... }
 	fmt.Println(in)                 // true
 
