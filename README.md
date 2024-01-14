@@ -42,7 +42,7 @@
 
 (*Image: Julius Caesar, probably the only surviving sculpture created during his life. From https://en.wikipedia.org/wiki/Julius_Caesar*)
 
-Romans would generally avoid numbering years (they'd refer to a date as "in the year of the consuls so-and-so") or they would refer to a year *Ab Urbe Condita*, from the founding of the City, which is probably 753 BC. Julius Caesar of course had no notion of *45 BC*. A coordinate shift of the time axis and BC/AD counting were added much later, around 525 AD, when the West Roman empire collapsed. An interesting fact is that when introducing BC/AC and the new time axis, the number zero was not widely recognized. Calendars using BC/AD go from December 31st, 1 BC to January 1st, 1 AD.
+Romans would generally avoid numbering years. Preferably they'd refer to a date as "in the year of the consuls so-and-so", or, if needed, they would refer to a year *Ab Urbe Condita*, from the founding of the City, which is probably 753 BC. Julius Caesar of course had no notion of "45 BC". A coordinate shift of the time axis and BC/AD counting were added much later, around 525 AD, when the West Roman empire collapsed. An interesting fact is that when introducing BC/AC and the new time axis, the number zero was not widely recognized. Calendars using BC/AD go from December 31st, 1 BC to January 1st, 1 AD.
 
 Dates going back to 500 BC were backdated to the Julian calendar (probably because dates before 500 BC were unknown anyway). So we can say that the Julian calendar *started* 500 BC in the sense that one may find documents referring to such dates -- though such documents will be written after the introduction of the Julian calendar, so after 45 BC.
 
