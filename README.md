@@ -56,6 +56,8 @@ Interestingly, the equinoxes or solstices did **not** match their "right" dates 
 </tr>
 </table>
 
+(*Image: Drift of the Julian calendar. There are no data for year zero; that date doensn't exist in BC/AC.*)
+
 ### Around 1582 AD
 
 <table>
@@ -102,6 +104,21 @@ So before 1585 they were "in sync" with other areas, and until 1798 you don't kn
 ### 2023 AD
 
 Late 2023 my darling wife asked me to write some conversion software because she's working on a book that has to be historically precise. I dove into the rabbit hole.
+
+## Installation
+
+To install the package, run:
+
+```sh
+go install github.com/KarelKubat/jdcal@latest
+```
+
+To install the program `jdcal` as a CLI interface, then run:
+
+```sh
+cd ~go/src/github.com/KarelKubat/jdcal  # replace ~/go/src with whatever works for you
+make install                            # `jdcal` is installed into your ~/go/bin/ or $GOBIN
+```
 
 ## Short CLI synopsis
 
