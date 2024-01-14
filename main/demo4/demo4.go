@@ -26,13 +26,19 @@ func main() {
 	//   Switched to   the Gregorian calendar   on   Julian 1700/12/31
 
 	// Some dates that lie in between the cutovers.
-	for _, year := range []int{1580, 1590, 1600, 1800} {
+	for _, year := range []jdcal.Year{1580, 1590, 1600, 1800} {
 		test(year, time.January, 1, zones[0])
 	}
 
+	// Output:
+	//   1580/01/01 is a Julian date
+	//   1590/01/01 is a Gregorian date
+	//   1600/01/01 is a Julian date
+	//   1800/01/01 is a Gregorian date
+
 	// Just around the exact cutover dates.
 	for _, date := range []struct {
-		year  int
+		year  jdcal.Year
 		month time.Month
 		day   int
 	}{
@@ -40,22 +46,34 @@ func main() {
 		{year: 1582, month: time.December, day: 31},
 		{year: 1583, month: time.January, day: 1},
 		{year: 1583, month: time.January, day: 2},
+		// Output:
+		//   1582/12/31 is a Julian date
+		//   1583/01/01 is a Julian date
+		//   1583/01/02 is neither a Julian nor a Gregorian date
 
 		// Around the second switch from Gregorian back to Julian
 		{year: 1594, month: time.November, day: 9},
 		{year: 1594, month: time.November, day: 10},
 		{year: 1594, month: time.November, day: 11},
+		// Output:
+		//   1594/11/09 can be both a Julian and a Gregorian date
+		//   1594/11/10 can be both a Julian and a Gregorian date
+		//   1594/11/11 is a Julian date
 
 		// Around the third switch back to Gregorian
 		{year: 1700, month: time.December, day: 30},
 		{year: 1700, month: time.December, day: 31},
 		{year: 1701, month: time.January, day: 1},
+		// Output:
+		//   1700/12/30 is a Julian date
+		//   1700/12/31 is a Julian date
+		//   1701/01/01 is neither a Julian nor a Gregorian date
 	} {
 		test(date.year, date.month, date.day, zones[0])
 	}
 }
 
-func test(year int, month time.Month, day int, z jdcal.ZoneEntry) {
+func test(year jdcal.Year, month time.Month, day int, z jdcal.ZoneEntry) {
 	d, err := jdcal.New(year, month, day, jdcal.Julian)
 	check(err)
 	jdInZone, err := d.InZone(z)

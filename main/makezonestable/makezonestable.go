@@ -99,7 +99,7 @@ func main() {
 					lineno, line, len(nrs)))
 			}
 			dt, err := jdcal.New(
-				atoi(nrs[0]),
+				jdcal.Year(atoi(nrs[0])),
 				time.Month(atoi(nrs[1])),
 				atoi(nrs[2]),
 				tp)

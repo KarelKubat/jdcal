@@ -60,9 +60,9 @@ func main() {
 	gd := jdcal.First(jdcal.Gregorian)
 	day := 0
 
-	jdMark := map[int]int{}
-	gdMark := map[int]int{}
-	marks := []int{}
+	jdMark := map[jdcal.Year]int{}
+	gdMark := map[jdcal.Year]int{}
+	marks := []jdcal.Year{}
 	endReferencesSeen := 0
 
 	for {
@@ -99,6 +99,6 @@ func main() {
 	}
 }
 
-func isReference(y int, m time.Month, d int) bool {
+func isReference(y jdcal.Year, m time.Month, d int) bool {
 	return y%100 == 0 && m == referenceMonth && d == referenceDay
 }

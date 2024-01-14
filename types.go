@@ -13,11 +13,16 @@ const (
 Date wraps a year, month, day and calendar type (Julian or Gregorian).
 */
 type Date struct {
-	Year  int
+	Year  Year
 	Month time.Month
 	Day   int
 	Type  Type
 }
+
+/*
+Year is an integer and the receiver type for some helper functions.
+*/
+type Year int
 
 /*
 ConversionEntry wraps one Julian and one Gregorian date. The ConversionTable is an array of such entries.

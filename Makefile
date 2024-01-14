@@ -25,3 +25,11 @@ fullmoons.go:
 
 install: zones_table.go date_table.go Makefile
 	go install main/jdcal/jdcal.go
+
+.PHONY: test
+test:
+	go test ./...
+	go run main/demo1/demo1.go
+	go run main/demo2/demo2.go
+	go run main/demo3/demo3.go
+	go run main/demo4/demo4.go

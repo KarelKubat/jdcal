@@ -13,7 +13,7 @@ The two snippets are equivalent:
 	err := d.Valid()
 	if err {...}
 */
-func New(year int, month time.Month, day int, tp Type) (dt Date, err error) {
+func New(year Year, month time.Month, day int, tp Type) (dt Date, err error) {
 	dt = Date{
 		Year:  year,
 		Month: month,
@@ -31,5 +31,5 @@ func NewFromString(arg string, tp Type) (dt Date, err error) {
 	if err != nil {
 		return dt, err
 	}
-	return New(y, m, d, tp)
+	return New(Year(y), m, d, tp)
 }

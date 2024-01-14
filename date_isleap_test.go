@@ -8,7 +8,7 @@ import (
 func TestIsLeap(t *testing.T) {
 	for _, test := range []struct {
 		tp         Type
-		year       int
+		year       Year
 		wantIsLeap bool
 	}{
 		// For Julian dates it's just "Divisible by 4? Then yes."

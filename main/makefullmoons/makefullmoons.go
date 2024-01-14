@@ -166,7 +166,7 @@ func extractDates(lines []string) (out string) {
 		var err error
 
 		if year < 1582 {
-			dt, err = jdcal.New(year, m, d, jdcal.Julian)
+			dt, err = jdcal.New(jdcal.Year(year), m, d, jdcal.Julian)
 			if err != nil && strings.Contains(err.Error(), "is before the first convertible date") {
 				continue
 			}
@@ -174,7 +174,7 @@ func extractDates(lines []string) (out string) {
 			dt, err = dt.Convert()
 			check(err)
 		} else {
-			dt, err = jdcal.New(year, m, d, jdcal.Gregorian)
+			dt, err = jdcal.New(jdcal.Year(year), m, d, jdcal.Gregorian)
 			if err != nil && strings.Contains(err.Error(), "is after the last convertible date") {
 				continue
 			}

@@ -19,5 +19,5 @@ func (d Date) AsTime() (tm time.Time, err error) {
 	} else {
 		ot = d
 	}
-	return time.Date(ot.Year, ot.Month, ot.Day, 12, 0, 0, 0, time.UTC), nil
+	return time.Date(int(ot.Year), ot.Month, ot.Day, 12, 0, 0, 0, time.UTC), nil
 }

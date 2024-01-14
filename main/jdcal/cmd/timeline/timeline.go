@@ -78,7 +78,7 @@ func runTimeline(cmd *cobra.Command, args []string) {
 	}
 	fmt.Println("------------+---+------------")
 
-	var lastDtYear, lastOtYear int
+	var lastDtYear, lastOtYear jdcal.Year
 	var lastDtMonth, lastOtMonth time.Month
 	for i := 0; i < days; i++ {
 		ot, err := dt.Convert()
@@ -119,7 +119,7 @@ func weekDay(d jdcal.Date) string {
 	return "?"
 }
 
-func printDate(d jdcal.Date, lastYear int, lastMonth time.Month, zones []jdcal.ZoneEntry) bool {
+func printDate(d jdcal.Date, lastYear jdcal.Year, lastMonth time.Month, zones []jdcal.ZoneEntry) bool {
 	if len(zones) == 1 {
 		in, err := d.InZone(zones[0])
 		check(err)
