@@ -9,6 +9,11 @@ import (
 Valid returns an error when a date cannot be processed. The date must not exceed the maximum number of month days (e.g., April 31st is wrong, February 29th may only occur in leap years) and Convert() must be able to process it (it can't be outside of the ConversionTable).
 */
 func (d Date) Valid() error {
+	// Year verification
+	if err := d.Year.Valid(); err != nil {
+		return err
+	}
+
 	// There is a limit to the # of month days (e.g. Feb can't have 30 days).
 	maxPerMonth := []int{
 		0, // Filler as month.January is 1
@@ -21,7 +26,7 @@ func (d Date) Valid() error {
 
 	// Even with the max per month, Feb 28'th may not be valid.
 	if d.Month == time.February && d.Day == 29 && !d.IsLeap() {
-		return fmt.Errorf("year %4.4d has no February 29th", d.Year)
+		return fmt.Errorf("year %v has no February 29th", d.Year)
 	}
 
 	// Dates can't exceed the conversion table.
@@ -30,15 +35,14 @@ func (d Date) Valid() error {
 		return err
 	}
 	if before {
-		return fmt.Errorf("%v is before the first convertible date (%v)",
-			d, First(d.Type))
+		return fmt.Errorf("%v %s (%v)", d, beforeConvertibleDate, First(d.Type))
 	}
 	after, err := d.After(Last(d.Type))
 	if err != nil {
 		return err
 	}
 	if after {
-		return fmt.Errorf("%v is after the last convertible date (%v)", d, Last(d.Type))
+		return fmt.Errorf("%v %s (%v)", d, afterConvertibleDate, (d.Type))
 	}
 
 	return nil

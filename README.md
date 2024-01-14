@@ -180,7 +180,7 @@ The output can be further trimmed by using the flag `--zone` which leaves out un
 # Show the timeline around 1582/10/04 for zone Spain, which switched over to
 # the Gregorian calendar on 1582/10/04.
 jdcal timeline 1582/10/01 --days 10 --zone spain
-     Julian   |     Gregorian
+     Julian |   |   Gregorian
 ------------+---+------------
  1582/10/01 | M |
          02 | T |
