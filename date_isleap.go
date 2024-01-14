@@ -21,11 +21,18 @@ Example:
 	fmt.Println(gd.IsLeap())  // false
 */
 func (d Date) IsLeap() bool {
-	if d.Year%4 != 0 {
+	year := d.Year
+
+	// Adjust negative years, since there is no year zero. So year -1 is a leap year, -5 too, etc.
+	if year < 0 {
+		year++
+	}
+
+	if year%4 != 0 {
 		return false
 	}
 	if d.Type == Julian {
 		return true
 	}
-	return d.Year%100 != 0 || d.Year%400 == 0
+	return year%100 != 0 || year%400 == 0
 }
