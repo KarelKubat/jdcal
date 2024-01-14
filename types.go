@@ -37,7 +37,7 @@ ZoneEntry wraps a zone name with the dates where that zone switched to the Grego
 The CutOvers list is an array of Dates where this zone switched FROM a calendar TO another one. E.g., when CutOvers is:
 
 	Cutovers: []Date{
-		// -500 to 1584: Julian calendar was in use
+		// -500 to 1584: Julian calendar applies
 		// 1584 to 1597: Switched to Gregorian
 		// 1597 to 1798: Switched back to Julian
 		// 1798 to now:  Ended up with Gregorian
@@ -68,8 +68,7 @@ Holiday enumarates yearly holidays.
 type Holiday int
 
 const (
-	Unused Holiday = iota
-	Easter
+	Easter Holiday = iota
 	Ascension
 	Pentecost
 )
