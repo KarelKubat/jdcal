@@ -34,7 +34,7 @@ func main() {
 
 	// Testing leap years
 	// ------------------
-	for _, yr := range []jdcal.Year{1886, 1800, 2000} {
+	for _, yr := range []jdcal.Year{1796, 1797, 1800, 2000} {
 		for _, tp := range []jdcal.Type{jdcal.Julian, jdcal.Gregorian} {
 			cyr := jdcal.CalendarYear{Year: yr, Type: tp}
 			fmt.Println(cyr, "is a leap year:", cyr.IsLeap())
@@ -43,13 +43,15 @@ func main() {
 
 	// Output:
 
-	// Julian 1886 is a leap year: false       # 1886: Julian and Gregorian IsLeap agree
-	// Gregorian 1886 is a leap year: false
+	// Julian 1796 is a leap year: true        # Standard leap year (divisible by 4)
+	// Gregorian 1796 is a leap year: true     # or standard non-leap: Julian and Gregorian
+	// Julian 1797 is a leap year: false       # agree
+	// Gregorian 1797 is a leap year: false
 
-	// Julian 1800 is a leap year: true        # 1800: Julian and Gregorian IsLeap disagree
+	// Julian 1800 is a leap year: true        # Century: Julian and Gregorian IsLeap disagree
 	// Gregorian 1800 is a leap year: false
 
-	// Julian 2000 is a leap year: true        # 2000: Julian and Gregorian agree
+	// Julian 2000 is a leap year: true        # Millenium: Julian and Gregorian agree
 	// Gregorian 2000 is a leap year: true
 }
 
