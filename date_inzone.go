@@ -35,6 +35,20 @@ Regarding which dates are possible in the zone, the following applies:
 	1600/01/01 occurs in the zone as a Julian date, but not as a Gregorian
 	1800/01/01 occurs in the zone as a Gregorian date, but not as a Julian
 
+Example:
+
+	jd, err := jdcal.New(1580, 1, 1, jdcal.Julian)
+	if err != nil { ... }
+	in, err := jd.InZone(zoneEntry)  // obtained using ZonesByname("Groningen City")
+	if err != nil { ... }
+	fmt.Println(in)                 // true
+
+	gd, err := jdcal.New(1580, 1, 1, jdcal.Gregorian)
+	if err != nil { ... }
+	in, err := gd.InZone(zoneEntry)
+	if err != nil { ... }
+	fmt.Println(in)                 // false
+
 Just around the cutover dates, the following applies. Around the cutover from Gregorian 1594/11/10 to Julian 1594/10/31:
 
 - 1594/11/09 can be both a Gregorian and a Julian date. Gregorian, because it's one day before the switch over. But it can also be a Julian date, when it points 9 days beyond this switch over.
