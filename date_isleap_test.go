@@ -64,6 +64,22 @@ func TestIsLeap(t *testing.T) {
 			year:       2000,
 			wantIsLeap: true,
 		},
+		// Negative (BC); -1, -5, -9 etc. are leap years
+		{
+			tp:         Julian,
+			year:       -400,
+			wantIsLeap: false,
+		},
+		{
+			tp:         Julian,
+			year:       -401,
+			wantIsLeap: true,
+		},
+		{
+			tp:         Julian,
+			year:       -400,
+			wantIsLeap: false,
+		},
 	} {
 		d := Date{Year: test.year, Month: time.January, Day: 1, Type: test.tp}
 		if gotIsLeap := d.IsLeap(); gotIsLeap != test.wantIsLeap {
