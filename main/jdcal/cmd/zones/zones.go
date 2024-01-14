@@ -10,14 +10,14 @@ import (
 )
 
 const (
-	matchFlag = "match"
+	zoneFlag  = "zone"
 	shortFlag = "short"
 	longUsage = `
 Shows zones and the dates where calendars were switched. Examples:
 
-  jdcal zones                      # show all zones
-  jdcal zones --short              # short: only zone names
-  jdcal zones --match switzerland  # show zones that match, case-insensitive
+  jdcal zones                     # show all zones
+  jdcal zones --short             # short: only zone names
+  jdcal zones --zone switzerland  # show zones that match, case-insensitive
 `
 )
 
@@ -30,14 +30,14 @@ var Cmd = &cobra.Command{
 }
 
 func init() {
-	Cmd.Flags().StringP(matchFlag, strings.Split(matchFlag, "")[0], "",
+	Cmd.Flags().StringP(zoneFlag, strings.Split(zoneFlag, "")[0], "",
 		"restrict to zones matching this substring")
 	Cmd.Flags().BoolP(shortFlag, strings.Split(shortFlag, "")[0], false,
 		"show zone names only")
 }
 
 func runZones(cmd *cobra.Command, args []string) {
-	match, err := cmd.Flags().GetString(matchFlag)
+	match, err := cmd.Flags().GetString(zoneFlag)
 	check(err)
 
 	short, err := cmd.Flags().GetBool(shortFlag)

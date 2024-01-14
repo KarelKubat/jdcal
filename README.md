@@ -152,7 +152,7 @@ Gregorian 1600/01/01 is a Saturday
 
 ```sh
 # Switch over dates for zones matching "america"
-jdcal zones --match america
+jdcal zones --zone america
 United States of America (French & Spanish colonial empires)
   Started using the Julian    calendar   on   Gregorian -0500/02/28
   Switched to   the Gregorian calendar   on   Julian 1582/12/09
@@ -189,7 +189,7 @@ jdcal timeline 1582/10/01 --days 10  # note: --zone is unspecified
          10 | W |          20
 ```
 
-Spain switched over to the Gregorian calendar on October 4th 1582 (try it with `jdcal zones --match spain`). So the Spanish people went to sleep on October 4th and woke up on the 15th. That year, valid October dates were 1, 2, 3, 4, 15, 16, 17, etc.. Dates like October 10th don't exist in that zone.
+Spain switched over to the Gregorian calendar on October 4th 1582 (try it with `jdcal zones --zone spain`). So the Spanish people went to sleep on October 4th and woke up on the 15th. That year, valid October dates were 1, 2, 3, 4, 15, 16, 17, etc.. Dates like October 10th don't exist in that zone.
 
 One can argue whether October 14th is a valid date as it is the Gregorian version of the switch-over date October 4th. `jdcal` assumes that it is.
 
@@ -216,7 +216,7 @@ jdcal timeline 1582/10/01 --days 10 --zone spain
 Zones that switch back from Gregorian to Julian offer interesting timelines. E.g., "Groningen City" temporarily switched back to Julian after being re-conquered by Protestants. This happened on (the Gregorian date) 1594/11/10, which became (Julian) 1594/10/31. (Again, one may argue whether the switch-over date Julian 1594/10/31 is valid. `jdcal` assumes it is.) A visualization:
 
 ```sh
-jdcal zones -m 'groningen city'
+jdcal zones -z 'groningen city'
 Netherlands (Groningen City)
   Started using the Julian    calendar   on   Gregorian -0500/02/28
   Switched to   the Gregorian calendar   on   Julian 1583/01/01
