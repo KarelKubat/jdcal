@@ -1,4 +1,18 @@
-foo: date_table.go zones_table.go spring-eq-errors.png
+.PHONY: fullmoons
+foo:
+	@echo 'Make what?' 2>&1
+	@echo '  make tables        - convert *.txt to golang tables'
+	@echo '  make fullmoons.go  - scrape full moons dates'
+	@echo '  make test          - run tests'
+	@echo '  make install       - install jdcal CLI'
+	@echo '  make all           - all of the above, except fullmoons.go re-scraping'
+	@exit 1
+
+.PHONY: all
+all: tables install test
+
+.PHONY: tables
+tables: date_table.go zones_table.go spring-eq-errors.png
 
 date_table.go: main/makeconversiontable/makeconversiontable.go date_table.txt Makefile
 	go run main/makeconversiontable/makeconversiontable.go date_table.txt date_table.go
