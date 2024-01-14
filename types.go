@@ -61,3 +61,15 @@ type ZoneEntry struct {
 	Name     string // Zone name, e.g. "Denmark"
 	Cutovers []Date // List of dates when the zone switched from a given calendar
 }
+
+/*
+Holiday enumarates yearly holidays.
+*/
+type Holiday int
+
+const (
+	Unused Holiday = iota
+	Easter
+	Ascension
+	Pentecost
+)
