@@ -17,5 +17,11 @@ main/daysdiff/spring-equinox.csv: main/daysdiff/daysdiff.go Makefile
 	sort -n main/daysdiff/spring-equinox.csv.tmp > main/daysdiff/spring-equinox.csv
 	rm main/daysdiff/spring-equinox.csv.tmp
 
+.PHONY: fullmoons.go
+fullmoons.go:
+	go run main/makefullmoons/makefullmoons.go fullmoons.out
+	mv fullmoons.out fullmoons.go
+	gofmt -w fullmoons.go
+
 install: zones_table.go date_table.go Makefile
 	go install main/jdcal/jdcal.go
