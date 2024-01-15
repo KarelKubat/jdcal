@@ -77,7 +77,8 @@ func processURL(url string) string {
 	body, err := io.ReadAll(resp.Body)
 	check(err)
 	lines := extractTables(string(body))
-	return extractDates(lines)
+
+	return fmt.Sprintf("\n// %s\n%s", url, extractDates(lines))
 }
 
 /*
@@ -132,6 +133,9 @@ Full moon dates are at pos 44, "Mar 21" in the below example
 	        Mar  6  19:33     Mar 13  11:54     Mar 21  12:51     Mar 29  11:32
 */
 func extractDates(lines []string) (out string) {
+	// for _, l := range lines {
+	// 	out += fmt.Sprintf("// %s\n", l)
+	// }
 	var year int
 	var expectYear bool
 	previousYear := -999999
@@ -152,11 +156,12 @@ func extractDates(lines []string) (out string) {
 			check(fmt.Errorf("unexpected line %q", line))
 		}
 		monthString := line[44:47]
+		dayString := line[48:50]
 		if monthString == "   " {
 			continue
 		}
 		m := extractMonth(monthString)
-		d := atoi(line[48:50])
+		d := atoi(dayString)
 
 		if previousYear != year {
 			if previousYear != -999999 {
@@ -183,7 +188,8 @@ func extractDates(lines []string) (out string) {
 			}
 			checkWithLine(err, line)
 		}
-		out += fmt.Sprintf(" {%d, time.%v, %d, %v}, \n", dt.Year, dt.Month, dt.Day, dt.Type)
+		out += fmt.Sprintf(" {%d, time.%v, %d, %v}, // %s/%s from %s\n",
+			dt.Year, dt.Month, dt.Day, dt.Type, monthString, dayString, line)
 	}
 	out += " }, "
 
