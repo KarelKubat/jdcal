@@ -16,6 +16,7 @@
   - [46 BC](#46-bc)
   - [Around 1582 AD](#around-1582-ad)
   - [Up to 1923 AD (!)](#up-to-1923-ad-)
+  - [Moon cycle based holidays](#moon-cycle-based-holidays)
   - [2023 AD](#2023-ad)
 - [Installation](#installation)
 - [Short CLI synopsis](#short-cli-synopsis)
@@ -23,12 +24,13 @@
   - [Weekdays](#weekdays)
   - [When did the world switch calendars](#when-did-the-world-switch-calendars)
   - [Visualization of a timeline](#visualization-of-a-timeline)
+  - [Holidays](#holidays)
 - [Short library synopsis](#short-library-synopsis)
   - [Conversions](#conversions)
   - [Honoring leap years](#honoring-leap-years)
   - [Zones](#zones)
   - [Testing whether a date exists in a zone](#testing-whether-a-date-exists-in-a-zone)
-  - [Holidays](#holidays)
+  - [Holidays](#holidays-1)
   - [More documentation](#more-documentation)
 <!-- /toc -->
 
