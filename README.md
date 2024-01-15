@@ -104,6 +104,12 @@ A nice example is Switzerland's Appenzell Ausserrhoden:
 
 So before 1585 they were "in sync" with other areas, and until 1798 you don't know -- it depends on their switching dates and on their neighbours.
 
+### Moon cycle based holidays
+
+The fact that the Julian calendar was unprecise, was a problem because of typical Christian holidays: Easter, Ascension Day, Pentecost. These are defined by finding the full moon following the *ecclesiastical* Spring equinox. This isn't the *astronomical* equinox (official start of the spring), but instead is pinned at March 21st (Julian or Gregorian, whichever applies). Once Julian March 21st was too "far away" from the astronomical equinox, a correction needed to be made.
+
+The software supports finding dates for these holidays, both on the Gregorian and on the Julian calendars.
+
 ### 2023 AD
 
 Late 2023 my darling wife asked me to write some conversion software because she's working on a book that has to be historically precise. I dove into the rabbit hole.
@@ -255,6 +261,35 @@ In this case a date like 1594/11/08 exists twice. Also;
 - The date 1594/10/30 must be Gregorian;
 - Dates 1594/10/31 until 1594/11/10 exist on both calendars;
 - The date 1594/11/11 must be Julian.
+
+### Holidays
+
+`jdcal holidays` shows holiday dates for given years. The default output format is Julian:
+
+```sh
+jdcal holidays 1584
+Easter occurs on Julian 1584/03/22
+Ascension day occurs on Julian 1584/04/30
+Pentecost occurs on Julian 1584/05/10
+```
+
+The output format can be forced to Gregorian using flag `--gregorian` (shorthand: `-g`). Alternatively, the output format can be "guessed" when a zone is given using flag `--zone` (shorthand: `-z`). For example, *Switzerland (Appenzell Ausserrhoden)* switched to the Gregorian calendar in 1584:
+
+```sh
+jdcal holidays 1584 -z ausserrhoden
+Easter in Switzerland (Appenzell Ausserrhoden) occurs on Gregorian 1584/04/01
+Ascension day in Switzerland (Appenzell Ausserrhoden) occurs on Gregorian 1584/05/10
+Pentecost in Switzerland (Appenzell Ausserrhoden) occurs on Gregorian 1584/05/20
+```
+
+Some zones switched between the holiday dates. E.g., Georgia switched to the Gregorian calendar on the the Julian date 1918/04/17, which means that the Easter should be represented as Julian, but Ascension day and Pentecost as Gregorian:
+
+```sh
+jdcal holidays 1918 -z georgia
+Easter in Georgia occurs on Julian 1918/03/18
+Ascension day in Georgia occurs on Gregorian 1918/05/09
+Pentecost in Georgia occurs on Gregorian 1918/05/19
+```
 
 ## Short library synopsis
 
