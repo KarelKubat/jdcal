@@ -4,6 +4,6 @@ import (
 	"testing"
 )
 
-func TestAll(t *testing.T) {
-	// TODO: Add tests
+func TestDoc(t *testing.T) {
+	// No tests needed here.
 }
