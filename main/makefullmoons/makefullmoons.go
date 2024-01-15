@@ -26,7 +26,10 @@ import "time"
 /* 
 FullMoons maps years to arrays of Dates when in that year full moons occurred. Example:
 
-  dates := jdcal.FullMoons[1600]
+  dates, ok := jdcal.FullMoons[1600]
+  if !ok {
+	log.Fatal("no full moon information for year 1600")
+  }
   for _, d := range dates {
 	fmt.Println(d)
   }
@@ -42,7 +45,7 @@ Astropixels.com knows a year zero and has  -2, -1, 0, 1, 2, 3.
 - All dates are on the Gregorian calendar. Astropixels.com uses Julian for pre-1582.
 */
 
-var FullMoons = map[int][]Date{
+var FullMoons = map[Year][]Date{
 `
 
 	trailer = `

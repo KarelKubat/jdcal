@@ -21,7 +21,7 @@ Astropixels.com knows a year zero and has  -2, -1, 0, 1, 2, 3.
 - All dates are on the Gregorian calendar. Astropixels.com uses Julian for pre-1582.
 */
 
-var FullMoons = map[int][]Date{
+var FullMoons = map[Year][]Date{
 
 	-500: {
 		{-500, time.March, 1, Gregorian},
