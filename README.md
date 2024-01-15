@@ -28,6 +28,7 @@
   - [Honoring leap years](#honoring-leap-years)
   - [Zones](#zones)
   - [Testing whether a date exists in a zone](#testing-whether-a-date-exists-in-a-zone)
+  - [Holidays](#holidays)
   - [More documentation](#more-documentation)
 <!-- /toc -->
 
