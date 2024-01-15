@@ -76,7 +76,9 @@ Holiday enumarates yearly holidays.
 type Holiday int
 
 const (
-	Easter Holiday = iota
+	firstUnusedHoliday Holiday = iota
+	Easter
 	Ascension
 	Pentecost
+	lastUnusedHoliday
 )
