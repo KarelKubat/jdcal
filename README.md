@@ -358,7 +358,8 @@ func main() {
 	// Gregorian 1800 is a leap year: false
 
 	// Julian 2000 is a leap year: true        # Millenium: Julian and Gregorian agree
-	// Gregorian 2000 is a leap year: true}
+	// Gregorian 2000 is a leap year: true
+}
 
 func check(err error) {
 	if err != nil {
