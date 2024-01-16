@@ -2,6 +2,8 @@ package jdcal
 
 import "time"
 
+// Type defines the calendar type for a jdcal.Date or a jdcal.CalendarYear: jdcal.Gregorian or
+// jdcal.Julian.
 type Type int
 
 const (
