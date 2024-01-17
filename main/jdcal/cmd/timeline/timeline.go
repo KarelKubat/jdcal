@@ -97,7 +97,7 @@ func runTimeline(cmd *cobra.Command, args []string) {
 				lastOtMonth = ot.Month
 			}
 		}
-		dt = dt.Advance()
+		dt = dt.Forward()
 	}
 }
 

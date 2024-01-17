@@ -16,6 +16,8 @@ Pentecost is on the 50th day after Easter (so plus 49), making it a Sunday.
 */
 func (cyr CalendarYear) HolidayDate(h Holiday) (Date, error) {
 	switch h {
+	case GoodFriday:
+		return cyr.goodfriday()
 	case Easter:
 		return cyr.easter()
 	case Ascension:
@@ -65,7 +67,7 @@ func (cyr CalendarYear) easter() (Date, error) {
 
 	// Found the full moon date. Advance until the next Sunday, but don't take this date if it's
 	// a Sunday itself.
-	dt = dt.Advance()
+	dt = dt.Forward()
 	for {
 		wd, err := dt.Weekday()
 		if err != nil {
@@ -74,7 +76,7 @@ func (cyr CalendarYear) easter() (Date, error) {
 		if wd == time.Sunday {
 			break
 		}
-		dt = dt.Advance()
+		dt = dt.Forward()
 	}
 	// fmt.Println("sunday after:", dt)
 
@@ -88,6 +90,19 @@ func (cyr CalendarYear) easter() (Date, error) {
 	return dt, nil
 }
 
+func (cyr CalendarYear) goodfriday() (Date, error) {
+	dt, err := cyr.easter()
+	if err != nil {
+		return Date{}, err
+	}
+
+	// Good Friday is 2 days back.
+	for i := 0; i < 2; i++ {
+		dt = dt.Backward()
+	}
+	return dt, nil
+}
+
 func (cyr CalendarYear) ascension() (Date, error) {
 	dt, err := cyr.easter()
 	if err != nil {
@@ -96,7 +111,7 @@ func (cyr CalendarYear) ascension() (Date, error) {
 
 	// Ascension is on the 40th day after Easter, so plus 39, a Thursday.
 	for i := 0; i < 39; i++ {
-		dt = dt.Advance()
+		dt = dt.Forward()
 	}
 	return dt, nil
 }
@@ -109,7 +124,7 @@ func (cyr CalendarYear) pentecost() (Date, error) {
 
 	// Pentecost is on the 50th day after Easter, so plus 49, a Sunday.
 	for i := 0; i < 49; i++ {
-		dt = dt.Advance()
+		dt = dt.Forward()
 	}
 	return dt, nil
 }

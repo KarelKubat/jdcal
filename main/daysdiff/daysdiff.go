@@ -89,8 +89,8 @@ func main() {
 			break
 		}
 
-		jd = jd.Advance()
-		gd = gd.Advance()
+		jd = jd.Forward()
+		gd = gd.Forward()
 		day++
 	}
 

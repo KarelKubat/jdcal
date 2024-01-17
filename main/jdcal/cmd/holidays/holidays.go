@@ -12,6 +12,8 @@ import (
 )
 
 const (
+	firstHoliday  = jdcal.GoodFriday
+	lastHoliday   = jdcal.Pentecost
 	gregorianFlag = "gregorian"
 	zoneFlag      = "zone"
 	longUsage     = `
@@ -65,7 +67,7 @@ func runHolidays(cmd *cobra.Command, args []string) {
 		if i > 0 {
 			fmt.Println()
 		}
-		for _, h := range []jdcal.Holiday{jdcal.Easter, jdcal.Ascension, jdcal.Pentecost} {
+		for h := firstHoliday; h <= lastHoliday; h++ {
 			dt, err := cyr.HolidayDate(h)
 			check(err)
 
@@ -81,11 +83,13 @@ func runHolidays(cmd *cobra.Command, args []string) {
 					check(err)
 				}
 			}
-			fmt.Print(h)
+			fmt.Printf("%-13s", h)
 			if zoneName != "" {
 				fmt.Printf(" in %s", zones[0].Name)
 			}
-			fmt.Printf(" occurs on %v\n", dt)
+			wd, err := dt.Weekday()
+			check(err)
+			fmt.Printf(" occurs on %-8s %v\n", wd, dt)
 		}
 	}
 }

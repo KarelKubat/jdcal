@@ -20,6 +20,11 @@ Example:
 	fmt.Println(gd) // Gregorian 1712/03/01
 */
 func (d Date) Convert() (Date, error) {
+	return d.convertFromTable()
+}
+
+// convertFromTable is one implementation.
+func (d Date) convertFromTable() (Date, error) {
 	for i, e := range ConversionTable {
 		var our, their, ourNext Date
 		if d.Type == Gregorian {
@@ -85,7 +90,7 @@ func (d Date) extrapolate(our, their Date) (Date, error) {
 		if eq {
 			return their, nil
 		}
-		our = our.Advance()
-		their = their.Advance()
+		our = our.Forward()
+		their = their.Forward()
 	}
 }

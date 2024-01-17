@@ -1,11 +1,14 @@
 .PHONY: fullmoons
 foo:
 	@echo 'Make what?' 2>&1
-	@echo '  make tables        - convert *.txt to golang tables'
-	@echo '  make fullmoons.go  - scrape full moons dates'
-	@echo '  make test          - run tests'
-	@echo '  make install       - install jdcal CLI'
-	@echo '  make all           - all of the above, except fullmoons.go re-scraping'
+	@echo '  make tables            - convert *.txt to golang tables'
+	@echo '  make test              - run tests'
+	@echo '  make install           - install jdcal CLI'
+	@echo
+	@echo '  make fullmoons.go      - scrape full moons dates'
+	@echo '  make bigconversiondata - huge list of J/G dates for testing'
+	@echo
+	@echo '  make all               - all of the above, except fullmoons.go re-scraping and big conversion dates'
 	@exit 1
 
 .PHONY: all
@@ -47,3 +50,7 @@ test:
 	go run main/demo2/demo2.go
 	go run main/demo3/demo3.go
 	go run main/demo4/demo4.go
+
+.PHONY: bigconversiondata
+bigconversiondata:
+	sh main/bigconversiontest/make.sh

@@ -1,8 +1,18 @@
 package jdcal
 
 import (
+	"fmt"
+	"math/rand"
 	"testing"
 	"time"
+
+	"github.com/KarelKubat/jdcal/main/bigconversiontest/testdates"
+)
+
+const (
+	// # of conversions to pick from main/bigconversiontest/testdates/testdates.go for testing
+	// Should be a large number
+	nConversionTests = 100
 )
 
 func TestConvertSome(t *testing.T) {
@@ -63,4 +73,43 @@ func TestConvertSome(t *testing.T) {
 		run(test.desc, test.jd, test.gd)
 		run(test.desc, test.gd, test.jd)
 	}
+}
+
+func TestConvertFromFullSet(t *testing.T) {
+	for i := 0; i < nConversionTests; i++ {
+		if err := oneTest(); err != nil {
+			t.Error(err)
+		}
+	}
+}
+
+func oneTest() error {
+	test := testdates.TestDates[rand.Intn(len(testdates.TestDates))]
+	jd := Date{Year: Year(test.J.Year), Month: test.J.Month, Day: test.J.Day, Type: Julian}
+	gd := Date{Year: Year(test.G.Year), Month: test.G.Month, Day: test.G.Day, Type: Gregorian}
+
+	gd1, err := jd.Convert()
+	if err != nil {
+		return fmt.Errorf("%+v .Convert() = _,%q, need nil error", jd, err.Error())
+	}
+	eq, err := gd.Equal(gd1)
+	if err != nil {
+		return fmt.Errorf("%+v .Equal(%+v) = _,%q, need nil error", gd, gd1, err.Error())
+	}
+	if !eq {
+		return fmt.Errorf("%+v .Equal(%+v) = false, want true", gd, gd1)
+	}
+
+	jd1, err := gd1.Convert()
+	if err != nil {
+		return fmt.Errorf("%+v .Convert() = _,%q, need nil error", gd1, err.Error())
+	}
+	eq, err = jd.Equal(jd1)
+	if err != nil {
+		return fmt.Errorf("%+v .Equal(%+v) = _,%q, need nil error", jd, jd1, err.Error())
+	}
+	if !eq {
+		return fmt.Errorf("%+v .Equal(%+v) = false, want true", jd, jd1)
+	}
+	return nil
 }

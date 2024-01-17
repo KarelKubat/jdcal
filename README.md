@@ -1,6 +1,6 @@
 # jdcal
 
-**Go library and CLI utility to convert to-and-fro between Julian and Gregorian dates, offering:**
+**Go library and CLI utility to convert to-and-fro between Julian and Gregorian dates, aimed at Christian calendars and holidays, offering:**
 
 - Conversions between Julian and Gregorian calendars for any date between 500BC and 2100AD
 - When is a year a leap year, on either of the calendars
@@ -270,27 +270,30 @@ In this case a date like 1594/11/08 exists twice. Also;
 
 ```sh
 jdcal holidays 1584
-Easter occurs on Julian 1584/03/22
-Ascension day occurs on Julian 1584/04/30
-Pentecost occurs on Julian 1584/05/10
+Good Friday   occurs on Friday   Julian 1584/03/20
+Easter        occurs on Sunday   Julian 1584/03/22
+Ascension Day occurs on Thursday Julian 1584/04/30
+Pentecost     occurs on Sunday   Julian 1584/05/10
 ```
 
 The output format can be forced to Gregorian using flag `--gregorian` (shorthand: `-g`). Alternatively, the output format can be "guessed" when a zone is given using flag `--zone` (shorthand: `-z`). For example, *Switzerland (Appenzell Ausserrhoden)* switched to the Gregorian calendar in 1584:
 
 ```sh
 jdcal holidays 1584 -z ausserrhoden
-Easter in Switzerland (Appenzell Ausserrhoden) occurs on Gregorian 1584/04/01
-Ascension day in Switzerland (Appenzell Ausserrhoden) occurs on Gregorian 1584/05/10
-Pentecost in Switzerland (Appenzell Ausserrhoden) occurs on Gregorian 1584/05/20
+Good Friday   in Switzerland (Appenzell Ausserrhoden) occurs on Friday   Gregorian 1584/03/30
+Easter        in Switzerland (Appenzell Ausserrhoden) occurs on Sunday   Gregorian 1584/04/01
+Ascension Day in Switzerland (Appenzell Ausserrhoden) occurs on Thursday Gregorian 1584/05/10
+Pentecost     in Switzerland (Appenzell Ausserrhoden) occurs on Sunday   Gregorian 1584/05/20
 ```
 
 Some zones switched between the holiday dates. E.g., Georgia switched to the Gregorian calendar on the the Julian date 1918/04/17, which means that the Easter should be represented as Julian, but Ascension day and Pentecost as Gregorian:
 
 ```sh
 jdcal holidays 1918 -z georgia
-Easter in Georgia occurs on Julian 1918/03/18
-Ascension day in Georgia occurs on Gregorian 1918/05/09
-Pentecost in Georgia occurs on Gregorian 1918/05/19
+Good Friday   in Georgia occurs on Friday   Julian 1918/03/16
+Easter        in Georgia occurs on Sunday   Julian 1918/03/18
+Ascension Day in Georgia occurs on Thursday Gregorian 1918/05/09
+Pentecost     in Georgia occurs on Sunday   Gregorian 1918/05/19
 ```
 
 ## Short library synopsis
@@ -342,6 +345,44 @@ func check(err error) {
 
 ### Honoring leap years
 
+
+```go
+package main
+
+import (
+	"fmt"
+	"time"
+
+	"github.com/KarelKubat/jdcal"
+)
+
+func main() {
+	jyr := jdcal.CalendarYear{Year: 1900, Type: jdcal.Julian}
+	gyr := jdcal.CalendarYear{Year: 1900, Type: jdcal.Gregorian}
+
+	jdpm := jyr.DaysPerMonth()
+	gdpm := gyr.DaysPerMonth()
+
+	for m := time.January; m <= time.December; m++ {
+		fmt.Printf("%-10s: in Julian %2.2d, in Gregorian %2.2d days\n", m, jdpm[m], gdpm[m])
+	}
+
+	// Output:
+	// January   : in Julian 31, in Gregorian 31 days
+	// February  : in Julian 29, in Gregorian 28 days   # Note the difference
+	// March     : in Julian 31, in Gregorian 31 days
+	// April     : in Julian 30, in Gregorian 30 days
+	// May       : in Julian 31, in Gregorian 31 days
+	// June      : in Julian 30, in Gregorian 30 days
+	// July      : in Julian 31, in Gregorian 31 days
+	// August    : in Julian 31, in Gregorian 31 days
+	// September : in Julian 30, in Gregorian 30 days
+	// October   : in Julian 31, in Gregorian 31 days
+	// November  : in Julian 30, in Gregorian 30 days
+	// December  : in Julian 31, in Gregorian 31 days
+}
+```
+
 ```go
 package main
 
@@ -363,7 +404,7 @@ func main() {
 		gd, err := jd.Convert()
 		check(err)
 		fmt.Println(jd, "is", gd)
-		jd = jd.Advance()
+		jd = jd.Forward()
 	}
 
 	// Output:
@@ -376,6 +417,23 @@ func main() {
 
 	// Note that the Julian calendar knows a February 29th, the Gregorian one doesn't.
 	// The two calendars diverge after February 28th. This is historically correct.
+
+	// Going backward
+	// --------------
+	for i := 0; i < 6; i++ {
+		gd, err := jd.Convert()
+		check(err)
+		fmt.Println(jd, "is", gd)
+		jd = jd.Backward()
+	}
+
+	// Output:
+	// Julian 0300/03/04 is Gregorian 0300/03/05
+	// Julian 0300/03/03 is Gregorian 0300/03/04
+	// Julian 0300/03/02 is Gregorian 0300/03/03
+	// Julian 0300/03/01 is Gregorian 0300/03/02
+	// Julian 0300/02/29 is Gregorian 0300/03/01
+	// Julian 0300/02/28 is Gregorian 0300/02/28
 
 	// Testing leap years
 	// ------------------
@@ -393,7 +451,7 @@ func main() {
 	// Julian 1797 is a leap year: false       # agree
 	// Gregorian 1797 is a leap year: false
 
-	// Julian 1800 is a leap year: true        # Century: Julian and Gregorian IsLeap disagree
+	// Julian 1800 is a leap year: true        # Century: IsLeap disagrees
 	// Gregorian 1800 is a leap year: false
 
 	// Julian 2000 is a leap year: true        # Millenium: Julian and Gregorian agree

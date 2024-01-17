@@ -18,7 +18,7 @@ func main() {
 		gd, err := jd.Convert()
 		check(err)
 		fmt.Println(jd, "is", gd)
-		jd = jd.Advance()
+		jd = jd.Forward()
 	}
 
 	// Output:
@@ -31,6 +31,23 @@ func main() {
 
 	// Note that the Julian calendar knows a February 29th, the Gregorian one doesn't.
 	// The two calendars diverge after February 28th. This is historically correct.
+
+	// Going backward
+	// --------------
+	for i := 0; i < 6; i++ {
+		gd, err := jd.Convert()
+		check(err)
+		fmt.Println(jd, "is", gd)
+		jd = jd.Backward()
+	}
+
+	// Output:
+	// Julian 0300/03/04 is Gregorian 0300/03/05
+	// Julian 0300/03/03 is Gregorian 0300/03/04
+	// Julian 0300/03/02 is Gregorian 0300/03/03
+	// Julian 0300/03/01 is Gregorian 0300/03/02
+	// Julian 0300/02/29 is Gregorian 0300/03/01
+	// Julian 0300/02/28 is Gregorian 0300/02/28
 
 	// Testing leap years
 	// ------------------
@@ -48,7 +65,7 @@ func main() {
 	// Julian 1797 is a leap year: false       # agree
 	// Gregorian 1797 is a leap year: false
 
-	// Julian 1800 is a leap year: true        # Century: Julian and Gregorian IsLeap disagree
+	// Julian 1800 is a leap year: true        # Century: IsLeap disagrees
 	// Gregorian 1800 is a leap year: false
 
 	// Julian 2000 is a leap year: true        # Millenium: Julian and Gregorian agree
