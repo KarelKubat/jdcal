@@ -13,7 +13,6 @@ var (
 // Variables relevant to Julian Day conversions, see
 // https://aa.usno.navy.mil/downloads/c15_usb_online.pdf section 15.11.1
 // Only the relevant constants for Julian and Gregorian calendars are used.
-// When a constant is a conversionConstant, then the Gregorian value comes first.
 // Uncomment when trying to convert via convertFromJD().
 
 // jConstant          = 1401
