@@ -58,17 +58,12 @@ func runTimeline(cmd *cobra.Command, args []string) {
 	repeat, err := cmd.Flags().GetBool(repeatFlag)
 	check(err)
 
-	var zones []jdcal.ZoneEntry
+	var zone jdcal.ZoneEntry
 	zoneName, err := cmd.Flags().GetString(zoneFlag)
 	check(err)
 	if zoneName != "" {
-		zones = jdcal.ZonesByName(zoneName)
-		if len(zones) == 0 {
-			check(fmt.Errorf("zone %q does not match anything, try `jdcal zones`", zoneName))
-		}
-		if len(zones) > 1 {
-			check(fmt.Errorf("zone %q matches multiple zones, restrict the --zone name", zoneName))
-		}
+		zone, err = jdcal.SingleZone(zoneName)
+		check(err)
 	}
 
 	if dt.Type == jdcal.Julian {
@@ -83,9 +78,9 @@ func runTimeline(cmd *cobra.Command, args []string) {
 	for i := 0; i < days; i++ {
 		ot, err := dt.Convert()
 		check(err)
-		dtPrinted := printDate(dt, lastDtYear, lastDtMonth, zones)
+		dtPrinted := printDate(dt, lastDtYear, lastDtMonth, zone)
 		fmt.Printf(" | %s | ", weekDay(dt))
-		otPrinted := printDate(ot, lastOtYear, lastOtMonth, zones)
+		otPrinted := printDate(ot, lastOtYear, lastOtMonth, zone)
 		fmt.Println()
 		if !repeat {
 			if dtPrinted {
@@ -119,9 +114,9 @@ func weekDay(d jdcal.Date) string {
 	return "?"
 }
 
-func printDate(d jdcal.Date, lastYear jdcal.Year, lastMonth time.Month, zones []jdcal.ZoneEntry) bool {
-	if len(zones) == 1 {
-		in, err := d.InZone(zones[0])
+func printDate(d jdcal.Date, lastYear jdcal.Year, lastMonth time.Month, zone jdcal.ZoneEntry) bool {
+	if zone.Name != "" {
+		in, err := d.InZone(zone)
 		check(err)
 		if !in {
 			fmt.Printf("           ")

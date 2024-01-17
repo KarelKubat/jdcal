@@ -43,17 +43,12 @@ func runHolidays(cmd *cobra.Command, args []string) {
 	gotG, err := cmd.Flags().GetBool(gregorianFlag)
 	check(err)
 
-	var zones []jdcal.ZoneEntry
+	var zone jdcal.ZoneEntry
 	zoneName, err := cmd.Flags().GetString(zoneFlag)
 	check(err)
 	if zoneName != "" {
-		zones = jdcal.ZonesByName(zoneName)
-		if len(zones) == 0 {
-			check(fmt.Errorf("zone %q does not match anything, try `jdcal zones`", zoneName))
-		}
-		if len(zones) > 1 {
-			check(fmt.Errorf("zone %q matches multiple zones, restrict the --zone name", zoneName))
-		}
+		zone, err = jdcal.SingleZone(zoneName)
+		check(err)
 	}
 
 	if gotG && zoneName != "" {
@@ -76,7 +71,7 @@ func runHolidays(cmd *cobra.Command, args []string) {
 				check(err)
 			}
 			if zoneName != "" {
-				in, err := dt.InZone(zones[0])
+				in, err := dt.InZone(zone)
 				check(err)
 				if !in {
 					dt, err = dt.Convert()
@@ -85,7 +80,7 @@ func runHolidays(cmd *cobra.Command, args []string) {
 			}
 			fmt.Printf("%-13s", h)
 			if zoneName != "" {
-				fmt.Printf(" in %s", zones[0].Name)
+				fmt.Printf(" in %s", zone.Name)
 			}
 			wd, err := dt.Weekday()
 			check(err)

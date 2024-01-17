@@ -13,12 +13,9 @@ const (
 )
 
 func main() {
-	zones := jdcal.ZonesByName(zoneName)
-	if len(zones) != 1 {
-		check(fmt.Errorf("name %q does not select one single zone", zoneName))
-	}
-
-	fmt.Println(zones[0])
+	zone, err := jdcal.SingleZone(zoneName)
+	check(err)
+	fmt.Println(zone)
 	// Netherlands (Groningen City)
 	//   Started using the Julian    calendar   on   Gregorian -0500/02/28
 	//   Switched to   the Gregorian calendar   on   Julian 1583/01/01
@@ -27,7 +24,7 @@ func main() {
 
 	// Some dates that lie in between the cutovers.
 	for _, year := range []jdcal.Year{1580, 1590, 1600, 1800} {
-		test(year, time.January, 1, zones[0])
+		test(year, time.January, 1, zone)
 	}
 
 	// Output:
@@ -69,7 +66,7 @@ func main() {
 		//   1700/12/31 is a Julian date
 		//   1701/01/01 is neither a Julian nor a Gregorian date
 	} {
-		test(date.year, date.month, date.day, zones[0])
+		test(date.year, date.month, date.day, zone)
 	}
 }
 

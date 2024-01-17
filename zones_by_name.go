@@ -7,7 +7,7 @@ ZonesByname returns a list of ZoneEntry's matching the input argument. The match
 
 Example:
 
-	fmt.Println(ZonesByName("netherlands"))
+	fmt.Println(jdcal.ZonesByName("netherlands"))
 
 	// Output:
 	// Belgium (Southern Netherlands)
