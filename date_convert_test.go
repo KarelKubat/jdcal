@@ -3,6 +3,7 @@ package jdcal
 import (
 	"fmt"
 	"math/rand"
+	"slices"
 	"testing"
 	"time"
 
@@ -75,12 +76,42 @@ func TestConvertSome(t *testing.T) {
 	}
 }
 
+var diffJulianToGregorian = map[Year][]int{}
+var diffGregorianToJulian = map[Year][]int{}
+
+func logYearDiff(mp *map[Year][]int, y Year, diff int) {
+	_, ok := (*mp)[y]
+	if !ok {
+		(*mp)[y] = []int{diff}
+	}
+	if !slices.Contains((*mp)[y], diff) {
+		(*mp)[y] = append((*mp)[y], diff)
+	}
+}
+
+func reportDiffs(t *testing.T, mp map[Year][]int, title string) {
+	if len(mp) == 0 {
+		return
+	}
+	t.Errorf("*** DIFFS IN YEARS for %s ***", title)
+	yrs := []Year{}
+	for y := range mp {
+		yrs = append(yrs, y)
+	}
+	slices.Sort(yrs)
+	for _, y := range yrs {
+		t.Errorf("%v: %v", y, mp[y])
+	}
+}
+
 func TestConvertFromFullSet(t *testing.T) {
 	for i := 0; i < nConversionTests; i++ {
 		if err := oneTest(); err != nil {
 			t.Error(err)
 		}
 	}
+	reportDiffs(t, diffJulianToGregorian, "Julian to Gregorian")
+	reportDiffs(t, diffGregorianToJulian, "Gregorian to Julian")
 }
 
 func oneTest() error {
@@ -97,19 +128,21 @@ func oneTest() error {
 		return fmt.Errorf("%+v .Equal(%+v) = _,%q, need nil error", gd, gd1, err.Error())
 	}
 	if !eq {
-		return fmt.Errorf("%+v .Equal(%+v) = false, want true", gd, gd1)
+		logYearDiff(&diffJulianToGregorian, jd.Year, int(jd.Year-gd1.Year))
+		return fmt.Errorf("reference %+v .Equal(computed %+v) = false, want true", gd, gd1)
 	}
 
-	jd1, err := gd1.Convert()
+	jd1, err := gd.Convert()
 	if err != nil {
-		return fmt.Errorf("%+v .Convert() = _,%q, need nil error", gd1, err.Error())
+		return fmt.Errorf("%+v .Convert() = _,%q, need nil error", jd1, err.Error())
 	}
 	eq, err = jd.Equal(jd1)
 	if err != nil {
 		return fmt.Errorf("%+v .Equal(%+v) = _,%q, need nil error", jd, jd1, err.Error())
 	}
 	if !eq {
-		return fmt.Errorf("%+v .Equal(%+v) = false, want true", jd, jd1)
+		logYearDiff(&diffGregorianToJulian, gd.Year, int(gd.Year-jd1.Year))
+		return fmt.Errorf("reference %+v .Equal(computed %+v) = false, want true", jd, jd1)
 	}
 	return nil
 }
