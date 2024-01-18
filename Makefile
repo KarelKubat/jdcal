@@ -1,7 +1,7 @@
 .PHONY: fullmoons
 foo:
 	@echo 'Make what?' 2>&1
-	@echo '  make tables            - convert *.txt to golang tables'
+	@echo '  make tables            - create lookup tables (except fullmoons)'
 	@echo '  make test              - run tests'
 	@echo '  make install           - install jdcal CLI'
 	@echo
@@ -15,7 +15,10 @@ foo:
 all: tables install test
 
 .PHONY: tables
-tables: date_table.go zones_table.go spring-eq-errors.png
+tables: date_table.go zones_table.go spring-eq-errors.png progressiontable.go
+
+progressiontable.go: main/makeprogressiontable/makeprogressiontable.go main/makeprogressiontable/makeprogressiontable.sh
+	sh main/makeprogressiontable/makeprogressiontable.sh
 
 date_table.go: main/makeconversiontable/makeconversiontable.go date_table.txt Makefile
 	go run main/makeconversiontable/makeconversiontable.go date_table.txt date_table.go
