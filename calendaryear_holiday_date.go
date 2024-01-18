@@ -31,42 +31,13 @@ func (cyr CalendarYear) HolidayDate(h Holiday) (Date, error) {
 
 func (cyr CalendarYear) easter() (Date, error) {
 	// Find the first full moon on or beyond the ecclesiastical spring equinox (March 21st).
-	fullMoons, ok := FullMoons[cyr.Year]
+	fullMoon, ok := FullMoons[cyr.Year]
 	if !ok {
-		return Date{}, fmt.Errorf("no full moons information for %v", cyr)
+		return Date{}, fmt.Errorf("no spring full moon information for %v", cyr)
 	}
+	dt := Date{Year: cyr.Year, Month: fullMoon.Month, Day: fullMoon.Day, Type: Gregorian}
 
-	// Equinox date is on March 21st, either Julian or Gregorian.
-	// If the date is requested as Julian, then the search date into the full moons table must
-	// be set as Gregorian.
-	var err error
-	equinox := Date{Year: cyr.Year, Month: time.March, Day: 21, Type: cyr.Type}
-	if cyr.Type == Julian {
-		equinox, err = equinox.Convert()
-		if err != nil {
-			return Date{}, err
-		}
-	}
-	// fmt.Println("equinox pinned to:", equinox)
-	var dt Date
-	var found bool
-	for _, dt = range fullMoons {
-		// March 21st exactly, such as 1370? Or just beyond, such as April 8th 1371?
-		found, err = dt.AfterOrEqual(equinox)
-		if err != nil {
-			return Date{}, err
-		}
-		if found {
-			break
-		}
-	}
-	if !found {
-		return Date{}, fmt.Errorf("failed to find the fullmoon beyond March 21st in year %v", cyr.Year)
-	}
-	// fmt.Println("fullmoon after equinox:", dt)
-
-	// Found the full moon date. Advance until the next Sunday, but don't take this date if it's
-	// a Sunday itself.
+	// Advance until the next Sunday, but don't take this date if it's a Sunday itself.
 	dt = dt.Forward()
 	for {
 		wd, err := dt.Weekday()
@@ -81,6 +52,7 @@ func (cyr CalendarYear) easter() (Date, error) {
 	// fmt.Println("sunday after:", dt)
 
 	// Return the found date, ensuring the requested type.
+	var err error
 	if dt.Type != cyr.Type {
 		dt, err = dt.Convert()
 		if err != nil {

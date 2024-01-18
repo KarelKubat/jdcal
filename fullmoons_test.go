@@ -1,16 +1,20 @@
 package jdcal
 
-import "testing"
+import (
+	"testing"
+	"time"
+)
 
 func TestFullMoonsTable(t *testing.T) {
 	nYears := 0
 
-	for yr, dates := range FullMoons {
+	for yr, date := range FullMoons {
 		nYears++
 
-		// Catch empty entries
-		if len(dates) < 2 {
-			t.Errorf("FullMoons table: year %d: not enough dates", yr)
+		// Month / day must be beyond March 21st.
+		if date.Month < time.March || (date.Month == time.March && date.Day < 21) {
+			// Catch empty entries
+			t.Errorf("FullMoons table: year %d: date %v is before March 21st", yr, date)
 		}
 	}
 

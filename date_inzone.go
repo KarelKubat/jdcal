@@ -9,12 +9,12 @@ type doubleEntry struct {
 }
 
 /*
-InZone returns true when the date in question matches in the calendar progression as defined by the ZoneEntry. For example, assume a ZoneEntry:
+InZone returns true when the date in question matches in the calendar progression as defined by the ZoneEntry. For example, assuming that the ZoneEntry is:
 
 	{
 		Name: "Netherlands (Groningen City)",
 		Cutovers: []Date{
-			{Year: -500, Month: time.February, Day: 28, Type: Gregorian}  // Julian calendar starts
+			{Year: -500, Month: time.February, Day: 28, Type: Gregorian}  // started using Julian
 			{Year: 1583, Month: time.January, Day: 1, Type: Julian},      // switched to Gregorian
 			{Year: 1594, Month: time.November, Day: 10, Type: Gregorian}, // switched to Julian
 			{Year: 1700, Month: time.December, Day: 31, Type: Julian},    // switched to Gregorian
@@ -67,7 +67,7 @@ func (d Date) InZone(z ZoneEntry) (bool, error) {
 	// When the date is an exact cutover, then it occurs on both types.
 	for _, c := range z.Cutovers {
 		// Exact dates are a match.
-		eq, err := equalWithoutType(d, c)
+		eq, err := equal(d, c)
 		if err != nil {
 			return false, err
 		}
@@ -135,29 +135,7 @@ func (d Date) InZone(z ZoneEntry) (bool, error) {
 	return false, nil
 }
 
-func beforeWithoutType(a, b Date) bool {
-	if a.Year < b.Year {
-		return true
-	}
-	if a.Year > b.Year {
-		return false
-	}
-	if a.Month < b.Month {
-		return true
-	}
-	if a.Month > b.Month {
-		return false
-	}
-	if a.Day < b.Day {
-		return true
-	}
-	if a.Day > b.Day {
-		return false
-	}
-	return false
-}
-
-func equalWithoutType(a, b Date) (bool, error) {
+func equal(a, b Date) (bool, error) {
 	if a.Type == b.Type {
 		return a.Equal(b)
 	}

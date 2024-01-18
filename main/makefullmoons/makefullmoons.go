@@ -22,17 +22,15 @@ const (
 	header = `package jdcal
 
 import "time"
-	
-/* 
-FullMoons maps years to arrays of Dates when in that year full moons occurred. Example:
 
-  dates, ok := jdcal.FullMoons[1600]
+/* 
+FullMoons maps years to a month and day (MD) representing the first full moon beyond March 21st. The date points are relative to the Georgian calendar. Example:
+
+  md, ok := jdcal.FullMoons[1600]
   if !ok {
 	log.Fatal("no full moon information for year 1600")
   }
-  for _, d := range dates {
-	fmt.Println(d)
-  }
+  fmt.Println("first full moon beyond March 21st in the year 1600 is on", md)  // 03/29
 
 The data were obtained from https://astropixels.com/ephemeris/phasescat/phasescat.html
 Moon Phases Table courtesy of Fred Espenak, www.Astropixels.com.
@@ -42,10 +40,9 @@ The data here differ from www.Astropixels.com in that:
 - Years are stated as BC or AD - so -3, -2, -1, 1, 2, 3, etc.. There is no year zero.
 Astropixels.com knows a year zero and has  -2, -1, 0, 1, 2, 3.
 
-- All dates are on the Gregorian calendar. Astropixels.com uses Julian for pre-1582.
+- All dates are relative to the Gregorian calendar. Astropixels.com uses Julian for pre-1582, this is converted to Gregorian for clarity.
 */
-
-var FullMoons = map[Year][]Date{
+var FullMoons = map[Year]MD{
 `
 
 	trailer = `
@@ -131,14 +128,17 @@ Full moon dates are at pos 44, "Mar 21" in the below example
 	          1         2         3         4         5         6         7
 	01234567890123456789012345678901234567890123456789012345678901234567890123456789
 	        Mar  6  19:33     Mar 13  11:54     Mar 21  12:51     Mar 29  11:32
+
+We only need to emit one value: the full moon beyond March 21st.
 */
+var yearEmitted = map[int]bool{}
+
 func extractDates(lines []string) (out string) {
-	// for _, l := range lines {
-	// 	out += fmt.Sprintf("// %s\n", l)
-	// }
+	for _, l := range lines {
+		out += fmt.Sprintf("// %s\n", l)
+	}
 	var year int
 	var expectYear bool
-	previousYear := -999999
 	for _, line := range lines {
 		if expectYear {
 			expectYear = false
@@ -152,6 +152,13 @@ func extractDates(lines []string) (out string) {
 			expectYear = true
 			continue
 		}
+
+		// Avoid more YMDs for this year.
+		if yearEmitted[year] {
+			continue
+		}
+
+		// Extract relevant data, emit if the entry is later than March 21st.
 		if len(line) < 70 {
 			check(fmt.Errorf("unexpected line %q", line))
 		}
@@ -163,16 +170,10 @@ func extractDates(lines []string) (out string) {
 		m := extractMonth(monthString)
 		d := atoi(dayString)
 
-		if previousYear != year {
-			if previousYear != -999999 {
-				out += " } ,"
-			}
-			previousYear = year
-			out += fmt.Sprintf("\n%d: { \n", year)
-		}
 		var dt jdcal.Date
 		var err error
 
+		// AstroPixels.com has dates before 1582 as Julians. Convert to Gregorian for unity.
 		if year < 1582 {
 			dt, err = jdcal.New(jdcal.Year(year), m, d, jdcal.Julian)
 			if err != nil && strings.Contains(err.Error(), "is before the first convertible date") {
@@ -188,10 +189,16 @@ func extractDates(lines []string) (out string) {
 			}
 			checkWithLine(err, line)
 		}
-		out += fmt.Sprintf(" {%d, time.%v, %d, %v}, // %s/%s from %s\n",
-			dt.Year, dt.Month, dt.Day, dt.Type, monthString, dayString, line)
+		refDate := jdcal.Date{Year: jdcal.Year(year), Month: 3, Day: 21, Type: jdcal.Gregorian}
+		af, err := dt.After(refDate)
+		check(err)
+
+		if af {
+			out += fmt.Sprintf("%d: {time.%v, %d}, // %s/%s from %s\n",
+				year, dt.Month, dt.Day, monthString, dayString, strings.TrimSpace(line))
+			yearEmitted[year] = true
+		}
 	}
-	out += " }, "
 
 	fmt.Println()
 	return out

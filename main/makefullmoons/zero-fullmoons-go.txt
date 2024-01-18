@@ -1,0 +1,6 @@
+package jdcal
+
+/*
+Dummy fullmoons.go to get the generation started. Overwritten by "make fullmoons".
+*/
+var FullMoons = map[Year]MD{}
