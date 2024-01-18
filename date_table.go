@@ -7,62 +7,62 @@ import (
 )
 
 /*
-ConversionTable defines matching Julian and Gregorian dates. It is consulted by, e.g., Convert(). The contained ConversionEntry's won't normally be of use outside of this module, but they are coded as exportable (as uppercase symbols) so they can be inspected.
+ConversionTable defines matching Julian and Gregorian dates. It is consulted by, e.g., Date.Convert(). The contained ConversionEntry's won't normally be of use outside of this module, but they are coded as exportable (as uppercase symbols) so they can be inspected.
 
-This table reflects https://en.wikipedia.org/wiki/Conversion_between_Julian_and_Gregorian_calendars, original source: the Nautical almanac of the United Kingdom and United States (1961).
+This table reflects https://en.wikipedia.org/wiki/Conversion_between_Julian_and_Gregorian_calendars, original source: the Nautical almanac of the United Kingdom and United States (1961). This table however knows that year zero doesn't exist (we go 2BC, 1BC, 1AD, 2AD), therefore, years before 0 are generated one-off relative to the above source refrence.
 */
 var ConversionTable = [...]ConversionEntry{
 	// [...] is syntactic sugar to let the compiler figure out the array size. That way
 	// we get a fixed size array and not a slice.
 	{
-		JDate: Date{Year: -500, Month: time.March, Day: 5, Type: Julian},
-		GDate: Date{Year: -500, Month: time.February, Day: 28, Type: Gregorian},
+		JDate: Date{Year: -501, Month: time.March, Day: 5, Type: Julian},
+		GDate: Date{Year: -501, Month: time.February, Day: 28, Type: Gregorian},
 	},
 	{
-		JDate: Date{Year: -500, Month: time.March, Day: 6, Type: Julian},
-		GDate: Date{Year: -500, Month: time.March, Day: 1, Type: Gregorian},
+		JDate: Date{Year: -501, Month: time.March, Day: 6, Type: Julian},
+		GDate: Date{Year: -501, Month: time.March, Day: 1, Type: Gregorian},
 		// Diff: -5 days
 	},
 	{
-		JDate: Date{Year: -300, Month: time.March, Day: 3, Type: Julian},
-		GDate: Date{Year: -300, Month: time.February, Day: 27, Type: Gregorian},
+		JDate: Date{Year: -301, Month: time.March, Day: 3, Type: Julian},
+		GDate: Date{Year: -301, Month: time.February, Day: 27, Type: Gregorian},
 		// Diff: -5 days
 	},
 	{
-		JDate: Date{Year: -300, Month: time.March, Day: 4, Type: Julian},
-		GDate: Date{Year: -300, Month: time.February, Day: 28, Type: Gregorian},
+		JDate: Date{Year: -301, Month: time.March, Day: 4, Type: Julian},
+		GDate: Date{Year: -301, Month: time.February, Day: 28, Type: Gregorian},
 	},
 	{
-		JDate: Date{Year: -300, Month: time.March, Day: 5, Type: Julian},
-		GDate: Date{Year: -300, Month: time.March, Day: 1, Type: Gregorian},
+		JDate: Date{Year: -301, Month: time.March, Day: 5, Type: Julian},
+		GDate: Date{Year: -301, Month: time.March, Day: 1, Type: Gregorian},
 		// Diff: -4 days
 	},
 	{
-		JDate: Date{Year: -200, Month: time.March, Day: 2, Type: Julian},
-		GDate: Date{Year: -200, Month: time.February, Day: 27, Type: Gregorian},
+		JDate: Date{Year: -201, Month: time.March, Day: 2, Type: Julian},
+		GDate: Date{Year: -201, Month: time.February, Day: 27, Type: Gregorian},
 		// Diff: -4 days
 	},
 	{
-		JDate: Date{Year: -200, Month: time.March, Day: 3, Type: Julian},
-		GDate: Date{Year: -200, Month: time.February, Day: 28, Type: Gregorian},
+		JDate: Date{Year: -201, Month: time.March, Day: 3, Type: Julian},
+		GDate: Date{Year: -201, Month: time.February, Day: 28, Type: Gregorian},
 	},
 	{
-		JDate: Date{Year: -200, Month: time.March, Day: 4, Type: Julian},
-		GDate: Date{Year: -200, Month: time.March, Day: 1, Type: Gregorian},
+		JDate: Date{Year: -201, Month: time.March, Day: 4, Type: Julian},
+		GDate: Date{Year: -201, Month: time.March, Day: 1, Type: Gregorian},
 		// Diff: -3 days
 	},
 	{
-		JDate: Date{Year: -100, Month: time.March, Day: 1, Type: Julian},
-		GDate: Date{Year: -100, Month: time.February, Day: 27, Type: Gregorian},
+		JDate: Date{Year: -101, Month: time.March, Day: 1, Type: Julian},
+		GDate: Date{Year: -101, Month: time.February, Day: 27, Type: Gregorian},
 		// Diff: -3 days
 	},
 	{
-		JDate: Date{Year: -100, Month: time.March, Day: 2, Type: Julian},
-		GDate: Date{Year: -100, Month: time.February, Day: 28, Type: Gregorian},
+		JDate: Date{Year: -101, Month: time.March, Day: 2, Type: Julian},
+		GDate: Date{Year: -101, Month: time.February, Day: 28, Type: Gregorian},
 	},
 	{
-		JDate: Date{Year: -100, Month: time.March, Day: 3, Type: Julian},
-		GDate: Date{Year: -100, Month: time.March, Day: 1, Type: Gregorian},
+		JDate: Date{Year: -101, Month: time.March, Day: 3, Type: Julian},
+		GDate: Date{Year: -101, Month: time.March, Day: 1, Type: Gregorian},
 		// Diff: -2 days
 	},
 	{
