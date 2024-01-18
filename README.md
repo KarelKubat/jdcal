@@ -304,42 +304,42 @@ Pentecost     in Georgia occurs on Sunday   Gregorian 1918/05/19
 package main
 
 import (
-	"fmt"
-	"log"
-	"time"
+    "fmt"
+    "log"
+    "time"
 
-	"github.com/KarelKubat/jdcal"
+    "github.com/KarelKubat/jdcal"
 )
 
 func main() {
-	// October 5th (Julian) was the Papal announcement to skip 10 days.
-	// The new date would be October 15 (Gregorian).
-	jd0, err := jdcal.New(1582, time.October, 5, jdcal.Julian)
-	check(err)
+    // October 5th (Julian) was the Papal announcement to skip 10 days.
+    // The new date would be October 15 (Gregorian).
+    jd0, err := jdcal.New(1582, time.October, 5, jdcal.Julian)
+    check(err)
 
-	// to Gregorian
-	gd, err := jd0.Convert()
-	check(err)
-	wd, err := gd.Weekday()
-	check(err)
-	fmt.Println("From Julian to Gregorian:", jd0, "is", gd, "and it's a", wd)
+    // to Gregorian
+    gd, err := jd0.Convert()
+    check(err)
+    wd, err := gd.Weekday()
+    check(err)
+    fmt.Println("From Julian to Gregorian:", jd0, "is", gd, "and it's a", wd)
 
-	// back to Julian
-	jd1, err := gd.Convert()
-	check(err)
-	wd, err = jd1.Weekday()
-	check(err)
-	fmt.Println("And back again:", gd, "is", jd1, "and it's a", wd)
+    // back to Julian
+    jd1, err := gd.Convert()
+    check(err)
+    wd, err = jd1.Weekday()
+    check(err)
+    fmt.Println("And back again:", gd, "is", jd1, "and it's a", wd)
 
-	// Output:
-	// From Julian to Gregorian: Julian 1582/10/05 is Gregorian 1582/10/15 and it's a Friday
-	// And back again: Gregorian 1582/10/15 is Julian 1582/10/05 and it's a Friday
+    // Output:
+    // From Julian to Gregorian: Julian 1582/10/05 is Gregorian 1582/10/15 and it's a Friday
+    // And back again: Gregorian 1582/10/15 is Julian 1582/10/05 and it's a Friday
 }
 
 func check(err error) {
-	if err != nil {
-		log.Fatal(err)
-	}
+    if err != nil {
+        log.Fatal(err)
+    }
 }
 ```
 
@@ -350,36 +350,36 @@ func check(err error) {
 package main
 
 import (
-	"fmt"
-	"time"
+    "fmt"
+    "time"
 
-	"github.com/KarelKubat/jdcal"
+    "github.com/KarelKubat/jdcal"
 )
 
 func main() {
-	jyr := jdcal.CalendarYear{Year: 1900, Type: jdcal.Julian}
-	gyr := jdcal.CalendarYear{Year: 1900, Type: jdcal.Gregorian}
+    jyr := jdcal.CalendarYear{Year: 1900, Type: jdcal.Julian}
+    gyr := jdcal.CalendarYear{Year: 1900, Type: jdcal.Gregorian}
 
-	jdpm := jyr.DaysPerMonth()
-	gdpm := gyr.DaysPerMonth()
+    jdpm := jyr.DaysPerMonth()
+    gdpm := gyr.DaysPerMonth()
 
-	for m := time.January; m <= time.December; m++ {
-		fmt.Printf("%-10s: in Julian %2.2d, in Gregorian %2.2d days\n", m, jdpm[m], gdpm[m])
-	}
+    for m := time.January; m <= time.December; m++ {
+        fmt.Printf("%-10s: in Julian %2.2d, in Gregorian %2.2d days\n", m, jdpm[m], gdpm[m])
+    }
 
-	// Output:
-	// January   : in Julian 31, in Gregorian 31 days
-	// February  : in Julian 29, in Gregorian 28 days   # Note the difference
-	// March     : in Julian 31, in Gregorian 31 days
-	// April     : in Julian 30, in Gregorian 30 days
-	// May       : in Julian 31, in Gregorian 31 days
-	// June      : in Julian 30, in Gregorian 30 days
-	// July      : in Julian 31, in Gregorian 31 days
-	// August    : in Julian 31, in Gregorian 31 days
-	// September : in Julian 30, in Gregorian 30 days
-	// October   : in Julian 31, in Gregorian 31 days
-	// November  : in Julian 30, in Gregorian 30 days
-	// December  : in Julian 31, in Gregorian 31 days
+    // Output:
+    // January   : in Julian 31, in Gregorian 31 days
+    // February  : in Julian 29, in Gregorian 28 days   # Note the difference
+    // March     : in Julian 31, in Gregorian 31 days
+    // April     : in Julian 30, in Gregorian 30 days
+    // May       : in Julian 31, in Gregorian 31 days
+    // June      : in Julian 30, in Gregorian 30 days
+    // July      : in Julian 31, in Gregorian 31 days
+    // August    : in Julian 31, in Gregorian 31 days
+    // September : in Julian 30, in Gregorian 30 days
+    // October   : in Julian 31, in Gregorian 31 days
+    // November  : in Julian 30, in Gregorian 30 days
+    // December  : in Julian 31, in Gregorian 31 days
 }
 ```
 
@@ -387,81 +387,81 @@ func main() {
 package main
 
 import (
-	"fmt"
-	"log"
-	"time"
+    "fmt"
+    "log"
+    "time"
 
-	"github.com/KarelKubat/jdcal"
+    "github.com/KarelKubat/jdcal"
 )
 
 func main() {
-	// Advancing dates
-	// ---------------
-	jd, err := jdcal.New(300, time.February, 27, jdcal.Julian)
-	check(err)
+    // Advancing dates
+    // ---------------
+    jd, err := jdcal.New(300, time.February, 27, jdcal.Julian)
+    check(err)
 
-	for i := 0; i < 6; i++ {
-		gd, err := jd.Convert()
-		check(err)
-		fmt.Println(jd, "is", gd)
-		jd = jd.Forward()
-	}
+    for i := 0; i < 6; i++ {
+        gd, err := jd.Convert()
+        check(err)
+        fmt.Println(jd, "is", gd)
+        jd = jd.Forward()
+    }
 
-	// Output:
-	// Julian 0300/02/27 is Gregorian 0300/02/27
-	// Julian 0300/02/28 is Gregorian 0300/02/28
-	// Julian 0300/02/29 is Gregorian 0300/03/01  # BOOM, Julian is a day wrong
-	// Julian 0300/03/01 is Gregorian 0300/03/02
-	// Julian 0300/03/02 is Gregorian 0300/03/03
-	// Julian 0300/03/03 is Gregorian 0300/03/04
+    // Output:
+    // Julian 0300/02/27 is Gregorian 0300/02/27
+    // Julian 0300/02/28 is Gregorian 0300/02/28
+    // Julian 0300/02/29 is Gregorian 0300/03/01  # BOOM, Julian is a day wrong
+    // Julian 0300/03/01 is Gregorian 0300/03/02
+    // Julian 0300/03/02 is Gregorian 0300/03/03
+    // Julian 0300/03/03 is Gregorian 0300/03/04
 
-	// Note that the Julian calendar knows a February 29th, the Gregorian one doesn't.
-	// The two calendars diverge after February 28th. This is historically correct.
+    // Note that the Julian calendar knows a February 29th, the Gregorian one doesn't.
+    // The two calendars diverge after February 28th. This is historically correct.
 
-	// Going backward
-	// --------------
-	for i := 0; i < 6; i++ {
-		gd, err := jd.Convert()
-		check(err)
-		fmt.Println(jd, "is", gd)
-		jd = jd.Backward()
-	}
+    // Going backward
+    // --------------
+    for i := 0; i < 6; i++ {
+        gd, err := jd.Convert()
+        check(err)
+        fmt.Println(jd, "is", gd)
+        jd = jd.Backward()
+    }
 
-	// Output:
-	// Julian 0300/03/04 is Gregorian 0300/03/05
-	// Julian 0300/03/03 is Gregorian 0300/03/04
-	// Julian 0300/03/02 is Gregorian 0300/03/03
-	// Julian 0300/03/01 is Gregorian 0300/03/02
-	// Julian 0300/02/29 is Gregorian 0300/03/01
-	// Julian 0300/02/28 is Gregorian 0300/02/28
+    // Output:
+    // Julian 0300/03/04 is Gregorian 0300/03/05
+    // Julian 0300/03/03 is Gregorian 0300/03/04
+    // Julian 0300/03/02 is Gregorian 0300/03/03
+    // Julian 0300/03/01 is Gregorian 0300/03/02
+    // Julian 0300/02/29 is Gregorian 0300/03/01
+    // Julian 0300/02/28 is Gregorian 0300/02/28
 
-	// Testing leap years
-	// ------------------
-	for _, yr := range []jdcal.Year{1796, 1797, 1800, 2000} {
-		for _, tp := range []jdcal.Type{jdcal.Julian, jdcal.Gregorian} {
-			cyr := jdcal.CalendarYear{Year: yr, Type: tp}
-			fmt.Println(cyr, "is a leap year:", cyr.IsLeap())
-		}
-	}
+    // Testing leap years
+    // ------------------
+    for _, yr := range []jdcal.Year{1796, 1797, 1800, 2000} {
+        for _, tp := range []jdcal.Type{jdcal.Julian, jdcal.Gregorian} {
+            cyr := jdcal.CalendarYear{Year: yr, Type: tp}
+            fmt.Println(cyr, "is a leap year:", cyr.IsLeap())
+        }
+    }
 
-	// Output:
+    // Output:
 
-	// Julian 1796 is a leap year: true        # Standard leap year (divisible by 4)
-	// Gregorian 1796 is a leap year: true     # or standard non-leap: Julian and Gregorian
-	// Julian 1797 is a leap year: false       # agree
-	// Gregorian 1797 is a leap year: false
+    // Julian 1796 is a leap year: true        # Standard leap year (divisible by 4)
+    // Gregorian 1796 is a leap year: true     # or standard non-leap: Julian and Gregorian
+    // Julian 1797 is a leap year: false       # agree
+    // Gregorian 1797 is a leap year: false
 
-	// Julian 1800 is a leap year: true        # Century: IsLeap disagrees
-	// Gregorian 1800 is a leap year: false
+    // Julian 1800 is a leap year: true        # Century: IsLeap disagrees
+    // Gregorian 1800 is a leap year: false
 
-	// Julian 2000 is a leap year: true        # Millenium: Julian and Gregorian agree
-	// Gregorian 2000 is a leap year: true
+    // Julian 2000 is a leap year: true        # Millenium: Julian and Gregorian agree
+    // Gregorian 2000 is a leap year: true
 }
 
 func check(err error) {
-	if err != nil {
-		log.Fatal(err)
-	}
+    if err != nil {
+        log.Fatal(err)
+    }
 }
 ```
 
@@ -475,46 +475,46 @@ The below code would display zone information in a human readable way, tough a `
 package main
 
 import (
-	"fmt"
+    "fmt"
 
-	"github.com/KarelKubat/jdcal"
+    "github.com/KarelKubat/jdcal"
 )
 
 func main() {
-	for _, e := range jdcal.ZonesByName("netherlands") {
-		fmt.Println(e)
-	}
+    for _, e := range jdcal.ZonesByName("netherlands") {
+        fmt.Println(e)
+    }
 
-	// Output (actual string representations may differ):
-	//   Belgium (Southern Netherlands)
-	// 		Started using the Julian    calendar   on   Gregorian -0500/02/28
-	// 		Switched to   the Gregorian calendar   on   Julian 1582/12/20
-	//   Netherlands (Brabant)
-	// 		Started using the Julian    calendar   on   Gregorian -0500/02/28
-	// 		Switched to   the Gregorian calendar   on   Julian 1582/12/14
-	//   Netherlands (Drenthe)
-	// 		Started using the Julian    calendar   on   Gregorian -0500/02/28
-	// 		Switched to   the Gregorian calendar   on   Julian 1701/04/30
-	//   Netherlands (Frisia)
-	// 		Started using the Julian    calendar   on   Gregorian -0500/02/28
-	// 		Switched to   the Gregorian calendar   on   Julian 1701/12/31
-	//   Netherlands (Gelderland)
-	// 		Started using the Julian    calendar   on   Gregorian -0500/02/28
-	// 		Switched to   the Gregorian calendar   on   Julian 1700/06/12
-	//   Netherlands (Groningen City)
-	// 		Started using the Julian    calendar   on   Gregorian -0500/02/28
-	// 		Switched to   the Gregorian calendar   on   Julian 1583/01/01
-	// 		Switched to   the Julian    calendar   on   Gregorian 1594/11/10
-	// 		Switched to   the Gregorian calendar   on   Julian 1700/12/31
-	//   Netherlands (Holland)
-	// 		Started using the Julian    calendar   on   Gregorian -0500/02/28
-	// 		Switched to   the Gregorian calendar   on   Julian 1583/01/01
-	//   Netherlands (Utrecht, Overijssel)
-	// 		Started using the Julian    calendar   on   Gregorian -0500/02/28
-	// 		Switched to   the Gregorian calendar   on   Julian 1700/11/30
-	//   Netherlands (Zeeland, States General)
-	// 		Started using the Julian    calendar   on   Gregorian -0500/02/28
-	// 		Switched to   the Gregorian calendar   on   Julian 1582/12/14
+    // Output (actual string representations may differ):
+    //   Belgium (Southern Netherlands)
+    //      Started using the Julian    calendar   on   Gregorian -0500/02/28
+    //      Switched to   the Gregorian calendar   on   Julian 1582/12/20
+    //   Netherlands (Brabant)
+    //      Started using the Julian    calendar   on   Gregorian -0500/02/28
+    //      Switched to   the Gregorian calendar   on   Julian 1582/12/14
+    //   Netherlands (Drenthe)
+    //      Started using the Julian    calendar   on   Gregorian -0500/02/28
+    //      Switched to   the Gregorian calendar   on   Julian 1701/04/30
+    //   Netherlands (Frisia)
+    //      Started using the Julian    calendar   on   Gregorian -0500/02/28
+    //      Switched to   the Gregorian calendar   on   Julian 1701/12/31
+    //   Netherlands (Gelderland)
+    //      Started using the Julian    calendar   on   Gregorian -0500/02/28
+    //      Switched to   the Gregorian calendar   on   Julian 1700/06/12
+    //   Netherlands (Groningen City)
+    //      Started using the Julian    calendar   on   Gregorian -0500/02/28
+    //      Switched to   the Gregorian calendar   on   Julian 1583/01/01
+    //      Switched to   the Julian    calendar   on   Gregorian 1594/11/10
+    //      Switched to   the Gregorian calendar   on   Julian 1700/12/31
+    //   Netherlands (Holland)
+    //      Started using the Julian    calendar   on   Gregorian -0500/02/28
+    //      Switched to   the Gregorian calendar   on   Julian 1583/01/01
+    //   Netherlands (Utrecht, Overijssel)
+    //      Started using the Julian    calendar   on   Gregorian -0500/02/28
+    //      Switched to   the Gregorian calendar   on   Julian 1700/11/30
+    //   Netherlands (Zeeland, States General)
+    //      Started using the Julian    calendar   on   Gregorian -0500/02/28
+    //      Switched to   the Gregorian calendar   on   Julian 1582/12/14
 }
 ```
 
@@ -524,103 +524,103 @@ func main() {
 package main
 
 import (
-	"fmt"
-	"log"
-	"time"
+    "fmt"
+    "log"
+    "time"
 
-	"github.com/KarelKubat/jdcal"
+    "github.com/KarelKubat/jdcal"
 )
 
 const (
-	zoneName = "Netherlands (Groningen City)"
+    zoneName = "Netherlands (Groningen City)"
 )
 
 func main() {
-	zone, err := jdcal.SingleZone(zoneName)
-	check(err)
-	fmt.Println(zone)
-	// Netherlands (Groningen City)
-	//   Started using the Julian    calendar   on   Gregorian -0500/02/28
-	//   Switched to   the Gregorian calendar   on   Julian 1583/01/01
-	//   Switched to   the Julian    calendar   on   Gregorian 1594/11/10
-	//   Switched to   the Gregorian calendar   on   Julian 1700/12/31
+    zone, err := jdcal.SingleZone(zoneName)
+    check(err)
+    fmt.Println(zone)
+    // Netherlands (Groningen City)
+    //   Started using the Julian    calendar   on   Gregorian -0500/02/28
+    //   Switched to   the Gregorian calendar   on   Julian 1583/01/01
+    //   Switched to   the Julian    calendar   on   Gregorian 1594/11/10
+    //   Switched to   the Gregorian calendar   on   Julian 1700/12/31
 
-	// Some dates that lie in between the cutovers.
-	for _, year := range []jdcal.Year{1580, 1590, 1600, 1800} {
-		test(year, time.January, 1, zone)
-	}
+    // Some dates that lie in between the cutovers.
+    for _, year := range []jdcal.Year{1580, 1590, 1600, 1800} {
+        test(year, time.January, 1, zone)
+    }
 
-	// Output:
-	//   1580/01/01 is a Julian date
-	//   1590/01/01 is a Gregorian date
-	//   1600/01/01 is a Julian date
-	//   1800/01/01 is a Gregorian date
+    // Output:
+    //   1580/01/01 is a Julian date
+    //   1590/01/01 is a Gregorian date
+    //   1600/01/01 is a Julian date
+    //   1800/01/01 is a Gregorian date
 
-	// Just around the exact cutover dates.
-	for _, date := range []struct {
-		year  jdcal.Year
-		month time.Month
-		day   int
-	}{
-		// Around the first switch from Julian into the Gregorian calendar
-		{year: 1582, month: time.December, day: 31},
-		{year: 1583, month: time.January, day: 1},
-		{year: 1583, month: time.January, day: 2},
-		// Output:
-		//   1582/12/31 is a Julian date
-		//   1583/01/01 is a Julian date
-		//   1583/01/02 is neither a Julian nor a Gregorian date
+    // Just around the exact cutover dates.
+    for _, date := range []struct {
+        year  jdcal.Year
+        month time.Month
+        day   int
+    }{
+        // Around the first switch from Julian into the Gregorian calendar
+        {year: 1582, month: time.December, day: 31},
+        {year: 1583, month: time.January, day: 1},
+        {year: 1583, month: time.January, day: 2},
+        // Output:
+        //   1582/12/31 is a Julian date
+        //   1583/01/01 is a Julian date
+        //   1583/01/02 is neither a Julian nor a Gregorian date
 
-		// Around the second switch from Gregorian back to Julian
-		{year: 1594, month: time.November, day: 9},
-		{year: 1594, month: time.November, day: 10},
-		{year: 1594, month: time.November, day: 11},
-		// Output:
-		//   1594/11/09 can be both a Julian and a Gregorian date
-		//   1594/11/10 can be both a Julian and a Gregorian date
-		//   1594/11/11 is a Julian date
+        // Around the second switch from Gregorian back to Julian
+        {year: 1594, month: time.November, day: 9},
+        {year: 1594, month: time.November, day: 10},
+        {year: 1594, month: time.November, day: 11},
+        // Output:
+        //   1594/11/09 can be both a Julian and a Gregorian date
+        //   1594/11/10 can be both a Julian and a Gregorian date
+        //   1594/11/11 is a Julian date
 
-		// Around the third switch back to Gregorian
-		{year: 1700, month: time.December, day: 30},
-		{year: 1700, month: time.December, day: 31},
-		{year: 1701, month: time.January, day: 1},
-		// Output:
-		//   1700/12/30 is a Julian date
-		//   1700/12/31 is a Julian date
-		//   1701/01/01 is neither a Julian nor a Gregorian date
-	} {
-		test(date.year, date.month, date.day, zone)
-	}
+        // Around the third switch back to Gregorian
+        {year: 1700, month: time.December, day: 30},
+        {year: 1700, month: time.December, day: 31},
+        {year: 1701, month: time.January, day: 1},
+        // Output:
+        //   1700/12/30 is a Julian date
+        //   1700/12/31 is a Julian date
+        //   1701/01/01 is neither a Julian nor a Gregorian date
+    } {
+        test(date.year, date.month, date.day, zone)
+    }
 }
 
 func test(year jdcal.Year, month time.Month, day int, z jdcal.ZoneEntry) {
-	d, err := jdcal.New(year, month, day, jdcal.Julian)
-	check(err)
-	jdInZone, err := d.InZone(z)
-	check(err)
+    d, err := jdcal.New(year, month, day, jdcal.Julian)
+    check(err)
+    jdInZone, err := d.InZone(z)
+    check(err)
 
-	d, err = jdcal.New(year, month, day, jdcal.Gregorian)
-	check(err)
-	gdInZone, err := d.InZone(z)
-	check(err)
+    d, err = jdcal.New(year, month, day, jdcal.Gregorian)
+    check(err)
+    gdInZone, err := d.InZone(z)
+    check(err)
 
-	fmt.Printf("%4.4d/%2.2d/%2.2d ", year, int(month), day)
-	switch {
-	case jdInZone && gdInZone:
-		fmt.Println("can be both a Julian and a Gregorian date")
-	case !jdInZone && !gdInZone:
-		fmt.Println("is neither a Julian nor a Gregorian date")
-	case jdInZone:
-		fmt.Println("is a Julian date")
-	default:
-		fmt.Println("is a Gregorian date")
-	}
+    fmt.Printf("%4.4d/%2.2d/%2.2d ", year, int(month), day)
+    switch {
+    case jdInZone && gdInZone:
+        fmt.Println("can be both a Julian and a Gregorian date")
+    case !jdInZone && !gdInZone:
+        fmt.Println("is neither a Julian nor a Gregorian date")
+    case jdInZone:
+        fmt.Println("is a Julian date")
+    default:
+        fmt.Println("is a Gregorian date")
+    }
 }
 
 func check(err error) {
-	if err != nil {
-		log.Fatal(err)
-	}
+    if err != nil {
+        log.Fatal(err)
+    }
 }
 ```
 
@@ -630,49 +630,49 @@ func check(err error) {
 package main
 
 import (
-	"fmt"
-	"log"
+    "fmt"
+    "log"
 
-	"github.com/KarelKubat/jdcal"
+    "github.com/KarelKubat/jdcal"
 )
 
 func main() {
 
-	for _, yr := range []jdcal.Year{1369, 1370, 1371} {
-		cyr := jdcal.CalendarYear{Year: yr, Type: jdcal.Julian}
+    for _, yr := range []jdcal.Year{1369, 1370, 1371} {
+        cyr := jdcal.CalendarYear{Year: yr, Type: jdcal.Julian}
 
-		for _, h := range []jdcal.Holiday{
-			jdcal.Easter,
-			jdcal.Ascension,
-			jdcal.Pentecost,
-		} {
-			dt, err := cyr.HolidayDate(h)
-			check(err)
-			wd, err := dt.Weekday()
-			check(err)
-			fmt.Println(h, "in", cyr, "falls on", wd, dt)
-		}
-		fmt.Println()
-	}
+        for _, h := range []jdcal.Holiday{
+            jdcal.Easter,
+            jdcal.Ascension,
+            jdcal.Pentecost,
+        } {
+            dt, err := cyr.HolidayDate(h)
+            check(err)
+            wd, err := dt.Weekday()
+            check(err)
+            fmt.Println(h, "in", cyr, "falls on", wd, dt)
+        }
+        fmt.Println()
+    }
 
-	// Output:
-	// Easter in Julian 1369 falls on Sunday Julian 1369/03/25
-	// Ascension day in Julian 1369 falls on Thursday Julian 1369/05/03
-	// Pentecost in Julian 1369 falls on Sunday Julian 1369/05/13
+    // Output:
+    // Easter in Julian 1369 falls on Sunday Julian 1369/03/25
+    // Ascension day in Julian 1369 falls on Thursday Julian 1369/05/03
+    // Pentecost in Julian 1369 falls on Sunday Julian 1369/05/13
 
-	// Easter in Julian 1370 falls on Sunday Julian 1370/04/14
-	// Ascension day in Julian 1370 falls on Thursday Julian 1370/05/23
-	// Pentecost in Julian 1370 falls on Sunday Julian 1370/06/02
+    // Easter in Julian 1370 falls on Sunday Julian 1370/04/14
+    // Ascension day in Julian 1370 falls on Thursday Julian 1370/05/23
+    // Pentecost in Julian 1370 falls on Sunday Julian 1370/06/02
 
-	// Easter in Julian 1371 falls on Sunday Julian 1371/04/06
-	// Ascension day in Julian 1371 falls on Thursday Julian 1371/05/15
-	// Pentecost in Julian 1371 falls on Sunday Julian 1371/05/25
+    // Easter in Julian 1371 falls on Sunday Julian 1371/04/06
+    // Ascension day in Julian 1371 falls on Thursday Julian 1371/05/15
+    // Pentecost in Julian 1371 falls on Sunday Julian 1371/05/25
 }
 
 func check(err error) {
-	if err != nil {
-		log.Fatal(err)
-	}
+    if err != nil {
+        log.Fatal(err)
+    }
 }
 ```
 
