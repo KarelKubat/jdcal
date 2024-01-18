@@ -133,7 +133,7 @@ make install                            # `jdcal` is installed into your ~/go/bi
 
 ## Short CLI synopsis
 
-To install `jdcal` as a CLI tool, run `go install main/jdcal/jdcal.go`. After this you can use the utility. Start `jdcal` without any arguments to see the usage information.
+To install `jdcal` as a CLI tool, run `make install` or `go install main/jdcal/jdcal.go`. After this you can use the utility. Start `jdcal` without any arguments to see the usage information.
 
 ### Conversions between calendars
 
