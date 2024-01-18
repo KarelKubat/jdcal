@@ -53,6 +53,7 @@ test:
 	go run main/demo4/demo4.go
 	go run main/demo5/demo5.go
 	go run main/demo6/demo6.go
+	go run main/ordinal/ordinal.go  # not in the demo section but ought to work
 
 .PHONY: bigconversiondata
 bigconversiondata:
