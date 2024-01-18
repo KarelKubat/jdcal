@@ -12,7 +12,16 @@ const (
 )
 
 /*
-Date wraps a year, month, day and calendar type (Julian or Gregorian).
+YMD is a representation of a year, month and a day; basically a Date without a type.
+*/
+type YMD struct {
+	Year  Year
+	Month time.Month
+	Day   int
+}
+
+/*
+Date wraps a year, month, day and calendar type (Julian or Gregorian); basically a YMD with a type.
 */
 type Date struct {
 	Year  Year
