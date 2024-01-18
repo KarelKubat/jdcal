@@ -12,6 +12,14 @@ const (
 )
 
 /*
+MD is a representation of a month and a day; basically a YMD without a year.
+*/
+type MD struct {
+	Month time.Month
+	Day   int
+}
+
+/*
 YMD is a representation of a year, month and a day; basically a Date without a type.
 */
 type YMD struct {

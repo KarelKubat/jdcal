@@ -10,7 +10,7 @@ func TestStringToYMD(t *testing.T) {
 	for _, test := range []struct {
 		arg       string
 		wantErr   string
-		wantYear  int
+		wantYear  Year
 		wantMonth time.Month
 		wantDay   int
 	}{
@@ -46,7 +46,10 @@ func TestStringToYMD(t *testing.T) {
 			wantErr: "day part",
 		},
 	} {
-		y, m, d, err := StringToYMD(test.arg)
+		ymd, err := StringToYMD(test.arg)
+		y := ymd.Year
+		m := ymd.Month
+		d := ymd.Day
 		if err != nil {
 			if test.wantErr == "" {
 				t.Errorf("StringToYMD(%q) = _,_,_,%q, want nil error", test.arg, err.Error())
