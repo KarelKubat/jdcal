@@ -5,7 +5,7 @@ foo:
 	@echo '  make test              - run tests'
 	@echo '  make install           - install jdcal CLI'
 	@echo
-	@echo '  make fullmoons.go      - scrape full moons dates'
+	@echo '  make fullmoons         - scrape full moons dates'
 	@echo '  make bigconversiondata - huge list of J/G dates for testing'
 	@echo
 	@echo '  make all               - all of the above, except fullmoons.go re-scraping and big conversion dates'
@@ -34,11 +34,9 @@ main/daysdiff/spring-equinox.csv: main/daysdiff/daysdiff.go Makefile
 	sort -n main/daysdiff/spring-equinox.csv.tmp > main/daysdiff/spring-equinox.csv
 	rm main/daysdiff/spring-equinox.csv.tmp
 
-.PHONY: fullmoons.go
-fullmoons.go:
-	go run main/makefullmoons/makefullmoons.go fullmoons.out
-	mv fullmoons.out fullmoons.go
-	gofmt -w fullmoons.go
+.PHONY: fullmoons
+fullmoons:
+	sh main/makefullmoons/makefullmoons.sh
 
 install: zones_table.go date_table.go Makefile
 	go install main/jdcal/jdcal.go
@@ -50,6 +48,8 @@ test:
 	go run main/demo2/demo2.go
 	go run main/demo3/demo3.go
 	go run main/demo4/demo4.go
+	go run main/demo5/demo5.go
+	go run main/demo6/demo6.go
 
 .PHONY: bigconversiondata
 bigconversiondata:
