@@ -66,11 +66,7 @@ func runTimeline(cmd *cobra.Command, args []string) {
 		check(err)
 	}
 
-	if dt.Type == jdcal.Julian {
-		fmt.Printf("%11s |   | %11s\n", "Julian", "Gregorian")
-	} else {
-		fmt.Printf("%11s |   | %11s\n", "Gregorian", "Julian")
-	}
+	fmt.Printf("%11s |   | %11s\n", dt.Type, dt.Type.Other())
 	fmt.Println("------------+---+------------")
 
 	var lastDtYear, lastOtYear jdcal.Year
