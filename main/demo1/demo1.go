@@ -14,6 +14,9 @@ func main() {
 	jd0, err := jdcal.New(1582, time.October, 5, jdcal.Julian)
 	check(err)
 
+	// To switch to a slower, but longer tested algorithm:
+	// jdcal.ConvertByLookup()
+
 	// to Gregorian
 	gd, err := jd0.Convert()
 	check(err)
