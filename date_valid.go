@@ -6,7 +6,7 @@ import (
 )
 
 /*
-Valid returns an error when a date cannot be processed. The date must not exceed the maximum number of month days (e.g., April 31st is wrong, February 29th may only occur in leap years) and Convert() must be able to process it (it can't be outside of the ConversionTable).
+Valid returns an error when a date cannot be processed. The date must not exceed the maximum number of month days (e.g., April 31st is wrong, February 29th may only occur in leap years) and Convert() must be able to process it: it can't be outside of the range [Date.First() .. Date.Last()].
 */
 func (d Date) Valid() error {
 	// Year verification
@@ -14,7 +14,10 @@ func (d Date) Valid() error {
 		return err
 	}
 
-	// There is a limit to the # of month days (e.g. Feb can't have 30 days).
+	// Day verification, [1..limit-per-month]
+	if d.Day < 1 {
+		return fmt.Errorf("%v: day must be >=1", d)
+	}
 	maxPerMonth := []int{
 		0, // Filler as month.January is 1
 		31, 29, 31, 30, 31, 30,
