@@ -48,13 +48,16 @@ func main() {
 	f.Write([]byte(header))
 
 	jd := jdcal.First(jdcal.Julian)
+	jd.Year++
 	var prevYear jdcal.Year = -999999
+	last := jdcal.Last(jdcal.Julian)
+	last.Year--
 	for {
 		if jd.Year != prevYear {
 			prevYear = jd.Year
 			fmt.Printf("%v ", prevYear)
 		}
-		bf, err := jd.AfterOrEqual(jdcal.Last(jdcal.Julian))
+		bf, err := jd.AfterOrEqual(last)
 		check(err)
 		if bf {
 			break
@@ -70,7 +73,7 @@ func main() {
 			},
 			`, jd.Year, jd.Month, jd.Day, gd.Year, gd.Month, gd.Day)))
 
-		// Skip 3 days to keep the set at a reasonable size.
+		// Skip 3 days to keep the set at a reasonable size. Github doesn't like big files.
 		jd = jd.Forward()
 		jd = jd.Forward()
 		jd = jd.Forward()
