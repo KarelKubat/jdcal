@@ -33,12 +33,7 @@ func (z ZoneEntry) String() string {
 		} else {
 			change = "Switched to  "
 		}
-		var otherType Type
-		if c.Type == Gregorian {
-			otherType = Julian
-		} else {
-			otherType = Gregorian
-		}
+		otherType := c.Type.Other()
 		out += fmt.Sprintf(`
   %s the %-9s calendar   on   %v`, change, otherType, c)
 	}
