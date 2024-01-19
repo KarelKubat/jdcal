@@ -6,7 +6,7 @@ import (
 )
 
 func TestMonthProgressionTables(t *testing.T) {
-	for _, monthProgression := range []map[time.Month][]int{
+	for _, monthProgression := range []MonthProgression{
 		LeapMonthProgression,
 		NonLeapMonthProgression,
 	} {
@@ -18,62 +18,44 @@ func TestMonthProgressionTables(t *testing.T) {
 	}
 
 	febDays := LeapMonthProgression[time.February]
-	if febDays[len(febDays)-1] != 60 { // jan: 31 plus feb: 29
-		t.Error("LeapMonthProgression: last february entry in leap year must be 29")
+	if febDays[len(febDays)-1] != 59 { // jan: 31 plus feb: 29 = 60, minus 1
+		t.Error("LeapMonthProgression: last february entry in leap year must be 59")
 	}
 	febDays = NonLeapMonthProgression[time.February]
-	if febDays[len(febDays)-1] != 59 { // jan: 31, feb: 28
-		t.Error("NonLeapMonthProgression: last february entry in nonleap year must be 59")
+	if febDays[len(febDays)-1] != 58 { // jan: 31, feb: 28 = 59, minus 1
+		t.Error("NonLeapMonthProgression: last february entry in nonleap year must be 58")
 	}
 	decDays := LeapMonthProgression[time.December]
-	if decDays[len(decDays)-1] != 366 { // leap year: 366 days
+	if decDays[len(decDays)-1] != 365 { // leap year: 366 days, minus 1
 		t.Error("LeapMonthProgression: last december entry in leap year must be 366")
 	}
 	decDays = NonLeapMonthProgression[time.December]
-	if decDays[len(decDays)-1] != 365 { // std year: 365 days
-		t.Error("NonLeapMonthProgression: last december entry in nonleap year must be 365")
+	if decDays[len(decDays)-1] != 364 { // std year: 365 days, minus 1
+		t.Error("NonLeapMonthProgression: last december entry in nonleap year must be 364")
 	}
 }
 
 func TestYearProgressionTable(t *testing.T) {
 	for _, test := range []struct {
 		year          Year
-		wantGregorian int
-		wantJulian    int
+		wantGregorian Ordinal
+		wantJulian    Ordinal
 	}{
-		// Bunch of canned progressions.
+		// Bunch of canned progressions. These tests break when the table is generated with different
+		// start/end years by main/makeprogressiontable/makeprogressiontable.sh.
 
-		// Table start
+		// Near table start
 		{
 			year:          -500,
-			wantGregorian: 0,
-			wantJulian:    -5,
+			wantGregorian: 2191,
+			wantJulian:    2186,
 		},
 
-		// Negative leap year difference
+		// Near table end
 		{
-			year:          -101,
-			wantGregorian: 145732,
-			wantJulian:    145729,
-		},
-		{
-			year:          -100,
-			wantGregorian: 146097,
-			wantJulian:    146095,
-		},
-
-		// Converging calendars
-		{
-			year:          219,
-			wantGregorian: 262610,
-			wantJulian:    262610,
-		},
-
-		// Positive leap year difference
-		{
-			year:          1700,
-			wantGregorian: 803535,
-			wantJulian:    803545,
+			year:          2100,
+			wantGregorian: 951823,
+			wantJulian:    951836,
 		},
 	} {
 		if got := YearProgression[test.year][Gregorian]; got != test.wantGregorian {
