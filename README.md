@@ -283,40 +283,58 @@ Pentecost     in Georgia occurs on Sunday   Gregorian 1918/05/19
 
 ### Conversions
 
+The default conversion from one date format to another is using day progression: there is a day zero at the start of epoch, the next day is 1, and so on. The progression table `jdcal.YearProgression` holds the sequences for the Greogorian and for the Julian progression.
+
+A slower, but more tested algorithm is by using a lookup table, derived from //en.wikipedia.org/wiki/Conversion_between_Julian_and_Gregorian_calendars. If you suspect an error, switch to this algorithm, retry, and let me know if you find a discrepancy. Switching is done using:
+
+- `jdcal.ConvertByLookup()`
+- `jdcal.ConvertByProgression()`
+
 ```go
 package main
+
 import (
-    "fmt"
-    "log"
-    "time"
-    "github.com/KarelKubat/jdcal"
+	"fmt"
+	"log"
+	"time"
+
+	"github.com/KarelKubat/jdcal"
 )
+
 func main() {
-    // October 5th (Julian) was the Papal announcement to skip 10 days.
-    // The new date would be October 15 (Gregorian).
-    jd0, err := jdcal.New(1582, time.October, 5, jdcal.Julian)
-    check(err)
-    // to Gregorian
-    gd, err := jd0.Convert()
-    check(err)
-    wd, err := gd.Weekday()
-    check(err)
-    fmt.Println("From Julian to Gregorian:", jd0, "is", gd, "and it's a", wd)
-    // back to Julian
-    jd1, err := gd.Convert()
-    check(err)
-    wd, err = jd1.Weekday()
-    check(err)
-    fmt.Println("And back again:", gd, "is", jd1, "and it's a", wd)
-    // Output:
-    // From Julian to Gregorian: Julian 1582/10/05 is Gregorian 1582/10/15 and it's a Friday
-    // And back again: Gregorian 1582/10/15 is Julian 1582/10/05 and it's a Friday
+	// October 5th (Julian) was the Papal announcement to skip 10 days.
+	// The new date would be October 15 (Gregorian).
+	jd0, err := jdcal.New(1582, time.October, 5, jdcal.Julian)
+	check(err)
+
+	// To switch to a slower, but longer tested algorithm:
+	// jdcal.ConvertByLookup()
+
+	// to Gregorian
+	gd, err := jd0.Convert()
+	check(err)
+	wd, err := gd.Weekday()
+	check(err)
+	fmt.Println("From Julian to Gregorian:", jd0, "is", gd, "and it's a", wd)
+
+	// back to Julian
+	jd1, err := gd.Convert()
+	check(err)
+	wd, err = jd1.Weekday()
+	check(err)
+	fmt.Println("And back again:", gd, "is", jd1, "and it's a", wd)
+
+	// Output:
+	// 	From Julian to Gregorian: Julian 1582/10/05 is Gregorian 1582/10/15 and it's a Friday
+	// 	And back again: Gregorian 1582/10/15 is Julian 1582/10/05 and it's a Friday
 }
+
 func check(err error) {
-    if err != nil {
-        log.Fatal(err)
-    }
+	if err != nil {
+		log.Fatal(err)
+	}
 }
+
 ```
 
 ### Honoring leap years
@@ -601,6 +619,85 @@ func check(err error) {
     if err != nil {
         log.Fatal(err)
     }
+}
+```
+
+### Ordinal days
+
+`jdcal` internally uses "ordinal days" for conversions. Simplified, at the start of epoch it's day number zero, the next day is number 1 and so on. The appropriate dates for the ordinals differ for the types `jdcal.Gregorian` and `jdcal.Julian`, since the Julian calendar honors more often a February 29th.
+
+Working with ordinals is probably not useful outside of the package, but here's a demo. The actual output (the numbers) may differ from what is shown here.
+
+```go
+package main
+
+import (
+	"fmt"
+	"log"
+	"time"
+
+	"github.com/KarelKubat/jdcal"
+)
+
+func main() {
+	for _, ymd := range []jdcal.YMD{
+		// Near start of epoch
+		{Year: -500, Month: time.January, Day: 1},
+
+		// Around negative leap
+		{Year: -301, Month: time.February, Day: 28},
+		{Year: -301, Month: time.March, Day: 1},
+
+		// Aroound positive leap
+		{Year: 300, Month: time.February, Day: 28},
+		{Year: 300, Month: time.March, Day: 1},
+
+		// Somewhere in the 20th century
+		{Year: 1962, Month: time.August, Day: 19},
+
+		// Near end of epoch
+		{Year: 2100, Month: time.January, Day: 1},
+	} {
+		for _, tp := range []jdcal.Type{jdcal.Gregorian, jdcal.Julian} {
+			dt, err := jdcal.New(ymd.Year, ymd.Month, ymd.Day, tp)
+			check(err)
+			ord, err := dt.Ordinal()
+			check(err)
+			back, err := ord.Date(dt.Type)
+			check(err)
+
+			fmt.Printf("%-22v --> %6d --> %v\n", dt, ord, back)
+
+			eq, err := dt.Equal(back)
+			check(err)
+			if !eq {
+				check(fmt.Errorf("%v and %v mismatch", dt, back))
+			}
+
+		}
+	}
+
+	// Output:
+	// Gregorian -0500/01/01  -->   2191 --> Gregorian -0500/01/01
+	// Julian -0500/01/01     -->   2186 --> Julian -0500/01/01
+	// Gregorian -0301/02/28  -->  74933 --> Gregorian -0301/02/28
+	// Julian -0301/02/28     -->  74928 --> Julian -0301/02/28
+	// Gregorian -0301/03/01  -->  74934 --> Gregorian -0301/03/01
+	// Julian -0301/03/01     -->  74930 --> Julian -0301/03/01
+	// Gregorian 0300/02/28   --> 294444 --> Gregorian 0300/02/28
+	// Julian 0300/02/28      --> 294444 --> Julian 0300/02/28
+	// Gregorian 0300/03/01   --> 294445 --> Gregorian 0300/03/01
+	// Julian 0300/03/01      --> 294446 --> Julian 0300/03/01
+	// Gregorian 1962/08/19   --> 901649 --> Gregorian 1962/08/19
+	// Julian 1962/08/19      --> 901662 --> Julian 1962/08/19
+	// Gregorian 2100/01/01   --> 951823 --> Gregorian 2100/01/01
+	// Julian 2100/01/01      --> 951836 --> Julian 2100/01/01
+}
+
+func check(err error) {
+	if err != nil {
+		log.Fatal(err)
+	}
 }
 ```
 
