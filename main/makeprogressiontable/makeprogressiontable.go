@@ -11,10 +11,15 @@ import (
 	"github.com/KarelKubat/jdcal"
 )
 
+/*
+	Make sure that startYear matches StartProgressionYear with a correct startOffset,
+	and that endYear matches EndProgressionYear!
+*/
+
 const (
-	startYear   = -500 // generate from here
-	endYear     = 2100 // until here
-	startOffset = -5   // Gregorian is 5 days behind on startYear
+	startYear   = -506 // generate from here
+	endYear     = 2106 // until here
+	startOffset = -6   // Gregorian is 5 days behind on startYear
 
 	header = `package jdcal
 
@@ -23,10 +28,17 @@ const (
 import "time"
 
 const (
-	StartProgressionYear = %d
-	EndProgressionYear   = %d
+	StartProgressionYear = -500
+	EndProgressionYear   = 2100
 
 )
+
+/*
+MonthProgression maps arrays of ordinals to months. There is such a table for leap years
+(LeapMonthProgression) and for non-leap years (NonLeapMonthProgression).
+*/
+type MonthProgression map[time.Month][]Ordinal
+
 `
 )
 
@@ -37,7 +49,7 @@ func main() {
 		check(errors.New("usage: go run main/progressiontable/progressiontable.go $OUTPUTFILE"))
 	}
 
-	outputLines = append(outputLines, fmt.Sprintf(header, startYear, endYear))
+	outputLines = append(outputLines, header)
 
 	var leapYearDays, nonLeapYearDays int
 
@@ -45,17 +57,18 @@ func main() {
 	leapDaysPerMonth := leapCyr.DaysPerMonth()
 	output(`/*
 LeapMonthProgression holds per month the ordinal of a day,
-January 1st being 1, December 31st being 366 (365 days in a year, plus February 29th).
+January 1st being 0, December 31st being 365 (365 days in a year, plus February 29th
+is 366, so ordinal number 365).
 */
 `)
-	output("var LeapMonthProgression = map[time.Month][]int{\n")
+	output("var LeapMonthProgression = MonthProgression{\n")
 	count := 0
 	for m := time.January; m <= time.December; m++ {
 		output("time.%v: {\n", m)
 		output("0, // filler\n")
 		for d := 1; d <= leapDaysPerMonth[m]; d++ {
-			count++
 			output("%d, ", count)
+			count++
 			leapYearDays = count // updated every time, don't care, it's code generation
 		}
 		output("\n},\n")
@@ -66,29 +79,32 @@ January 1st being 1, December 31st being 366 (365 days in a year, plus February 
 	nonLeapDaysPerMonth := nonLeapCyr.DaysPerMonth()
 	output(`/*
 NonLeapMonthProgression holds per month the ordinal of a day,
-January 1st being 1, December 31st being 365.
+January 1st being 0, December 31st being 364 (365 days in a year, so ordinal number 364).
 */
 `)
-	output("var NonLeapMonthProgression = map[time.Month][]int{\n")
+	output("var NonLeapMonthProgression = MonthProgression{\n")
 	count = 0
 	for m := time.January; m <= time.December; m++ {
 		output("time.%v: {\n", m)
 		output("0, // filler\n")
 		for d := 1; d <= nonLeapDaysPerMonth[m]; d++ {
-			count++
 			output("%d, ", count)
+			count++
 			nonLeapYearDays = count // updated every time, don't care, it's code generation
 		}
 		output("\n},\n")
 	}
 	output("}\n\n")
 
+	output("var progressionTableStart Year = %d\n", startYear)
+	output("var progressionTableEnd Year = %d\n", endYear)
+
 	output(`/*
 YearProgression holds the number of days since jdcal.StartProgressionYear.
 The first int in each entry is for jdcal.Gregorian, the second for jdcal.Julian.
 */
 `)
-	output("var YearProgression = map[Year][2]int{\n")
+	output("var YearProgression = map[Year][2]Ordinal{\n")
 	gregorianProgression := 0
 	julianProgression := startOffset
 	for yr := startYear; yr <= endYear; yr++ {
