@@ -1,6 +1,8 @@
 package jdcal
 
-import "time"
+import (
+	"time"
+)
 
 /*
 New is a helper function to construct a Date from a year, month, day and calendar type.
