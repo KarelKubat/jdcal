@@ -29,6 +29,7 @@
   - [Zones](#zones)
   - [Testing whether a date exists in a zone](#testing-whether-a-date-exists-in-a-zone)
   - [Holidays](#holidays-1)
+  - [Ordinal days](#ordinal-days)
   - [More documentation](#more-documentation)
 <!-- /toc -->
 
