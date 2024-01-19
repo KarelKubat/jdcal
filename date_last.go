@@ -1,5 +1,7 @@
 package jdcal
 
+import "time"
+
 /*
 Last returns the last convertible date for a given type. Dates after this cannot be converted;
 Convert() would throw an error. This is a limitation of the ConversionTable. Example:
@@ -8,9 +10,16 @@ Convert() would throw an error. This is a limitation of the ConversionTable. Exa
 	gd = gd.Forward()                  // Move 1 day forward
 	jd, err := gd.Convert()            // err will be set, gd cannot be converted
 */
-func Last(dt Type) Date {
-	if dt == Julian {
-		return ConversionTable[len(ConversionTable)-1].JDate
+func Last(tp Type) Date {
+	switch algorithm {
+	case algorithmLookupTable:
+		if tp == Julian {
+			return ConversionTable[len(ConversionTable)-1].JDate
+		}
+		return ConversionTable[len(ConversionTable)-1].GDate
+	case algorithmProgression:
+		return Date{Year: EndProgressionYear, Month: time.January, Day: 1, Type: tp}
+	default:
+		panic("internal error: algorithm mismatch in Date.Last")
 	}
-	return ConversionTable[len(ConversionTable)-1].GDate
 }
