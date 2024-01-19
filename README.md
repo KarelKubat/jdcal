@@ -131,6 +131,7 @@ To install `jdcal` as a CLI tool, run `make install` or `go install main/jdcal/j
 # Take October 5th 1582 as a Julian date and convert
 jdcal convert 1582/10/05              # default calendar is Julian
 Julian 1582/10/05 is Gregorian 1582/10/15
+
 # Take October 10th 1582 as a Gregorian and convert back
 jdcal convert --gregorian 1582/10/15  # or use -g as a short flag
 Gregorian 1582/10/15 is Julian 1582/10/05
