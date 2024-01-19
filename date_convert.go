@@ -9,29 +9,6 @@ const (
 	maxExtrapolations = 100000
 )
 
-var (
-// Variables relevant to Julian Day conversions, see
-// https://aa.usno.navy.mil/downloads/c15_usb_online.pdf section 15.11.1
-// Only the relevant constants for Julian and Gregorian calendars are used.
-// Uncomment when trying to convert via convertFromJD().
-
-// jConstant          = 1401
-// mConstant          = 2
-// nConstant          = 12
-// pConstant          = 1461
-// qConstant          = 0
-// rConstant          = 4
-// sConstant          = 153
-// tConstant          = 2
-// uConstant          = 5
-// vConstant          = 3
-// wConstant          = 2
-// yConstant          = 4716
-// gregorianAConstant = 184
-// gregorianBConstant = 274277
-// gregorianCConstant = -38
-)
-
 /*
 Convert converts a jdcal.Date to the "other" format: from Julian to Gregorian, or vv.
 Example:
@@ -43,50 +20,27 @@ Example:
 	fmt.Println(gd) // Gregorian 1712/03/01
 */
 func (d Date) Convert() (Date, error) {
-	return d.convertFromTable()
+	// An implementation like ttps://aa.usno.navy.mil/downloads/c15_usb_online.pdf section 15.11.1
+	// is not workable, it doesn't cover our years range. That would be the nicest and less
+	// computation-intenive case, but ... it no worky.
 
-	// convertFromJD is not applicable to the whole range of years that I want to cover.
-	// Such a bummer..
-	// return d.convertFromJD()
+	switch algorithm {
+	case algorithmProgression:
+		return d.convertFromOrdinal()
+	case algorithmLookupTable:
+		return d.convertFromTable()
+	}
+	return Date{}, fmt.Errorf("internal error: algorithm mismatch in Date.Convert")
 }
 
-// func (d Date) convertFromJD() (Date, error) {
-// 	// Date to JD
-// 	h := int(d.Month) - mConstant
-// 	g := int(d.Year) + yConstant - (nConstant-h)/nConstant
-// 	f := (h - 1 + nConstant) % nConstant
-// 	e := (pConstant*g+qConstant)/rConstant + d.Day - 1 - jConstant
-// 	J := e + (sConstant*f+tConstant)/uConstant
-// 	if d.Type == Gregorian {
-// 		J = J - (3*((g+gregorianAConstant)/100))/4 - gregorianCConstant
-// 	}
-
-// 	// JD to the other Date format
-// 	ret := Date{}
-// 	if d.Type == Julian {
-// 		ret.Type = Gregorian
-// 	} else {
-// 		ret.Type = Julian
-// 	}
-
-// 	f = int(J) + jConstant
-// 	if ret.Type == Gregorian {
-// 		f = f + (((4*J+gregorianBConstant)/146097)*3)/4 + gregorianCConstant
-// 	}
-// 	e = rConstant*f + vConstant
-// 	g = (e % pConstant) / rConstant
-// 	h = uConstant*g + wConstant
-
-// 	ret.Day = (h%sConstant)/uConstant + 1
-// 	ret.Month = time.Month((h/sConstant+mConstant)%nConstant + 1)
-// 	ret.Year = Year(e/pConstant - yConstant + (nConstant+mConstant+int(ret.Month))/nConstant)
-// 	return ret.adjustJD(), nil
-// }
-
-// func (d Date) adjustJD() Date {
-// 	d.Year -= 1
-// 	return d
-// }
+// convertFromOrdinal is one implementation.
+func (d Date) convertFromOrdinal() (Date, error) {
+	ord, err := d.Ordinal()
+	if err != nil {
+		return Date{}, err
+	}
+	return ord.Date(d.Type.Other())
+}
 
 // convertFromTable is one implementation.
 func (d Date) convertFromTable() (Date, error) {

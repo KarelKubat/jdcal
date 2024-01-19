@@ -13,7 +13,7 @@ import (
 const (
 	// # of conversions to pick from main/bigconversiontest/testdates/testdates.go for testing
 	// Should be a large number
-	nConversionTests = 100
+	nConversionTests = 10000
 )
 
 func TestConvertSome(t *testing.T) {
@@ -23,39 +23,54 @@ func TestConvertSome(t *testing.T) {
 		gd   Date
 	}{
 		{
-			desc: "start of epoch (lookup hit)",
-			jd:   First(Julian),
-			gd:   First(Gregorian),
+			desc: "near start of epoch",
+			jd:   Date{Year: -499, Month: time.January, Day: 1, Type: Julian},
+			gd:   Date{Year: -500, Month: time.December, Day: 27, Type: Gregorian},
 		},
 		{
-			desc: "end of epoch (lookup hit)",
-			jd:   Last(Julian),
-			gd:   Last(Gregorian),
+			desc: "near end of epoch",
+			jd:   Date{Year: 2099, Month: time.January, Day: 1, Type: Julian},
+			gd:   Date{Year: 2099, Month: time.January, Day: 14, Type: Gregorian},
 		},
 		{
-			desc: "table middle lookup hit",
+			desc: "1500s",
 			jd:   Date{Year: 1500, Month: time.February, Day: 29, Type: Julian},
 			gd:   Date{Year: 1500, Month: time.March, Day: 10, Type: Gregorian},
 		},
 		{
-			desc: "outside of table hit (1)",
+			desc: "1700s (1)",
 			jd:   Date{Year: 1700, Month: time.March, Day: 2, Type: Julian},
 			gd:   Date{Year: 1700, Month: time.March, Day: 13, Type: Gregorian},
 		},
 		{
-			desc: "outside of table hit (2)",
+			desc: "1700s (2)",
 			jd:   Date{Year: 1700, Month: time.March, Day: 3, Type: Julian},
 			gd:   Date{Year: 1700, Month: time.March, Day: 14, Type: Gregorian},
 		},
 		{
-			desc: "outside of table hit (3)",
+			desc: "1700s (3)",
 			jd:   Date{Year: 1700, Month: time.March, Day: 4, Type: Julian},
 			gd:   Date{Year: 1700, Month: time.March, Day: 15, Type: Gregorian},
 		},
 		{
-			desc: "outside of table hit (4)",
+			desc: "1700s (4)",
 			jd:   Date{Year: 1700, Month: time.March, Day: 5, Type: Julian},
 			gd:   Date{Year: 1700, Month: time.March, Day: 16, Type: Gregorian},
+		},
+		{
+			desc: "Julian Feb 28th, before 29",
+			jd:   Date{Year: 1800, Month: time.February, Day: 28, Type: Julian},
+			gd:   Date{Year: 1800, Month: time.March, Day: 11, Type: Gregorian},
+		},
+		{
+			desc: "Julian Feb 29th",
+			jd:   Date{Year: 1800, Month: time.February, Day: 29, Type: Julian},
+			gd:   Date{Year: 1800, Month: time.March, Day: 12, Type: Gregorian},
+		},
+		{
+			desc: "Julian Mar 1st, after 29th",
+			jd:   Date{Year: 1800, Month: time.March, Day: 1, Type: Julian},
+			gd:   Date{Year: 1800, Month: time.March, Day: 13, Type: Gregorian},
 		},
 	} {
 		run := func(desc string, a, b Date) {
