@@ -1,5 +1,6 @@
 .PHONY: fullmoons
 foo:
+	@echo
 	@echo 'Make what?' 2>&1
 	@echo '  make tables            - create lookup tables (except fullmoons)'
 	@echo '  make test              - run tests'
@@ -8,7 +9,8 @@ foo:
 	@echo '  make fullmoons         - scrape full moons dates'
 	@echo '  make bigconversiondata - huge list of J/G dates for testing'
 	@echo
-	@echo '  make all               - all of the above, except fullmoons.go re-scraping and big conversion dates'
+	@echo '  make all               - all of the above, except fullmoon re-scraping and big conversion dates'
+	@echo
 	@exit 1
 
 .PHONY: all
@@ -47,13 +49,11 @@ install: zones_table.go date_table.go Makefile
 .PHONY: test
 test:
 	go test ./...
-	go run main/demo1/demo1.go
-	go run main/demo2/demo2.go
-	go run main/demo3/demo3.go
-	go run main/demo4/demo4.go
-	go run main/demo5/demo5.go
-	go run main/demo6/demo6.go
-	go run main/demo7/demo7.go
+	for f in main/demo*/demo?.go ; do \
+		echo ; \
+		echo ---------- "$$f" ---------- ; \
+		go run "$$f" || exit 1 ; \
+	done
 
 .PHONY: bigconversiondata
 bigconversiondata:
