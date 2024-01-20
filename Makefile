@@ -20,12 +20,12 @@ tables: date_table.go zones_table.go spring-eq-errors.png progressiontable.go
 progressiontable.go: main/makeprogressiontable/makeprogressiontable.go main/makeprogressiontable/makeprogressiontable.sh
 	sh main/makeprogressiontable/makeprogressiontable.sh
 
-date_table.go: main/makeconversiontable/makeconversiontable.go date_table.txt Makefile
-	go run main/makeconversiontable/makeconversiontable.go date_table.txt date_table.go
+date_table.go: main/makeconversiontable/makeconversiontable.go main/makeconversiontable/date_table.txt Makefile
+	go run main/makeconversiontable/makeconversiontable.go main/makeconversiontable/date_table.txt date_table.go
 	gofmt -w date_table.go
 
-zones_table.go: main/makezonestable/makezonestable.go zones_table.txt Makefile
-	go run main/makezonestable/makezonestable.go zones_table.txt zones_table.go
+zones_table.go: main/makezonestable/makezonestable.go main/makezonestable/zones_table.txt Makefile
+	go run main/makezonestable/makezonestable.go main/makezonestable/zones_table.txt zones_table.go
 	gofmt -w zones_table.go
 
 spring-eq-errors.png: main/daysdiff/spring-equinox.csv Makefile
