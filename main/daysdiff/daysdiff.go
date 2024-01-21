@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"slices"
+	"log"
 	"time"
 
 	"github.com/KarelKubat/jdcal"
@@ -17,7 +17,7 @@ const (
 /*
 Prints a table suitable for GnuPlot of:
 
-- Reference date, being only the century year (so 1200, 1300 etc.)
+- Year, being only the century year (so 1200, 1300 etc.)
 
 - # of days on the Julian calendar since start of epoch
 
@@ -56,49 +56,24 @@ Example:
 2100, 949300, 949286, 14
 */
 func main() {
-	jd := jdcal.First(jdcal.Julian)
-	gd := jdcal.First(jdcal.Gregorian)
-	day := 0
-
-	jdMark := map[jdcal.Year]int{}
-	gdMark := map[jdcal.Year]int{}
-	marks := []jdcal.Year{}
-	endReferencesSeen := 0
-
-	for {
-		if isReference(jd.Year, jd.Month, jd.Day) {
-			jdMark[jd.Year] = day
-			if !slices.Contains(marks, jd.Year) {
-				marks = append(marks, jd.Year)
-			}
-			if jd.Year == endYear {
-				endReferencesSeen++
-			}
+	for yr := jdcal.Year(-400); yr < 2100; yr += 100 {
+		if yr == 0 {
+			continue
 		}
-		if isReference(gd.Year, gd.Month, gd.Day) {
-			gdMark[gd.Year] = day
-			if !slices.Contains(marks, gd.Year) {
-				marks = append(marks, gd.Year)
-			}
-			if gd.Year == endYear {
-				endReferencesSeen++
-			}
-		}
+		jd, err := jdcal.NewDate(yr, referenceMonth, referenceDay, jdcal.Julian)
+		check(err)
+		gd, err := jdcal.NewDate(yr, referenceMonth, referenceDay, jdcal.Gregorian)
+		check(err)
 
-		if endReferencesSeen == 2 {
-			break
-		}
+		jdOrd := jd.Ordinal()
+		gdOrd := gd.Ordinal()
 
-		jd = jd.Forward()
-		gd = gd.Forward()
-		day++
-	}
-
-	for _, m := range marks {
-		fmt.Printf("%d, %d, %d, %d\n", m, jdMark[m], gdMark[m], jdMark[m]-gdMark[m])
+		fmt.Printf("%d, %d, %d, %d\n", yr, jdOrd, gdOrd, jdOrd-gdOrd)
 	}
 }
 
-func isReference(y jdcal.Year, m time.Month, d int) bool {
-	return y%100 == 0 && m == referenceMonth && d == referenceDay
+func check(err error) {
+	if err != nil {
+		log.Fatal(err)
+	}
 }
