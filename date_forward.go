@@ -1,6 +1,7 @@
 package jdcal
 
 import (
+	"fmt"
 	"time"
 )
 
@@ -20,7 +21,11 @@ Example:
 */
 func (d Date) Forward() Date {
 	// Nr of month days, with 28 for February (handled separately).
-	daysPerMonth := CalendarYear{Year: d.Year, Type: d.Type}.DaysPerMonth()
+	cyr, err := NewCalendarYear(d.Year, d.Type)
+	if err != nil {
+		panic(fmt.Sprintf("internal error: Date.Forward failed to construct a CalendarYear: %v", err))
+	}
+	daysPerMonth := cyr.DaysPerMonth()
 	ret := d
 
 	// Simple increase within 1 month

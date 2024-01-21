@@ -1,6 +1,7 @@
 package jdcal
 
 import (
+	"fmt"
 	"time"
 )
 
@@ -32,7 +33,11 @@ func (d Date) Advance() Date {
 		return ret
 	}
 	if ret.Month == time.February {
-		isLeap := CalendarYear{Year: ret.Year, Type: ret.Type}.IsLeap()
+		cyr, err := NewCalendarYear(ret.Year, ret.Type)
+		if err != nil {
+			panic(fmt.Sprintf("internal error: Date.Advance failed to create a CalendarYear: %v", err))
+		}
+		isLeap := cyr.IsLeap()
 		if ret.Day == 28 && isLeap {
 			ret.Day++
 		} else {

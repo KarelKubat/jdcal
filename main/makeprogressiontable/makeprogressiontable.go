@@ -53,6 +53,8 @@ func main() {
 
 	var leapYearDays, nonLeapYearDays int
 
+	// This code generator doesn't use jdcal.NewCalendarYear. That would barf on years outside
+	// the epoch, which we want to generate.
 	leapCyr := jdcal.CalendarYear{Year: 12, Type: jdcal.Julian}
 	leapDaysPerMonth := leapCyr.DaysPerMonth()
 	output(`/*

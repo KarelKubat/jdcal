@@ -3,7 +3,9 @@ package jdcal
 /*
 DaysPerMonth returns for each time.Month the number of days, taking into account the calendar type (Julian or Gregorian) and leap years. Example:
 
-	dpm := CalendarYear{Year: 1900, Type: Julian}.DaysPerMonth()
+	cyr, err := NewCalendarYear(1900, jdcal.Julian)
+	if err != nil { ... }
+	dpm := cyr..DaysPerMonth()
 	fmt.Println(dpm[time.February])
 */
 func (c CalendarYear) DaysPerMonth() []int {

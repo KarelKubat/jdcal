@@ -57,7 +57,12 @@ func runHolidays(cmd *cobra.Command, args []string) {
 
 	for i, arg := range args {
 		yr := atoi(arg)
-		cyr := jdcal.CalendarYear{Year: jdcal.Year(yr), Type: jdcal.Gregorian}
+
+		// Always fetch holidays relative to the Gregorian calendar. Convert to Julian later, if
+		// that output format is requested, or if we're showing the date for a zone which at that time
+		// is in Julian mode.
+		cyr, err := jdcal.NewCalendarYear(jdcal.Year(yr), jdcal.Gregorian)
+		check(err)
 
 		if i > 0 {
 			fmt.Println()

@@ -1,3 +1,4 @@
+// main/demo1/demo1.go
 package main
 
 import (

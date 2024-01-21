@@ -28,8 +28,7 @@ func TestOrdinal(t *testing.T) {
 		for _, tp := range []Type{Gregorian, Julian} {
 			dt, err := New(ymd.Year, ymd.Month, ymd.Day, tp)
 			check(t, err)
-			ord, err := dt.Ordinal()
-			check(t, err)
+			ord := dt.Ordinal()
 			back, err := ord.Date(dt.Type)
 			check(t, err)
 

@@ -16,7 +16,10 @@ func (o Ordinal) Date(tp Type) (Date, error) {
 
 	// Ordinal days for that year are either by nonleap or by leap.
 	var progression MonthProgression
-	cyr := CalendarYear{Year: yr, Type: tp}
+	cyr, err := NewCalendarYear(yr, tp)
+	if err != nil {
+		return Date{}, err
+	}
 	if cyr.IsLeap() {
 		progression = LeapMonthProgression
 	} else {

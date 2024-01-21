@@ -29,7 +29,11 @@ func (d Date) Valid() error {
 
 	// Even with the max per month, Feb 28'th may not be valid.
 	if d.Month == time.February && d.Day == 29 {
-		isLeap := CalendarYear{Year: d.Year, Type: d.Type}.IsLeap()
+		cyr, err := NewCalendarYear(d.Year, d.Type)
+		if err != nil {
+			panic(fmt.Sprintf("internal error: Date.Valid failed to construct a CalendarYear: %v", err))
+		}
+		isLeap := cyr.IsLeap()
 		if !isLeap {
 			return fmt.Errorf("year %v has no February 29th", d.Year)
 		}

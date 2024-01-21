@@ -1,3 +1,4 @@
+// main/demo2/demo2.go
 package main
 
 import (
@@ -53,7 +54,8 @@ func main() {
 	// ------------------
 	for _, yr := range []jdcal.Year{1796, 1797, 1800, 2000} {
 		for _, tp := range []jdcal.Type{jdcal.Julian, jdcal.Gregorian} {
-			cyr := jdcal.CalendarYear{Year: yr, Type: tp}
+			cyr, err := jdcal.NewCalendarYear(yr, tp)
+			check(err)
 			fmt.Println(cyr, "is a leap year:", cyr.IsLeap())
 		}
 	}

@@ -1,3 +1,4 @@
+// main/demo5/demo5.go
 package main
 
 import (
@@ -10,7 +11,8 @@ import (
 func main() {
 
 	for _, yr := range []jdcal.Year{1369, 1370, 1371} {
-		cyr := jdcal.CalendarYear{Year: yr, Type: jdcal.Julian}
+		cyr, err := jdcal.NewCalendarYear(yr, jdcal.Julian)
+		check(err)
 
 		for h := jdcal.GoodFriday; h <= jdcal.Pentecost; h++ {
 			dt, err := cyr.HolidayDate(h)

@@ -20,7 +20,7 @@ Example:
 	fmt.Println(gd) // Gregorian 1712/03/01
 */
 func (d Date) Convert() (Date, error) {
-	// An implementation like ttps://aa.usno.navy.mil/downloads/c15_usb_online.pdf section 15.11.1
+	// An implementation like https://aa.usno.navy.mil/downloads/c15_usb_online.pdf section 15.11.1
 	// is not workable, it doesn't cover our years range. That would be the nicest and less
 	// computation-intenive case, but ... it no worky.
 
@@ -35,10 +35,7 @@ func (d Date) Convert() (Date, error) {
 
 // convertFromOrdinal is one implementation.
 func (d Date) convertFromOrdinal() (Date, error) {
-	ord, err := d.Ordinal()
-	if err != nil {
-		return Date{}, err
-	}
+	ord := d.Ordinal()
 	return ord.Date(d.Type.Other())
 }
 

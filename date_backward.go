@@ -1,6 +1,9 @@
 package jdcal
 
-import "time"
+import (
+	"fmt"
+	"time"
+)
 
 /*
 Backward returns a date that is one day before, hononing leap years for Julian or Gregorian calendars. The reference date (receiver) is not modified.
@@ -17,7 +20,11 @@ Example:
 	fmt.Println(gd)       // February 28th
 */
 func (d Date) Backward() Date {
-	daysPerMonth := CalendarYear{Year: d.Year, Type: d.Type}.DaysPerMonth()
+	cyr, err := NewCalendarYear(d.Year, d.Type)
+	if err != nil {
+		panic(fmt.Sprintf("internal error: Date.Backeward failed to construct a CalendarYear: %v", err))
+	}
+	daysPerMonth := cyr.DaysPerMonth()
 	ret := d
 
 	// Within a month

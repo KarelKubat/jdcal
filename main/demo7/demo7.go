@@ -1,3 +1,4 @@
+// main/demo7/demo7.go
 package main
 
 import (
@@ -30,8 +31,7 @@ func main() {
 		for _, tp := range []jdcal.Type{jdcal.Gregorian, jdcal.Julian} {
 			dt, err := jdcal.New(ymd.Year, ymd.Month, ymd.Day, tp)
 			check(err)
-			ord, err := dt.Ordinal()
-			check(err)
+			ord := dt.Ordinal()
 			back, err := ord.Date(dt.Type)
 			check(err)
 
