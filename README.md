@@ -26,6 +26,7 @@
 - [Short library synopsis](#short-library-synopsis)
   - [Conversions](#conversions)
   - [Honoring leap years](#honoring-leap-years)
+  - [Days per month for leap or nonleap years](#days-per-month-for-leap-or-nonleap-years)
   - [Zones](#zones)
   - [Testing whether a date exists in a zone](#testing-whether-a-date-exists-in-a-zone)
   - [Holidays](#holidays-1)
