@@ -44,7 +44,7 @@ func TestWeekday(t *testing.T) {
 			wantWeekday: time.Monday,
 		},
 	} {
-		d, err := New(2024, time.January, test.day, Gregorian)
+		d, err := NewDate(2024, time.January, test.day, Gregorian)
 		if err != nil {
 			t.Fatalf("New(...) = _,%q, need nil error", err.Error())
 		}

@@ -5,7 +5,7 @@ DaysPerMonth returns for each time.Month the number of days, taking into account
 
 	cyr, err := NewCalendarYear(1900, jdcal.Julian)
 	if err != nil { ... }
-	dpm := cyr..DaysPerMonth()
+	dpm := cyr.DaysPerMonth()
 	fmt.Println(dpm[time.February])
 */
 func (c CalendarYear) DaysPerMonth() []int {

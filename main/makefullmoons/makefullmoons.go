@@ -175,7 +175,7 @@ func extractDates(lines []string) (out string) {
 
 		// AstroPixels.com has dates before 1582 as Julians. Convert to Gregorian for unity.
 		if year < 1582 {
-			dt, err = jdcal.New(jdcal.Year(year), m, d, jdcal.Julian)
+			dt, err = jdcal.NewDate(jdcal.Year(year), m, d, jdcal.Julian)
 			if err != nil && strings.Contains(err.Error(), "is before the first convertible date") {
 				continue
 			}
@@ -183,7 +183,7 @@ func extractDates(lines []string) (out string) {
 			dt, err = dt.Convert()
 			check(err)
 		} else {
-			dt, err = jdcal.New(jdcal.Year(year), m, d, jdcal.Gregorian)
+			dt, err = jdcal.NewDate(jdcal.Year(year), m, d, jdcal.Gregorian)
 			if err != nil && strings.Contains(err.Error(), "is after the last convertible date") {
 				continue
 			}

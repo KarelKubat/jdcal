@@ -32,7 +32,7 @@ func (o Ordinal) Date(tp Type) (Date, error) {
 	// First/last edge cases
 	missing := o - ord
 	if missing == 0 {
-		return New(yr, time.January, 1, tp)
+		return NewDate(yr, time.January, 1, tp)
 	}
 	var max Ordinal
 	if cyr.IsLeap() {
@@ -41,7 +41,7 @@ func (o Ordinal) Date(tp Type) (Date, error) {
 		max = 364
 	}
 	if missing == max {
-		return New(yr, time.December, 31, tp)
+		return NewDate(yr, time.December, 31, tp)
 	}
 
 	// Find the month that reduces ordinal minus ord the best.
@@ -61,7 +61,7 @@ func (o Ordinal) Date(tp Type) (Date, error) {
 		}
 		// fmt.Println("OrdinalToDate: day", day, "count", count, "missing", missing)
 		if count >= missing {
-			return New(yr, m, day, tp)
+			return NewDate(yr, m, day, tp)
 		}
 	}
 	return Date{}, fmt.Errorf("failed to find date for ordinal %d, type %s", o, tp)

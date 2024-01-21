@@ -308,7 +308,7 @@ import (
 func main() {
 	// October 5th (Julian) was the Papal announcement to skip 10 days.
 	// The new date would be October 15 (Gregorian).
-	jd0, err := jdcal.New(1582, time.October, 5, jdcal.Julian)
+	jd0, err := jdcal.NewDate(1582, time.October, 5, jdcal.Julian)
 	check(err)
 
 	// To switch to a slower, but longer tested algorithm:
@@ -357,7 +357,7 @@ import (
 func main() {
 	// Advancing dates
 	// ---------------
-	jd, err := jdcal.New(300, time.February, 27, jdcal.Julian)
+	jd, err := jdcal.NewDate(300, time.February, 27, jdcal.Julian)
 	check(err)
 
 	for i := 0; i < 6; i++ {
@@ -607,12 +607,12 @@ func main() {
 }
 
 func test(year jdcal.Year, month time.Month, day int, z jdcal.ZoneEntry) {
-	d, err := jdcal.New(year, month, day, jdcal.Julian)
+	d, err := jdcal.NewDate(year, month, day, jdcal.Julian)
 	check(err)
 	jdInZone, err := d.InZone(z)
 	check(err)
 
-	d, err = jdcal.New(year, month, day, jdcal.Gregorian)
+	d, err = jdcal.NewDate(year, month, day, jdcal.Gregorian)
 	check(err)
 	gdInZone, err := d.InZone(z)
 	check(err)
@@ -728,7 +728,7 @@ func main() {
 		{Year: 2100, Month: time.January, Day: 1},
 	} {
 		for _, tp := range []jdcal.Type{jdcal.Gregorian, jdcal.Julian} {
-			dt, err := jdcal.New(ymd.Year, ymd.Month, ymd.Day, tp)
+			dt, err := jdcal.NewDate(ymd.Year, ymd.Month, ymd.Day, tp)
 			check(err)
 			ord, err := dt.Ordinal()
 			check(err)

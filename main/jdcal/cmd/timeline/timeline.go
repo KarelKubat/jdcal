@@ -49,7 +49,7 @@ func runTimeline(cmd *cobra.Command, args []string) {
 	if gotG {
 		tp = jdcal.Gregorian
 	}
-	dt, err := jdcal.NewFromString(args[0], tp)
+	dt, err := jdcal.NewDateFromString(args[0], tp)
 	check(err)
 
 	days, err := cmd.Flags().GetInt(daysFlag)

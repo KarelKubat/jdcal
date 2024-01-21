@@ -38,14 +38,14 @@ func runConvert(cmd *cobra.Command, args []string) {
 	check(err)
 	for _, a := range args {
 		if gotG {
-			dt, err := jdcal.NewFromString(a, jdcal.Gregorian)
+			dt, err := jdcal.NewDateFromString(a, jdcal.Gregorian)
 			check(err)
 			ot, err := dt.Convert()
 			check(err)
 			fmt.Println(dt, "is", ot)
 		}
 		if gotJ {
-			dt, err := jdcal.NewFromString(a, jdcal.Julian)
+			dt, err := jdcal.NewDateFromString(a, jdcal.Julian)
 			check(err)
 			ot, err := dt.Convert()
 			check(err)

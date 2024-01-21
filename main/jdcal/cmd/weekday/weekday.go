@@ -40,7 +40,7 @@ func runWeekday(cmd *cobra.Command, args []string) {
 	}
 
 	for _, arg := range args {
-		dt, err := jdcal.NewFromString(arg, tp)
+		dt, err := jdcal.NewDateFromString(arg, tp)
 		check(err)
 		wd, err := dt.Weekday()
 		check(err)

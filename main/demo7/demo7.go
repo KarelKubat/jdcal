@@ -29,7 +29,7 @@ func main() {
 		{Year: 2100, Month: time.January, Day: 1},
 	} {
 		for _, tp := range []jdcal.Type{jdcal.Gregorian, jdcal.Julian} {
-			dt, err := jdcal.New(ymd.Year, ymd.Month, ymd.Day, tp)
+			dt, err := jdcal.NewDate(ymd.Year, ymd.Month, ymd.Day, tp)
 			check(err)
 			ord := dt.Ordinal()
 			back, err := ord.Date(dt.Type)

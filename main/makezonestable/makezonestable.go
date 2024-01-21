@@ -98,7 +98,7 @@ func main() {
 				check(fmt.Errorf("line %d: %q has a malformed date, not 3 parts but %d",
 					lineno, line, len(nrs)))
 			}
-			dt, err := jdcal.New(
+			dt, err := jdcal.NewDate(
 				jdcal.Year(atoi(nrs[0])),
 				time.Month(atoi(nrs[1])),
 				atoi(nrs[2]),

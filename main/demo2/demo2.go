@@ -12,7 +12,7 @@ import (
 func main() {
 	// Advancing dates
 	// ---------------
-	jd, err := jdcal.New(300, time.February, 27, jdcal.Julian)
+	jd, err := jdcal.NewDate(300, time.February, 27, jdcal.Julian)
 	check(err)
 
 	for i := 0; i < 6; i++ {

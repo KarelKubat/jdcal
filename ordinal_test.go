@@ -26,7 +26,7 @@ func TestOrdinal(t *testing.T) {
 		{Year: 2100, Month: time.January, Day: 1},
 	} {
 		for _, tp := range []Type{Gregorian, Julian} {
-			dt, err := New(ymd.Year, ymd.Month, ymd.Day, tp)
+			dt, err := NewDate(ymd.Year, ymd.Month, ymd.Day, tp)
 			check(t, err)
 			ord := dt.Ordinal()
 			back, err := ord.Date(dt.Type)

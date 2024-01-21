@@ -72,12 +72,12 @@ func main() {
 }
 
 func test(year jdcal.Year, month time.Month, day int, z jdcal.ZoneEntry) {
-	d, err := jdcal.New(year, month, day, jdcal.Julian)
+	d, err := jdcal.NewDate(year, month, day, jdcal.Julian)
 	check(err)
 	jdInZone, err := d.InZone(z)
 	check(err)
 
-	d, err = jdcal.New(year, month, day, jdcal.Gregorian)
+	d, err = jdcal.NewDate(year, month, day, jdcal.Gregorian)
 	check(err)
 	gdInZone, err := d.InZone(z)
 	check(err)
