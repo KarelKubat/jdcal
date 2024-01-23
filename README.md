@@ -288,10 +288,12 @@ Pentecost     in Georgia occurs on Sunday   Gregorian 1918/05/19
 
 The default conversion from one date format to another is using day progression: there is a day zero at the start of epoch, the next day is 1, and so on. The progression table `jdcal.YearProgression` holds the sequences for the Greogorian and for the Julian progression.
 
-A slower, but more tested algorithm is by using a lookup table, derived from //en.wikipedia.org/wiki/Conversion_between_Julian_and_Gregorian_calendars. If you suspect an error, switch to this algorithm, retry, and let me know if you find a discrepancy. Switching is done using:
+A **much** slower, but more tested algorithm is by using a lookup table, derived from //en.wikipedia.org/wiki/Conversion_between_Julian_and_Gregorian_calendars. If you suspect an error, switch to this algorithm, retry, and let me know if you find a discrepancy. Switching is done using:
 
 - `jdcal.ConvertByLookup()`
 - `jdcal.ConvertByProgression()`
+
+A benchmark for these two algorithms can be run using `go test -bench .` The order of magnitude is 10 (!) but in CLI invocations that's not noticable.
 
 ```go
 // main/demo1/demo1.go
