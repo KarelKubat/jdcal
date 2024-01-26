@@ -16,6 +16,8 @@ Pentecost is on the 50th day after Easter (so plus 49), making it a Sunday.
 */
 func (cyr CalendarYear) HolidayDate(h Holiday) (Date, error) {
 	switch h {
+	case AshWednesday:
+		return cyr.ashwednesday()
 	case GoodFriday:
 		return cyr.goodfriday()
 	case Easter:
@@ -60,6 +62,20 @@ func (cyr CalendarYear) easter() (Date, error) {
 		}
 	}
 	return dt, nil
+}
+
+func (cyr CalendarYear) ashwednesday() (Date, error) {
+	dt, err := cyr.easter()
+	if err != nil {
+		return Date{}, err
+	}
+
+	// Ash Wednesday is 46 days back.
+	for i := 0; i < 46; i++ {
+		dt = dt.Backward()
+	}
+	return dt, nil
+
 }
 
 func (cyr CalendarYear) goodfriday() (Date, error) {

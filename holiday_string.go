@@ -6,6 +6,7 @@ String returns the string representation for a Holiday: "Easter", "Ascension day
 func (h Holiday) String() string {
 	return []string{
 		"", // start sentinel
+		"Ash Wednesday",
 		"Good Friday",
 		"Easter",
 		"Ascension Day",

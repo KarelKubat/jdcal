@@ -12,7 +12,7 @@ import (
 )
 
 const (
-	firstHoliday  = jdcal.GoodFriday
+	firstHoliday  = jdcal.AshWednesday
 	lastHoliday   = jdcal.Pentecost
 	gregorianFlag = "gregorian"
 	zoneFlag      = "zone"
@@ -89,7 +89,7 @@ func runHolidays(cmd *cobra.Command, args []string) {
 			}
 			wd, err := dt.Weekday()
 			check(err)
-			fmt.Printf(" occurs on %-8s %v\n", wd, dt)
+			fmt.Printf(" occurs on %-9s %v\n", wd, dt)
 		}
 	}
 }

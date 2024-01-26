@@ -100,7 +100,10 @@ So before 1585 they were "in sync" with other areas, and until 1798 you don't kn
 
 ### Moon cycle based holidays
 
-The fact that the Julian calendar was unprecise, was a problem because of typical Christian holidays: Easter, Ascension Day, Pentecost. These are defined by finding the full moon following the *ecclesiastical* Spring equinox. This isn't the *astronomical* equinox (official start of the spring), but instead is pinned at March 21st (Julian or Gregorian, whichever applies). Once Julian March 21st was too "far away" from the astronomical equinox, a correction needed to be made.
+The fact that the Julian calendar was unprecise, was a problem because of typical moon-cycle based Christian holidays.
+
+Ash Wednesday (start of fasting), Good Friday, Easter, Ascension Day and Pentecost are are defined by finding the full moon following the *ecclesiastical* Spring equinox and counting from there (forward *or* back). This isn't the *astronomical* equinox (official start of the spring), but instead is pinned at March 21st, Gregorian. Once Julian March 21st was too "far away" from the astronomical equinox, a correction needed to be made.
+
 The software supports finding dates for these holidays, both on the Gregorian and on the Julian calendars.
 
 ### 2023 AD
@@ -111,13 +114,13 @@ Late 2023 my darling wife asked me to write some conversion software because she
 
 To install the package, run:
 
-```sh
+```plain
 go install github.com/KarelKubat/jdcal@latest
 ```
 
 To install the program `jdcal` as a CLI interface, then run:
 
-```sh
+```plain
 cd ~go/src/github.com/KarelKubat/jdcal  # replace ~/go/src with whatever works for you
 make install                            # `jdcal` is installed into your ~/go/bin/ or $GOBIN
 ```
@@ -128,7 +131,7 @@ To install `jdcal` as a CLI tool, run `make install` or `go install main/jdcal/j
 
 ### Conversions between calendars
 
-```sh
+```plain
 # Take October 5th 1582 as a Julian date and convert
 jdcal convert 1582/10/05              # default calendar is Julian
 Julian 1582/10/05 is Gregorian 1582/10/15
@@ -140,7 +143,7 @@ Gregorian 1582/10/15 is Julian 1582/10/05
 
 ### Weekdays
 
-```sh
+```plain
 # What day was January 1st 1600 on the Julian or Gregorian calendar?
 jdcal weekday 1600/1/1
 Julian 1600/01/01 is a Tuesday
@@ -150,7 +153,7 @@ Gregorian 1600/01/01 is a Saturday
 
 ### When did the world switch calendars
 
-```sh
+```plain
 # Switch over dates for zones matching "america"
 jdcal zones --zone america
 United States of America (French & Spanish colonial empires)
@@ -171,7 +174,7 @@ jdcal zones
 
 `jdcal timeline` shows a visualization of the progression of dates. Example:
 
-```sh
+```plain
 # Show the timeline around 1582/10/04
 jdcal timeline 1582/10/01 --days 10  # note: --zone is unspecified
      Julian |   |   Gregorian
@@ -192,7 +195,7 @@ Spain switched over to the Gregorian calendar on October 4th 1582 (try it with `
 One can argue whether October 14th is a valid date as it is the Gregorian version of the switch-over date October 4th. `jdcal` assumes that it is.
 The output can be further trimmed by using the flag `--zone` which leaves out unused dates:
 
-```sh
+```plain
 # Show the timeline around 1582/10/04 for zone Spain, which switched over to
 # the Gregorian calendar on 1582/10/04.
 jdcal timeline 1582/10/01 --days 10 --zone spain
@@ -212,7 +215,7 @@ jdcal timeline 1582/10/01 --days 10 --zone spain
 
 Zones that switch back from Gregorian to Julian offer interesting timelines. E.g., "Groningen City" temporarily switched back to Julian after being re-conquered by Protestants. This happened on (the Gregorian date) 1594/11/10, which became (Julian) 1594/10/31. (Again, one may argue whether the switch-over date Julian 1594/10/31 is valid. `jdcal` assumes it is.) A visualization:
 
-```sh
+```plain
 jdcal zones -z 'groningen city'
 Netherlands (Groningen City)
   Started using the Julian    calendar   on   Gregorian -0500/02/28
@@ -254,32 +257,35 @@ In this case a date like 1594/11/08 exists twice. Also;
 
 `jdcal holidays` shows holiday dates for given years. The default output format is Julian:
 
-```sh
+```plain
 jdcal holidays 1584
-Good Friday   occurs on Friday   Julian 1584/03/20
-Easter        occurs on Sunday   Julian 1584/03/22
-Ascension Day occurs on Thursday Julian 1584/04/30
-Pentecost     occurs on Sunday   Julian 1584/05/10
+Ash Wednesday occurs on Wednesday Julian 1584/02/05
+Good Friday   occurs on Friday    Julian 1584/03/20
+Easter        occurs on Sunday    Julian 1584/03/22
+Ascension Day occurs on Thursday  Julian 1584/04/30
+Pentecost     occurs on Sunday    Julian 1584/05/10
 ```
 
 The output format can be forced to Gregorian using flag `--gregorian` (shorthand: `-g`). Alternatively, the output format can be "guessed" when a zone is given using flag `--zone` (shorthand: `-z`). For example, *Switzerland (Appenzell Ausserrhoden)* switched to the Gregorian calendar in 1584:
 
-```sh
+```plain
 jdcal holidays 1584 -z ausserrhoden
-Good Friday   in Switzerland (Appenzell Ausserrhoden) occurs on Friday   Gregorian 1584/03/30
-Easter        in Switzerland (Appenzell Ausserrhoden) occurs on Sunday   Gregorian 1584/04/01
-Ascension Day in Switzerland (Appenzell Ausserrhoden) occurs on Thursday Gregorian 1584/05/10
-Pentecost     in Switzerland (Appenzell Ausserrhoden) occurs on Sunday   Gregorian 1584/05/20
+Ash Wednesday in Switzerland (Appenzell Ausserrhoden) occurs on Wednesday Gregorian 1584/02/15
+Good Friday   in Switzerland (Appenzell Ausserrhoden) occurs on Friday    Gregorian 1584/03/30
+Easter        in Switzerland (Appenzell Ausserrhoden) occurs on Sunday    Gregorian 1584/04/01
+Ascension Day in Switzerland (Appenzell Ausserrhoden) occurs on Thursday  Gregorian 1584/05/10
+Pentecost     in Switzerland (Appenzell Ausserrhoden) occurs on Sunday    Gregorian 1584/05/20
 ```
 
 Some zones switched between the holiday dates. E.g., Georgia switched to the Gregorian calendar on the the Julian date 1918/04/17, which means that the Easter should be represented as Julian, but Ascension day and Pentecost as Gregorian:
 
-```sh
+```plain
 jdcal holidays 1918 -z georgia
-Good Friday   in Georgia occurs on Friday   Julian 1918/03/16
-Easter        in Georgia occurs on Sunday   Julian 1918/03/18
-Ascension Day in Georgia occurs on Thursday Gregorian 1918/05/09
-Pentecost     in Georgia occurs on Sunday   Gregorian 1918/05/19
+Ash Wednesday in Georgia occurs on Wednesday Julian 1918/01/31
+Good Friday   in Georgia occurs on Friday    Julian 1918/03/16
+Easter        in Georgia occurs on Sunday    Julian 1918/03/18
+Ascension Day in Georgia occurs on Thursday  Gregorian 1918/05/09
+Pentecost     in Georgia occurs on Sunday    Gregorian 1918/05/19
 ```
 
 ## Short library synopsis

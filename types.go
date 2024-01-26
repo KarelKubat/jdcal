@@ -98,6 +98,7 @@ type Holiday int
 
 const (
 	firstUnusedHoliday Holiday = iota
+	AshWednesday
 	GoodFriday
 	Easter
 	Ascension
