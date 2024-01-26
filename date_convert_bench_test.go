@@ -19,26 +19,20 @@ func BenchmarkDateConvert(b *testing.B) {
 		}
 	}
 
-	for _, algorithm = range []int{algorithmLookupTable, algorithmProgression} {
-		var tag string
-		switch algorithm {
-		case algorithmLookupTable:
-			tag = "algorithmLookupTable"
-		case algorithmProgression:
-			tag = "algorithmProgression"
-		}
-		b.Run(fmt.Sprintf("algorithm=%s", tag), func(b *testing.B) {
-			for i := 0; i < nBenchConversions; i++ {
-				test := testdates.TestDates[rand.Intn(len(testdates.TestDates))]
-				jd := Date{Year: Year(test.J.Year), Month: test.J.Month, Day: test.J.Day, Type: Julian}
-				gd := Date{Year: Year(test.G.Year), Month: test.G.Month, Day: test.G.Day, Type: Gregorian}
+	for _, a := range []ConversionAlgorithm{ByLookup, ByProgression} {
+		b.Run(fmt.Sprintf("Algorithm %s, %d random conversions", a, nBenchConversions),
+			func(b *testing.B) {
+				Algorithm = a
+				for i := 0; i < nBenchConversions; i++ {
+					test := testdates.TestDates[rand.Intn(len(testdates.TestDates))]
+					jd := Date{Year: Year(test.J.Year), Month: test.J.Month, Day: test.J.Day, Type: Julian}
+					gd := Date{Year: Year(test.G.Year), Month: test.G.Month, Day: test.G.Day, Type: Gregorian}
 
-				_, err := jd.Convert()
-				check(err)
-				_, err = gd.Convert()
-				check(err)
-			}
-		})
-
+					_, err := jd.Convert()
+					check(err)
+					_, err = gd.Convert()
+					check(err)
+				}
+			})
 	}
 }

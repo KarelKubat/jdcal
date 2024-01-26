@@ -109,3 +109,15 @@ const (
 Ordinal (an int) represents the day number since epoch start.
 */
 type Ordinal int
+
+/*
+ConversionAlgoritm (an int) represents the applicable conversion algorithm.
+*/
+type ConversionAlgorithm int
+
+const (
+	firstUnusedAlgorithm ConversionAlgorithm = iota
+	ByProgression                            // Default conversion algorithm, fast
+	ByLookup                                 // Slow conversion algorithm, but thoroughly tested
+	lastUnusedAlgorithm
+)

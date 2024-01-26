@@ -24,10 +24,10 @@ func (d Date) Convert() (Date, error) {
 	// is not workable, it doesn't cover our years range. That would be the nicest and less
 	// computation-intenive case, but ... it no worky.
 
-	switch algorithm {
-	case algorithmProgression:
+	switch Algorithm {
+	case ByProgression:
 		return d.convertFromOrdinal()
-	case algorithmLookupTable:
+	case ByLookup:
 		return d.convertFromTable()
 	}
 	return Date{}, fmt.Errorf("internal error: algorithm mismatch in Date.Convert")

@@ -11,14 +11,14 @@ Convert() would throw an error. This is a limitation of the ConversionTable. Exa
 	jd, err := gd.Convert()            // err will be set, gd cannot be converted
 */
 func Last(tp Type) Date {
-	switch algorithm {
-	case algorithmLookupTable:
+	switch Algorithm {
+	case ByProgression:
+		return Date{Year: EndProgressionYear, Month: time.January, Day: 1, Type: tp}
+	case ByLookup:
 		if tp == Julian {
 			return ConversionTable[len(ConversionTable)-1].JDate
 		}
 		return ConversionTable[len(ConversionTable)-1].GDate
-	case algorithmProgression:
-		return Date{Year: EndProgressionYear, Month: time.January, Day: 1, Type: tp}
 	default:
 		panic("internal error: algorithm mismatch in Date.Last")
 	}

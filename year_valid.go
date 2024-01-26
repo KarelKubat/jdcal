@@ -19,20 +19,20 @@ func (y Year) Valid() error {
 	if y == 0 {
 		return errors.New("year 0 does not exist in BC/AD")
 	}
-	switch algorithm {
-	case algorithmLookupTable:
-		if y < First(Julian).Year {
-			return fmt.Errorf("year %v %s", y, beforeConvertibleDate)
-		}
-		if y > Last(Gregorian).Year {
-			return fmt.Errorf("year %v %s", y, afterConvertibleDate)
-		}
-		return nil
-	case algorithmProgression:
+	switch Algorithm {
+	case ByProgression:
 		if y < StartProgressionYear {
 			return fmt.Errorf("year %v %s", y, beforeConvertibleDate)
 		}
 		if y > EndProgressionYear {
+			return fmt.Errorf("year %v %s", y, afterConvertibleDate)
+		}
+		return nil
+	case ByLookup:
+		if y < First(Julian).Year {
+			return fmt.Errorf("year %v %s", y, beforeConvertibleDate)
+		}
+		if y > Last(Gregorian).Year {
 			return fmt.Errorf("year %v %s", y, afterConvertibleDate)
 		}
 		return nil

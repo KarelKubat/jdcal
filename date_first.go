@@ -13,14 +13,14 @@ First returns the first convertible day for a given type. Dates before this cann
 The first convertible dates point to the same day, despite being different day numbers on the Julian or Gregorian calendars.
 */
 func First(tp Type) Date {
-	switch algorithm {
-	case algorithmLookupTable:
+	switch Algorithm {
+	case ByProgression:
+		return Date{Year: StartProgressionYear, Month: time.January, Day: 1, Type: tp}
+	case ByLookup:
 		if tp == Julian {
 			return ConversionTable[0].JDate
 		}
 		return ConversionTable[0].GDate
-	case algorithmProgression:
-		return Date{Year: StartProgressionYear, Month: time.January, Day: 1, Type: tp}
 	default:
 		panic("internal error: algorithm mismatch in Date.First")
 	}

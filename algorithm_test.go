@@ -4,15 +4,8 @@ import (
 	"testing"
 )
 
-func TestAlgorithmSwitching(t *testing.T) {
-	want := func(call string, wantAlgo int) {
-		if algorithm != wantAlgo {
-			t.Errorf("after %v(): algorithm = %v, want %v", call, algorithm, wantAlgo)
-		}
+func TestAlgorithmString(t *testing.T) {
+	for a := firstUnusedAlgorithm; a <= lastUnusedAlgorithm; a++ {
+		_ = a.String() // let it crash if strings don't match the enum
 	}
-
-	ConvertByLookup()
-	want("ConvertByLookup", algorithmLookupTable)
-	ConvertByProgression()
-	want("ConvertByProgression", algorithmProgression)
 }
